@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="10%" width="1000" horizontalCenter="0">
+    <mx:Script>
+        <![CDATA[
+
+        import mx.collections.ArrayCollection;
+
+        [Bindable]
+        private var expensesAC:ArrayCollection = new ArrayCollection( [
+            { Month: "Jan", Profit: 2000, Expenses: 1500, Amount: 450 },
+            { Month: "Feb", Profit: 1000, Expenses: 200, Amount: 600 },
+            { Month: "Mar", Profit: 1500, Expenses: 500, Amount: 300 },
+            { Month: "Apr", Profit: 1800, Expenses: 1200, Amount: 900 },
+            { Month: "May", Profit: 2400, Expenses: 575, Amount: 500 },
+            { Month: "Jun", Profit: 2000, Expenses: 1500, Amount: 450 },
+            { Month: "Jul", Profit: 1000, Expenses: 200, Amount: 600 },
+            { Month: "Aug", Profit: 1500, Expenses: 500, Amount: 300 },
+            { Month: "Sep", Profit: 1800, Expenses: 1200, Amount: 900 },
+            { Month: "Oct", Profit: 2400, Expenses: 575, Amount: 500 },
+            { Month: "Nov", Profit: 1400, Expenses: 800, Amount: 700 },
+            { Month: "Dec", Profit: 2000, Expenses: 1500, Amount: 450 }]);
+        ]]>
+    </mx:Script>
+    
+    <mx:SolidColor id="sc3" color="green" alpha=".3"/>
+    <mx:Stroke id = "s3" color="green" weight="2"/>
+    <mx:Glow id="playGlow" duration="2000" strength="255" color="0xFFFFFF" inner="true"/>
+	<mx:Array id="bge"/>
+	<mx:AreaChart id="Areachart" paddingLeft="10" left="0" height="95%" width="99%" verticalCenter="0"
+         showDataTips="false" dataProvider="{expensesAC}" backgroundElements="{bge}">
+ 			<mx:horizontalAxis>
+           	 <mx:CategoryAxis id="ha" categoryField="Month"/>
+       	 </mx:horizontalAxis>
+
+			<mx:verticalAxis>
+				<mx:LinearAxis id="va"/>
+			</mx:verticalAxis>
+		
+			<mx:horizontalAxisRenderers>
+				<mx:AxisRenderer axis="{ha}" showLine="false" showLabels="false" tickPlacement="none"/>
+			</mx:horizontalAxisRenderers>
+		
+			<mx:verticalAxisRenderers>
+				<mx:AxisRenderer axis="{va}" showLine="false" showLabels="false" tickLength="0"/>
+			</mx:verticalAxisRenderers>
+		
+      	  <mx:series>
+        	    <mx:AreaSeries yField="Amount" form="curve" displayName="Amount" areaStroke="{s3}" areaFill="{sc3}"/>
+      	  </mx:series>
+   	 </mx:AreaChart> 
+	<mx:Canvas left="0" width="30%" height="95%" verticalCenter="0" backgroundAlpha="0.5" backgroundColor="#5A5A5A" id="leftCanvas">
+	</mx:Canvas>
+	<mx:Canvas right="0" width="30%" height="95%" verticalCenter="0" backgroundAlpha="0.5" backgroundColor="#5A5A5A" id="rightCanvas">
+	</mx:Canvas>
+	<mx:Canvas width="0.5%" height="100%" verticalCenter="0" backgroundAlpha="0.8" backgroundColor="#A8FF00" id="leftControlCanvas" useHandCursor="true" buttonMode="true" showEffect="{playGlow}">
+	</mx:Canvas>
+	<mx:Canvas width="0.5%" height="100%" verticalCenter="0" backgroundAlpha="0.8" backgroundColor="#FF5A00" id="rightControlCanvas" useHandCursor="true" buttonMode="true" showEffect="{playGlow}">
+	</mx:Canvas>
+	<mx:Image source="assets/images/button-icon-play.png" width="3%" height="30%" verticalCenter="0" id="playerButton" useHandCursor="true" buttonMode="true"/>
+	<mx:Label x="10" bottom="0" text="Debugger Info" id="label1"/>
+	
+	<mx:Script>
+		<![CDATA[
+			//right slider control mouse move event
+			public function rightMove(e:MouseEvent):void
+			{
+				var pt:Point = new Point(this.mouseX, this.mouseY);
+				//debug("" + pt.x);
+				
+				if((pt.x > (this.leftControlCanvas.x + this.leftControlCanvas.width)) && (pt.x <= this.Areachart.width)){
+					this.rightControlCanvas.x = pt.x;
+					this.rightControlCanvas.toolTip = "" + this.rightControlCanvas.x
+					this.rightCanvas.width = (this.width - this.rightControlCanvas.x - this.rightControlCanvas.width);
+					this.playerButton.x = (((this.leftControlCanvas.width + this.leftControlCanvas.x) + this.rightControlCanvas.x)/2);
+				}
+			}
+			
+			//left slider control mouse move event
+			public function leftMove(e:MouseEvent):void
+			{
+				var pt:Point = new Point(this.mouseX, this.mouseY);
+				//debug("" + pt.x);
+				if((pt.x < (this.rightControlCanvas.x - this.leftControlCanvas.width)) && (pt.x >= (this.Areachart.x))){
+					this.leftControlCanvas.x = pt.x;
+					this.leftControlCanvas.toolTip = "" + this.leftControlCanvas.x
+					this.leftCanvas.width = pt.x;
+					this.playerButton.x = (((this.leftControlCanvas.width + this.leftControlCanvas.x) + this.rightControlCanvas.x)/2);
+				}
+			}
+		]]>
+	</mx:Script>
+</mx:Canvas>

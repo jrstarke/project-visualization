@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml">
+	<mx:Script>
+		<![CDATA[
+			//TEST: switch states
+			public function switchStates(e:Event):void
+			{
+				var currentCanvas:stateEventObject = e.target as stateEventObject;
+				var state:DisplayObject = currentCanvas.parent.getChildAt(2); //this will only work if there are 3 states
+				currentCanvas.parent.setChildIndex(state, 0);
+				state.visible = false;
+				state.visible = true;
+			}
+		]]>
+	</mx:Script>
+</mx:Canvas>
