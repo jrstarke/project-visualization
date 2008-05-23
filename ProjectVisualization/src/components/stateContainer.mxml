@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="10%" width="100%" horizontalCenter="0">
+	<mx:HBox id="stateHBox" width="99%" height="100%" horizontalGap="3" verticalCenter="0" horizontalCenter="0" backgroundColor="#000000F"/>
+</mx:Canvas>

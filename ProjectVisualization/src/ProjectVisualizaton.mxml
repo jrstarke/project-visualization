@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:MyComps="components.*" layout="absolute" color="#C3C4C4" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#000000, #000000]" xmlns:myObjects="myObjects.*">
+    
+    <mx:Glow id="newEventGlow" duration="5000" strength="255" color="0xFFFFFF" inner="true" />
+    <mx:Glow id="mouseOverEventGlow" duration="5000" strength="255" color="0xFFFFFF" inner="true" />
+    <mx:AnimateProperty id="testEffect" duration="5000" fromValue="0x000000" toValue="0xFFFFFF" property="backgroundColor"/>
+    <mx:Blur id="playBlur" duration="1000"/>
+    
+    <mx:Canvas id = "c1" y="0" height="100%" width="100%" horizontalCenter="0">
+    	<mx:VBox height="100%" width="100%" horizontalCenter="0" top="10">
+    		<MyComps:graphContainer id="barCanvas" horizontalCenter="0" verticalCenter="0" creationComplete="initBar()"/>	 
+   			<MyComps:stateContainer id="stateCanvas" horizontalCenter="0" verticalCenter="0" creationComplete="initState()"/>
+   			<mx:HBox height="55%" width="100%" horizontalCenter="0" horizontalAlign="center">
+   				<mx:Canvas height="100%" width="70%" backgroundColor="#FFFFFF"/>
+   				<mx:Canvas height="100%" width="30%" backgroundColor="#AAAAAA"/>
+   			</mx:HBox>
+    	</mx:VBox>
+    	<MyComps:controllerContainer id="controllerCanvas" bottom="10" creationComplete="initControllers(); initPlayer()"/>
+    	<mx:HBox id="speedHBox" right="0" bottom="100">
+	    		<mx:Label text="Speed:"/>
+	    		<mx:NumericStepper id="numStep" minimum="1" maximum="20" stepSize="1" value="1"/>
+	    </mx:HBox>
+	</mx:Canvas>
+	
+	<mx:Script>
+		<![CDATA[
+			import components.stateEventObject;
+			import components.graphEventObject;
+			import mx.controls.Spacer;
+			import mx.containers.VBox;
+			import mx.controls.Image;
+			import mx.charts.CandlestickChart;
+			import mx.effects.AnimateProperty;
+			import mx.containers.Panel;
+			import mx.core.EdgeMetrics;
+			private var t:Timer = new Timer(100, 0);
+			private var numComps:Number = 7;
+			
+			//initialize the bar graphs
+			private function initBar():void
+			{
+				//create a new canvas for the components
+				var i:int;
+				for(i=0; i<numComps; i++){
+					//set the canvas properties
+					var panel:Panel = new Panel();
+					panel.name = "graph" + i;
+					panel.title = "graph" + i;
+					panel.percentHeight = 100;
+					panel.percentWidth = 100/numComps;
+					panel.setStyle("backgroundColor", "#000000");
+					panel.setStyle("borderColor", "#FFFFFF");
+					panel.setStyle("borderThicknessLeft", "20");
+					panel.setStyle("borderThicknessRight", "5");
+					panel.setStyle("borderThicknessTop", "0");
+					panel.setStyle("borderThicknessBottom", "5");
+					barCanvas.graphHBox.addChild(panel);
+					
+					//create a new HBox and set properties to hold the bars
+					var barsHBox:HBox = new HBox();
+					barsHBox.name = "barsHBox" + i;
+					barsHBox.percentHeight = 100;
+					barsHBox.percentWidth = 100;
+					barsHBox.setStyle("horizontalGap", "1");
+					
+					panel.addChild(barsHBox);
+					
+					//TEST: randomly select number of bars for each graph
+					var lowerBound:int = 5;
+					var upperBound:int = 10;
+					var randomNo:int = Math.round(Math.random()*(upperBound-lowerBound))+lowerBound;
+					
+					//add news canvases for each bar, set properties
+					var j:int;
+					for(j=0; j<=randomNo; j++){
+						var bar:Canvas = new Canvas();
+						bar.name = "bar" + j;
+						bar.percentHeight = 100;
+						bar.percentWidth = 100/randomNo;
+			
+						//TEST: click on canvas to add new event
+						bar.addEventListener(MouseEvent.CLICK,testNewEvent);
+						
+						barsHBox.addChild(bar);
+					}
+				}
+			}
+			
+			private function initState():void
+			{
+				//create a new canvas for the components
+				var i:int;
+				for(i=0; i<numComps; i++){
+					//set the canvas properties
+					var canvas:Canvas = new Canvas();
+					canvas.name = "state" + i;
+					canvas.percentHeight = 100;
+					canvas.percentWidth = 100/numComps;
+					//canvas.setStyle("backgroundColor", "#FFFFFF");
+					//canvas.setStyle("borderStyle", "solid");
+					//canvas.setStyle("cornerRadius", "3");
+					stateCanvas.stateHBox.addChild(canvas);
+					
+					//input a vbox for the state images
+					var stateVBox:VBox = new VBox();
+					stateVBox.width = 20;
+					stateVBox.percentHeight = 100;
+					//stateVBox.setStyle("backgroundColor", "#666666");					
+					canvas.addChild(stateVBox);
+					
+					//input images for states on the left
+					var openState:Image = new Image();
+					openState.source = "assets/images/redState.png";
+					var resolvedState:Image = new Image();
+					resolvedState.source = "assets/images/greenState.png";
+					var reopenedState:Image = new Image();
+					reopenedState.source = "assets/images/whiteState.png";
+					
+					stateVBox.addChild(openState);
+					openState.setStyle("horizontalCenter", "0");
+					openState.percentHeight = 33;
+					openState.toolTip = "Open";
+					stateVBox.addChild(resolvedState);
+					resolvedState.setStyle("horizontalCenter", "0");
+					resolvedState.percentHeight = 33;
+					resolvedState.toolTip = "Resolved";
+					stateVBox.addChild(reopenedState);
+					reopenedState.setStyle("horizontalCenter", "0");
+					reopenedState.percentHeight = 33;
+					reopenedState.toolTip = "Reopened";
+					
+					//create a new canvas to hold the graph
+					var insideCanvas:Canvas = new Canvas();
+					insideCanvas.name = "insideState" + i;
+					insideCanvas.percentHeight = 100;
+					insideCanvas.percentWidth = 100;
+					insideCanvas.setStyle("left", "20");
+					insideCanvas.setStyle("right", "5");
+					canvas.addChild(insideCanvas);
+					
+					//create a new HBox and set properties to hold the bars
+					var stateBarHBox:HBox = new HBox();
+					stateBarHBox.name = "stateBarHBox" + i;
+					stateBarHBox.percentHeight = 100;
+					stateBarHBox.percentWidth = 100;
+					stateBarHBox.setStyle("horizontalGap", "1");
+					stateBarHBox.setStyle("backgroundColor", "#000000");
+					
+					insideCanvas.addChild(stateBarHBox);
+					
+					//get number of bars from graph
+					var panel:Panel = barCanvas.graphHBox.getChildByName("graph" + i) as Panel;
+					var hbox:HBox = panel.getChildByName("barsHBox" + i) as HBox;
+					
+					//place correct amount of horizontal bars for states as the correlated graph
+					var j:int;
+					for(j=0; j<hbox.numChildren;j++)
+					{
+						var bar:Canvas = new Canvas();
+						bar.name = "stateBar" + j;
+						bar.percentHeight = 100;
+						bar.percentWidth = 100/hbox.numChildren;
+						bar.setStyle("backgroundColor", "#FFFFFF");
+			
+						//TEST: click on canvas to add new state
+						//bar.addEventListener(MouseEvent.CLICK,testNewEvent);
+						
+						stateBarHBox.addChild(bar);
+					}
+					
+					//create a new vbox for the states, place default start states to OPEN
+					var h:int;
+					for(h=0;h<hbox.numChildren;h++)
+					{
+						//set vbox properties
+						var insideStateVBox:VBox = new VBox();
+						insideStateVBox.name = "insideStateVBox" + h;
+						insideStateVBox.percentHeight = 100;
+						insideStateVBox.percentWidth = 100;
+						
+						//add vbox to the inside canvas
+						var insideStateCanvas:Canvas = stateBarHBox.getChildByName("stateBar" + h) as Canvas;
+						insideStateCanvas.addChild(insideStateVBox); 
+						
+						//create the state to the default of OPEN
+						var state:stateEventObject = new stateEventObject();
+						state.name = "stateObject" + h;
+						state.percentHeight = 33;
+						state.percentWidth = 100;
+						state.setStyle("backgroundColor", "#0915AC");
+						state.toolTip = state.name;
+						state.addEventListener(MouseEvent.CLICK, state.switchStates);
+						state.addEventListener(MouseEvent.MOUSE_OVER, eventMouseOver);
+						state.addEventListener(MouseEvent.MOUSE_OUT, eventMouseOut);
+						
+						//add spacers to fill up the bottom part of the vbox
+						var spacer1:Spacer = new Spacer();
+						spacer1.name = "spacer1";
+						spacer1.percentHeight = 33;
+						
+						var spacer2:Spacer = new Spacer();
+						spacer2.name = "spacer2";
+						spacer2.percentHeight = 33;
+						
+						//add state and spacers to the vbox
+						insideStateVBox.addChild(state);
+						insideStateVBox.addChild(spacer1);
+						insideStateVBox.addChild(spacer2);
+					}
+				}
+			}
+			
+			//TEST: function to add new events to the bar
+			private function testNewEvent(e:Event):void
+			{
+				var currentCanvas:Canvas = Canvas(e.currentTarget);
+				var newEvent:graphEventObject = new graphEventObject();
+				var h:int = 20;
+				
+				newEvent.percentWidth = 100;
+				newEvent.height = h;
+				newEvent.name = "event" + (currentCanvas.numChildren+1);
+				
+				newEvent.setStyle("bottom", "" + currentCanvas.numChildren*h);
+				newEvent.setStyle("backgroundColor", "#0915AC");
+				newEvent.setStyle("addedEffect", newEventGlow);
+				
+				newEvent.addEventListener(MouseEvent.MOUSE_OVER, eventMouseOver);
+				newEvent.addEventListener(MouseEvent.MOUSE_OUT, eventMouseOut);
+				
+				//TEST: mouse click event for removal
+				newEvent.addEventListener(MouseEvent.MOUSE_WHEEL, eventMouseClick);
+				
+				currentCanvas.addChild(newEvent);
+				
+				newEvent.toolTip = newEvent.parent.parent.parent.name + ":" + newEvent.parent.parent.name + ":" + newEvent.parent.name + ":" + newEvent.name;
+			}
+			
+			//mouse over event for the graph events
+			private function eventMouseOver(e:Event):void
+			{
+				newEventGlow.resume();
+
+				var a:Array = new Array();
+				a.push(e.target);
+				
+				//set a short delay so it doesnt skip over the effect
+				setTimeout(newEventGlow.pause, 20);
+				mouseOverEventGlow.play(a);
+			}
+			
+			//TEST: mouse click event for graph event removal
+			private function eventMouseClick(e:Event):void
+			{
+				var currentCanvas:Canvas = Canvas(e.currentTarget);
+				var currentCanvasParent:Canvas = Canvas(currentCanvas.parent);
+				
+				//Note: the following line does not delete the object, it just simply removes the object from being visible
+				currentCanvas.parent.removeChild(e.target as Canvas);
+				var parentChildren:Array = currentCanvasParent.getChildren();
+	
+				for each (var child:Canvas in parentChildren)
+				{
+					var styleBottom:Object = currentCanvas.getStyle("bottom");
+					var tempBottom:int = styleBottom.valueOf();
+					var styleBottomChild:Object = child.getStyle("bottom");
+					var tempBottomChild:int = styleBottomChild.valueOf();
+					
+					if(tempBottomChild > tempBottom)
+					{
+						var style:Object = child.getStyle("bottom");
+						var temp:int = (style.valueOf()-child.height);
+						child.setStyle("bottom", "" + temp);
+					}
+				}
+			}
+				
+			//mouse out event for the graph events
+			private function eventMouseOut(e:Event):void
+			{
+				mouseOverEventGlow.end();
+				setTimeout(newEventGlow.resume, 20);
+			}
+			
+			//initialize the controller sliders
+			private function initControllers():void
+			{
+				controllerCanvas.rightControlCanvas.addEventListener(MouseEvent.MOUSE_DOWN, rightDown);
+				controllerCanvas.leftControlCanvas.addEventListener(MouseEvent.MOUSE_DOWN, leftDown);
+				controllerCanvas.rightControlCanvas.x = (controllerCanvas.width - controllerCanvas.rightCanvas.width - controllerCanvas.rightControlCanvas.width);
+				controllerCanvas.leftControlCanvas.x = controllerCanvas.leftCanvas.width;	
+			}
+			
+			//initialize the play controller on the slider to be in the center
+			private function initPlayer():void
+			{
+				controllerCanvas.playerButton.x = (((controllerCanvas.leftControlCanvas.width + controllerCanvas.leftControlCanvas.x) + controllerCanvas.rightControlCanvas.x)/2); 
+				controllerCanvas.playerButton.addEventListener(MouseEvent.CLICK, playerClick);
+			}
+			
+			//event for the player
+			private function playerClick(e:Event):void
+			{
+				if(controllerCanvas.playerButton.source == "assets/images/button-icon-play.png"){
+					t.start();
+					t.addEventListener(TimerEvent.TIMER, timerTick);			
+					controllerCanvas.playerButton.source = "assets/images/button-icon-pause.png";
+					controllerCanvas.rightControlCanvas.visible = false;
+					controllerCanvas.rightControlCanvas.visible = true;		
+				}
+				else{
+					t.stop();
+					t.removeEventListener(TimerEvent.TIMER, timerTick);	
+					controllerCanvas.playerButton.source = "assets/images/button-icon-play.png";
+				}
+			}
+			
+			//timer event to control playback
+			private function timerTick(e:TimerEvent):void
+			{
+				//move the controller and other related objects
+				if((controllerCanvas.rightControlCanvas.x + numStep.value) <= controllerCanvas.Areachart.width){
+					controllerCanvas.rightControlCanvas.x += numStep.value;
+					controllerCanvas.rightControlCanvas.toolTip = "" + controllerCanvas.rightControlCanvas.x
+					controllerCanvas.rightCanvas.width = (controllerCanvas.width - controllerCanvas.rightControlCanvas.x - controllerCanvas.rightControlCanvas.width);
+					controllerCanvas.playerButton.x = (((controllerCanvas.leftControlCanvas.width + controllerCanvas.leftControlCanvas.x) + controllerCanvas.rightControlCanvas.x)/2);
+				}
+				
+				else{
+					//move controller to the end
+					controllerCanvas.rightControlCanvas.x = controllerCanvas.Areachart.width;
+					controllerCanvas.rightControlCanvas.toolTip = "" + controllerCanvas.rightControlCanvas.x
+					controllerCanvas.rightCanvas.width = (controllerCanvas.width - controllerCanvas.rightControlCanvas.x - controllerCanvas.rightControlCanvas.width);
+					controllerCanvas.playerButton.x = (((controllerCanvas.leftControlCanvas.width + controllerCanvas.leftControlCanvas.x) + controllerCanvas.rightControlCanvas.x)/2);
+					
+					t.stop();
+					t.removeEventListener(TimerEvent.TIMER, timerTick);
+					controllerCanvas.playerButton.source = "assets/images/button-icon-play.png";
+
+					//play effects
+					controllerCanvas.rightControlCanvas.visible = false;
+					controllerCanvas.rightControlCanvas.visible = true;
+				}
+			}
+			
+			//debug function for outputting slider controls to the label
+			public function debug(txt:String):void
+			{
+				controllerCanvas.label1.text = txt;
+			}
+
+			//right slider control mouse down event
+			private function rightDown(e:MouseEvent):void
+			{
+				debug('Right Canvas Control Down');
+				c1.addEventListener(MouseEvent.MOUSE_MOVE, controllerCanvas.rightMove);
+				c1.addEventListener(MouseEvent.MOUSE_UP, rightUp);
+			}
+			
+			//left slider control mouse down event
+			private function leftDown(e:MouseEvent):void
+			{
+				debug('Left Canvas Control Down');
+				c1.addEventListener(MouseEvent.MOUSE_MOVE, controllerCanvas.leftMove);
+				c1.addEventListener(MouseEvent.MOUSE_UP, leftUp);
+			}
+			
+			//right slider control mouse up event
+			private function rightUp(e:MouseEvent):void
+			{
+				debug('Right Canvas Control Up');
+				c1.removeEventListener(MouseEvent.MOUSE_MOVE, controllerCanvas.rightMove);
+				c1.removeEventListener(MouseEvent.MOUSE_UP, rightUp);
+			}
+			
+			//left slider control mouse up event
+			private function leftUp(e:MouseEvent):void
+			{
+				debug('Left Canvas Control Up');
+				c1.removeEventListener(MouseEvent.MOUSE_MOVE, controllerCanvas.leftMove);
+				c1.removeEventListener(MouseEvent.MOUSE_UP, leftUp);
+			}
+			
+		]]>
+	</mx:Script>
+        
+</mx:Application>
