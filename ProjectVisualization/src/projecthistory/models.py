@@ -52,7 +52,7 @@ class Component(models.Model):
         return cls.objects.get_or_create(name=name.lower())[0]
     
 class Author(models.Model):
-    name = models.CharField(max_length=75, unique=True)
+    name = models.CharField(maxlength=75, unique=True)
     
     # returns an author, possibly newly created
     @classmethod
@@ -83,7 +83,7 @@ class Ticket(models.Model):
         return self.ticketchangeevent_set
 
 class Module(models.Model):
-    directory = models.TextField(max_length=150)
+    directory = models.TextField(maxlength=150)
     
     dirs = (
         '/django/contrib/admin/', '/django/contrib/comments',
@@ -120,9 +120,9 @@ class Module(models.Model):
 class Path(models.Model):
     ACTION_TYPE = (('A', 'added'), ('M', 'modified'),('D', 'deleted'))
     event = models.ForeignKey('CommitEvent')
-    action = models.CharField(max_length=1, choices=ACTION_TYPE)
-    dest_file = models.CharField(max_length=200)
-    src_file = models.CharField(max_length=200, null=True)
+    action = models.CharField(maxlength=1, choices=ACTION_TYPE)
+    dest_file = models.CharField(maxlength=200)
+    src_file = models.CharField(maxlength=200, null=True)
     src_revision = models.IntegerField(null=True)
     module = models.ForeignKey(Module)
 
@@ -169,7 +169,7 @@ class TicketChange(models.Model):
     changed_field = models.TextField(null=True)
     from_value = models.TextField(null=True)
     to_value = models.TextField(null=True)
-    file_name = models.CharField(max_length=200, null=True) # for attachments
+    file_name = models.CharField(maxlength=200, null=True) # for attachments
 
     def isattachment(self):
         return self.file_name != None
