@@ -11,7 +11,8 @@
     		<MyComps:graphContainer id="barCanvas" horizontalCenter="0" verticalCenter="0" creationComplete="initBar()"/>	 
    			<MyComps:stateContainer id="stateCanvas" horizontalCenter="0" verticalCenter="0" creationComplete="initState()"/>
    			<mx:HBox height="55%" width="100%" horizontalCenter="0" horizontalAlign="center">
-   				<mx:Canvas height="100%" width="70%" backgroundColor="#FFFFFF"/>
+   				<mx:Canvas height="100%" width="70%" backgroundColor="#FFFFFF">
+   				</mx:Canvas>
    				<mx:Canvas height="100%" width="30%" backgroundColor="#AAAAAA"/>
    			</mx:HBox>
     	</mx:VBox>
