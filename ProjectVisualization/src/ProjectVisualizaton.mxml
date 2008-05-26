@@ -201,7 +201,7 @@
 						var spacer2:Spacer = new Spacer();
 						spacer2.name = "spacer2";
 						spacer2.percentHeight = 33;
-						
+					
 						//add state and spacers to the vbox
 						insideStateVBox.addChild(state);
 						insideStateVBox.addChild(spacer1);
