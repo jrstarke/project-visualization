@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="10%" width="1000" horizontalCenter="0">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="10%" width="1000" horizontalCenter="0" creationComplete="getSrv.send()">
+
+    <mx:ArrayCollection id="testDjango"/>
+    <mx:ArrayCollection id="testAC"/>
+    <mx:HTTPService id="getSrv" url="http://localhost:8000/stats/" resultFormat="text" result="handleGetResult()"/>
+    
     <mx:Script>
         <![CDATA[
 
         import mx.collections.ArrayCollection;
+    	import com.adobe.serialization.json.JSON;
+    	private function handleGetResult():void
+    	{
+    		var decoded:Object = JSON.decode(getSrv.lastResult.toString());
+    		testDjango = new ArrayCollection(decoded as Array);
+
+   			var i:int;
+   			for(i=0; i<testDjango.length; i++){
+   				testAC.addItem({dateEvent: testDjango[i][0], commitEvent: testDjango[i][1], newEvent: testDjango[i][2], changeEvent: testDjango[i][3], totalEvents: (testDjango[i][1]+testDjango[i][2]+testDjango[i][3])});
+   			}
+   		}
 
         [Bindable]
         private var expensesAC:ArrayCollection = new ArrayCollection( [
@@ -25,11 +41,11 @@
     <mx:SolidColor id="sc3" color="green" alpha=".3"/>
     <mx:Stroke id = "s3" color="green" weight="2"/>
     <mx:Glow id="playGlow" duration="2000" strength="255" color="0xFFFFFF" inner="true"/>
-	<mx:Array id="bge"/>
+    <mx:Array id="bge"/>
 	<mx:AreaChart id="Areachart" paddingLeft="10" left="0" height="95%" width="99%" verticalCenter="0"
-         showDataTips="false" dataProvider="{expensesAC}" backgroundElements="{bge}">
+         showDataTips="true" dataProvider="{testAC}" backgroundElements="{bge}">
  			<mx:horizontalAxis>
-           	 <mx:CategoryAxis id="ha" categoryField="Month"/>
+           	 <mx:CategoryAxis id="ha" categoryField="dateEvent"/>
        	 </mx:horizontalAxis>
 
 			<mx:verticalAxis>
@@ -45,7 +61,7 @@
 			</mx:verticalAxisRenderers>
 		
       	  <mx:series>
-        	    <mx:AreaSeries yField="Amount" form="curve" displayName="Amount" areaStroke="{s3}" areaFill="{sc3}"/>
+        	    <mx:AreaSeries yField="totalEvents" form="curve" displayName="Total Events for Date" areaStroke="{s3}" areaFill="{sc3}"/>
       	  </mx:series>
    	 </mx:AreaChart> 
 	<mx:Canvas left="0" width="30%" height="95%" verticalCenter="0" backgroundAlpha="0.5" backgroundColor="#5A5A5A" id="leftCanvas">
@@ -69,7 +85,7 @@
 				
 				if((pt.x > (this.leftControlCanvas.x + this.leftControlCanvas.width)) && (pt.x <= this.Areachart.width)){
 					this.rightControlCanvas.x = pt.x;
-					this.rightControlCanvas.toolTip = "" + this.rightControlCanvas.x
+					this.rightControlCanvas.toolTip = "" + this.rightControlCanvas.x;
 					this.rightCanvas.width = (this.width - this.rightControlCanvas.x - this.rightControlCanvas.width);
 					this.playerButton.x = (((this.leftControlCanvas.width + this.leftControlCanvas.x) + this.rightControlCanvas.x)/2);
 				}
@@ -82,7 +98,7 @@
 				//debug("" + pt.x);
 				if((pt.x < (this.rightControlCanvas.x - this.leftControlCanvas.width)) && (pt.x >= (this.Areachart.x))){
 					this.leftControlCanvas.x = pt.x;
-					this.leftControlCanvas.toolTip = "" + this.leftControlCanvas.x
+					this.leftControlCanvas.toolTip = "" + this.leftControlCanvas.x;
 					this.leftCanvas.width = pt.x;
 					this.playerButton.x = (((this.leftControlCanvas.width + this.leftControlCanvas.x) + this.rightControlCanvas.x)/2);
 				}
