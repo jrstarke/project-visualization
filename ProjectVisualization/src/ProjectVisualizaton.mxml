@@ -16,11 +16,12 @@
    				<mx:Canvas height="100%" width="30%" backgroundColor="#AAAAAA"/>
    			</mx:HBox>
     	</mx:VBox>
-    	<MyComps:controllerContainer id="controllerCanvas" bottom="10" creationComplete="initControllers(); initPlayer()"/>
+    	<MyComps:controllerContainer id="controllerCanvas" bottom="30" creationComplete="initControllers(); initPlayer()"/>
     	<mx:HBox id="speedHBox" right="0" bottom="100">
 	    		<mx:Label text="Speed:"/>
 	    		<mx:NumericStepper id="numStep" minimum="1" maximum="20" stepSize="1" value="1"/>
 	    </mx:HBox>
+    	<mx:Label id="testLabel" text="{testLabel.x}" y="800"/>
 	</mx:Canvas>
 	
 	<mx:Script>
@@ -39,7 +40,9 @@
 			
 			//initialize the bar graphs
 			private function initBar():void
-			{
+			{				
+				testLabel.x = ((990/730)*365) + controllerCanvas.x;
+				
 				//create a new canvas for the components
 				var i:int;
 				for(i=0; i<numComps; i++){

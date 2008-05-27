@@ -10,11 +10,14 @@
 
         import mx.collections.ArrayCollection;
     	import com.adobe.serialization.json.JSON;
+    	
+    	//decode JSON format from the http request
     	private function handleGetResult():void
     	{
     		var decoded:Object = JSON.decode(getSrv.lastResult.toString());
     		testDjango = new ArrayCollection(decoded as Array);
 
+			//perform sum of the data and store into array collection
    			var i:int;
    			for(i=0; i<testDjango.length; i++){
    				testAC.addItem({dateEvent: testDjango[i][0], commitEvent: testDjango[i][1], newEvent: testDjango[i][2], changeEvent: testDjango[i][3], totalEvents: (testDjango[i][1]+testDjango[i][2]+testDjango[i][3])});
@@ -42,6 +45,7 @@
     <mx:Stroke id = "s3" color="green" weight="2"/>
     <mx:Glow id="playGlow" duration="2000" strength="255" color="0xFFFFFF" inner="true"/>
     <mx:Array id="bge"/>
+    
 	<mx:AreaChart id="Areachart" paddingLeft="10" left="0" height="95%" width="99%" verticalCenter="0"
          showDataTips="true" dataProvider="{testAC}" backgroundElements="{bge}">
  			<mx:horizontalAxis>
@@ -53,11 +57,11 @@
 			</mx:verticalAxis>
 		
 			<mx:horizontalAxisRenderers>
-				<mx:AxisRenderer axis="{ha}" showLine="false" showLabels="false" tickPlacement="none"/>
+				<mx:AxisRenderer axis="{ha}" showLine="false" showLabels="false" tickLength="5" tickPlacement="none"/>
 			</mx:horizontalAxisRenderers>
 		
 			<mx:verticalAxisRenderers>
-				<mx:AxisRenderer axis="{va}" showLine="false" showLabels="false" tickLength="0"/>
+				<mx:AxisRenderer axis="{va}" showLine="false" showLabels="false" tickLength="5" tickPlacement="none" />
 			</mx:verticalAxisRenderers>
 		
       	  <mx:series>
