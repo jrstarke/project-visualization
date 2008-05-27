@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="10%" width="1000" horizontalCenter="0" creationComplete="getSrv.send()">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="13%" width="1000" horizontalCenter="0" creationComplete="getSrv.send()">
 
-    <mx:ArrayCollection id="testDjango"/>
-    <mx:ArrayCollection id="testAC"/>
+    <mx:ArrayCollection id="resultsDjango"/>
+    <mx:ArrayCollection id="parsedResultsDjango"/>
     <mx:HTTPService id="getSrv" url="http://localhost:8000/stats/" resultFormat="text" result="handleGetResult()"/>
     
     <mx:Script>
@@ -15,13 +15,21 @@
     	private function handleGetResult():void
     	{
     		var decoded:Object = JSON.decode(getSrv.lastResult.toString());
-    		testDjango = new ArrayCollection(decoded as Array);
+    		resultsDjango = new ArrayCollection(decoded as Array);
+    		
+    		var i:int;
+    		for(i=0; i<resultsDjango.length; i++)
+    		{
+    			parsedResultsDjango.addItem({dateEvent: resultsDjango[i][0], normalizedEvents: resultsDjango[i][1]});
+    		}
 
 			//perform sum of the data and store into array collection
-   			var i:int;
-   			for(i=0; i<testDjango.length; i++){
-   				testAC.addItem({dateEvent: testDjango[i][0], commitEvent: testDjango[i][1], newEvent: testDjango[i][2], changeEvent: testDjango[i][3], totalEvents: (testDjango[i][1]+testDjango[i][2]+testDjango[i][3])});
-   			}
+   			//var i:int;
+   			//for(i=0; i<testDjango.length; i++){
+   			//	testAC.addItem({dateEvent: testDjango[i][0], commitEvent: testDjango[i][1], newEvent: testDjango[i][2], changeEvent: testDjango[i][3], totalEvents: (testDjango[i][1]+testDjango[i][2]+testDjango[i][3])});
+   			//}
+   			
+   			initMonthLabels();
    		}
 
         [Bindable]
@@ -46,8 +54,8 @@
     <mx:Glow id="playGlow" duration="2000" strength="255" color="0xFFFFFF" inner="true"/>
     <mx:Array id="bge"/>
     
-	<mx:AreaChart id="Areachart" paddingLeft="10" left="0" height="95%" width="99%" verticalCenter="0"
-         showDataTips="true" dataProvider="{testAC}" backgroundElements="{bge}">
+	<mx:AreaChart id="Areachart" paddingLeft="10" left="0" height="90%" width="99%" top="0"
+         showDataTips="true" dataProvider="{parsedResultsDjango}" backgroundElements="{bge}">
  			<mx:horizontalAxis>
            	 <mx:CategoryAxis id="ha" categoryField="dateEvent"/>
        	 </mx:horizontalAxis>
@@ -65,22 +73,69 @@
 			</mx:verticalAxisRenderers>
 		
       	  <mx:series>
-        	    <mx:AreaSeries yField="totalEvents" form="curve" displayName="Total Events for Date" areaStroke="{s3}" areaFill="{sc3}"/>
+        	    <mx:AreaSeries yField="normalizedEvents" form="curve" displayName="Total Events for Date" areaStroke="{s3}" areaFill="{sc3}"/>
       	  </mx:series>
    	 </mx:AreaChart> 
-	<mx:Canvas left="0" width="30%" height="95%" verticalCenter="0" backgroundAlpha="0.5" backgroundColor="#5A5A5A" id="leftCanvas">
+	<mx:Canvas left="0" width="30%" height="90%" top="0" backgroundAlpha="0.5" backgroundColor="#5A5A5A" id="leftCanvas">
 	</mx:Canvas>
-	<mx:Canvas right="0" width="30%" height="95%" verticalCenter="0" backgroundAlpha="0.5" backgroundColor="#5A5A5A" id="rightCanvas">
+	<mx:Canvas right="0" width="30%" height="90%" top="0" backgroundAlpha="0.5" backgroundColor="#5A5A5A" id="rightCanvas">
 	</mx:Canvas>
-	<mx:Canvas width="0.5%" height="100%" verticalCenter="0" backgroundAlpha="0.8" backgroundColor="#A8FF00" id="leftControlCanvas" useHandCursor="true" buttonMode="true" showEffect="{playGlow}">
+	<mx:Canvas width="0.5%" height="90%" top="0" backgroundAlpha="0.8" backgroundColor="#A8FF00" id="leftControlCanvas" useHandCursor="true" buttonMode="true" showEffect="{playGlow}">
 	</mx:Canvas>
-	<mx:Canvas width="0.5%" height="100%" verticalCenter="0" backgroundAlpha="0.8" backgroundColor="#FF5A00" id="rightControlCanvas" useHandCursor="true" buttonMode="true" showEffect="{playGlow}">
+	<mx:Canvas width="0.5%" height="90%" top="0" backgroundAlpha="0.8" backgroundColor="#FF5A00" id="rightControlCanvas" useHandCursor="true" buttonMode="true" showEffect="{playGlow}">
 	</mx:Canvas>
 	<mx:Image source="assets/images/button-icon-play.png" width="3%" height="30%" verticalCenter="0" id="playerButton" useHandCursor="true" buttonMode="true"/>
-	<mx:Label x="10" bottom="0" text="Debugger Info" id="label1"/>
+	<mx:Label x="10" bottom="0" text="" id="label1"/>
 	
 	<mx:Script>
 		<![CDATA[
+			//initialize month labels for the controller container
+			private function initMonthLabels():void
+			{
+				//space: offset to match up pixels
+				var space:int = 6;
+				
+				//loop through all dates to find which dates need labels
+				var i:int;
+				for(i=0; i<parsedResultsDjango.length; i++)
+				{
+					var curDate:String = "" + parsedResultsDjango.getItemAt(i).dateEvent;
+					if(curDate.substring(5, 10) == "01-01")
+					{
+						var janLabel:Label = new Label();
+						janLabel.x = ((Areachart.width/730)*i) + space;
+						janLabel.text = "Jan " + curDate.substring(2,4);
+						janLabel.setStyle("bottom", 0);
+						
+						Areachart.parent.addChild(janLabel);
+					} 
+					
+					else if(curDate.substring(5,10) == "04-01"){
+						var aprLabel:Label = new Label();
+						aprLabel.text = "Apr";
+						aprLabel.setStyle("bottom", 0);
+						aprLabel.x = ((Areachart.width/730)*i) + space;
+						Areachart.parent.addChild(aprLabel);
+					}
+					
+					else if(curDate.substring(5,10) == "07-01"){
+						var julLabel:Label = new Label();
+						julLabel.text = "Jul";
+						julLabel.setStyle("bottom", 0);
+						julLabel.x = ((Areachart.width/730)*i) + space;
+						Areachart.parent.addChild(julLabel);
+					}
+					
+					else if(curDate.substring(5,10) == "10-01"){
+						var octLabel:Label = new Label();
+						octLabel.text = "Oct";
+						octLabel.setStyle("bottom", 0);
+						octLabel.x = ((Areachart.width/730)*i) + space;
+						Areachart.parent.addChild(octLabel);
+					}					
+				}
+			}
+			
 			//right slider control mouse move event
 			public function rightMove(e:MouseEvent):void
 			{

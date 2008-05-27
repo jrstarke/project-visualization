@@ -7,7 +7,7 @@
     <mx:Blur id="playBlur" duration="1000"/>
     
     <mx:Canvas id = "c1" y="0" height="100%" width="100%" horizontalCenter="0">
-    	<mx:VBox height="100%" width="100%" horizontalCenter="0" top="10">
+    	<mx:VBox height="100%" width="100%" horizontalCenter="0" top="10" id="mainVBox">
     		<MyComps:graphContainer id="barCanvas" horizontalCenter="0" verticalCenter="0" creationComplete="initBar()"/>	 
    			<MyComps:stateContainer id="stateCanvas" horizontalCenter="0" verticalCenter="0" creationComplete="initState()"/>
    			<mx:HBox height="55%" width="100%" horizontalCenter="0" horizontalAlign="center">
@@ -16,7 +16,7 @@
    				<mx:Canvas height="100%" width="30%" backgroundColor="#AAAAAA"/>
    			</mx:HBox>
     	</mx:VBox>
-    	<MyComps:controllerContainer id="controllerCanvas" bottom="30" creationComplete="initControllers(); initPlayer()"/>
+    	<MyComps:controllerContainer id="controllerCanvas" bottom="5" creationComplete="initControllers(); initPlayer()"/>
     	<mx:HBox id="speedHBox" right="0" bottom="100">
 	    		<mx:Label text="Speed:"/>
 	    		<mx:NumericStepper id="numStep" minimum="1" maximum="20" stepSize="1" value="1"/>
@@ -356,7 +356,7 @@
 			//right slider control mouse down event
 			private function rightDown(e:MouseEvent):void
 			{
-				debug('Right Canvas Control Down');
+				//debug('Right Canvas Control Down');
 				c1.addEventListener(MouseEvent.MOUSE_MOVE, controllerCanvas.rightMove);
 				c1.addEventListener(MouseEvent.MOUSE_UP, rightUp);
 			}
@@ -364,7 +364,7 @@
 			//left slider control mouse down event
 			private function leftDown(e:MouseEvent):void
 			{
-				debug('Left Canvas Control Down');
+				//debug('Left Canvas Control Down');
 				c1.addEventListener(MouseEvent.MOUSE_MOVE, controllerCanvas.leftMove);
 				c1.addEventListener(MouseEvent.MOUSE_UP, leftUp);
 			}
@@ -372,7 +372,7 @@
 			//right slider control mouse up event
 			private function rightUp(e:MouseEvent):void
 			{
-				debug('Right Canvas Control Up');
+				//debug('Right Canvas Control Up');
 				c1.removeEventListener(MouseEvent.MOUSE_MOVE, controllerCanvas.rightMove);
 				c1.removeEventListener(MouseEvent.MOUSE_UP, rightUp);
 			}
@@ -380,7 +380,7 @@
 			//left slider control mouse up event
 			private function leftUp(e:MouseEvent):void
 			{
-				debug('Left Canvas Control Up');
+				//debug('Left Canvas Control Up');
 				c1.removeEventListener(MouseEvent.MOUSE_MOVE, controllerCanvas.leftMove);
 				c1.removeEventListener(MouseEvent.MOUSE_UP, leftUp);
 			}
