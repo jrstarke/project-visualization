@@ -144,7 +144,7 @@ class CommitEvent(models.Model):
 class NewTicketEvent(models.Model):
     author = models.ForeignKey(Author) # initial owner
     date = models.DateTimeField()
-    ticket = models.ForeignKey(Ticket)
+    ticket = models.ForeignKey(Ticket, unique=True)
 
     class Meta:
         ordering = ['date']
@@ -179,13 +179,11 @@ class DailyStats(models.Model):
     commit_events = models.IntegerField()
     new_ticket_events = models.IntegerField()
     ticket_change_events = models.IntegerField()
+    total_count = models.IntegerField()
+    log_normal_count = models.FloatField()
         
     class Meta:
         ordering = ['date']
-
-# returns all events for the given time period, sorted by time
-def all_events(start, stop):
-    pass # should use a merge algorithm, 
 
 # returns the number of events of the given type for the given time period
 def count_events(start, stop, models=[CommitEvent,NewTicketEvent,TicketChangeEvent]):
