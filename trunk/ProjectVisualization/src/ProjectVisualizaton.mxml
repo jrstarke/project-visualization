@@ -10,9 +10,10 @@
     	<mx:VBox height="100%" width="100%" horizontalCenter="0" top="10" id="mainVBox">
     		<MyComps:graphContainer id="barCanvas" horizontalCenter="0" verticalCenter="0" creationComplete="initBar()"/>	 
    			<MyComps:stateContainer id="stateCanvas" horizontalCenter="0" verticalCenter="0" creationComplete="initState()"/>
-   			<mx:HBox height="55%" width="100%" horizontalCenter="0" horizontalAlign="center">
+   			<mx:HBox id="mainHBox" height="55%" width="100%" horizontalCenter="0" horizontalAlign="center">
    				<mx:Canvas id="eventInfoList" height="100%" width="70%" backgroundColor="#FFFFFF">
-   					<mx:Label id="eventInfoLabel"/>
+   					<mx:Label id="eventInfoLabelStart" left="0"/>
+   					<mx:Label id="eventInfoLabelEnd" right="0"/>
    				</mx:Canvas>
    				<mx:Canvas height="100%" width="30%" backgroundColor="#AAAAAA"/>
    			</mx:HBox>
@@ -354,7 +355,7 @@
 				var index:int;
 				index = (x/((controllerCanvas.Areachart.width - (space * (controllerCanvas.Areachart.width/730) - 1))/730)) - space;
 				//eventInfoLabel.text = "" + index;
-				eventInfoLabel.text = "" + controllerCanvas.parsedResultsDjango.getItemAt(index).dateEvent;
+				eventInfoLabelEnd.text = "" + controllerCanvas.parsedResultsDjango.getItemAt(index).dateEvent;
 			}
 			
 			//debug function for outputting slider controls to the label

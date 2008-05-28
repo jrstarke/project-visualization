@@ -28,7 +28,7 @@
    			//for(i=0; i<testDjango.length; i++){
    			//	testAC.addItem({dateEvent: testDjango[i][0], commitEvent: testDjango[i][1], newEvent: testDjango[i][2], changeEvent: testDjango[i][3], totalEvents: (testDjango[i][1]+testDjango[i][2]+testDjango[i][3])});
    			//}
-   			
+   			initDates();
    			initMonthLabels();
    		}
 
@@ -85,10 +85,12 @@
 	<mx:Canvas width="0.5%" height="90%" top="0" backgroundAlpha="0.8" backgroundColor="#FF5A00" id="rightControlCanvas" useHandCursor="true" buttonMode="true" showEffect="{playGlow}">
 	</mx:Canvas>
 	<mx:Image source="assets/images/button-icon-play.png" width="3%" height="30%" verticalCenter="0" id="playerButton" useHandCursor="true" buttonMode="true"/>
-	<mx:Label x="10" bottom="0" text="" id="label1"/>
+	<mx:Label x="100" bottom="30" text="" id="label1"/>
 	
 	<mx:Script>
 		<![CDATA[
+			import mx.containers.HBox;
+			import mx.containers.VBox;
 			//initialize month labels for the controller container
 			private function initMonthLabels():void
 			{
@@ -147,6 +149,7 @@
 					this.rightControlCanvas.toolTip = "" + this.rightControlCanvas.x;
 					this.rightCanvas.width = (this.width - this.rightControlCanvas.x - this.rightControlCanvas.width);
 					this.playerButton.x = (((this.leftControlCanvas.width + this.leftControlCanvas.x) + this.rightControlCanvas.x)/2);
+					processAtPixelMoveEnd(this.rightControlCanvas.x);
 				}
 			}
 			
@@ -160,7 +163,52 @@
 					this.leftControlCanvas.toolTip = "" + this.leftControlCanvas.x;
 					this.leftCanvas.width = pt.x;
 					this.playerButton.x = (((this.leftControlCanvas.width + this.leftControlCanvas.x) + this.rightControlCanvas.x)/2);
+					processAtPixelMoveStart(this.leftControlCanvas.x);
 				}
+			}
+			
+			public function processAtPixelMoveStart(x:int):void
+			{
+				var index:int;
+				var space:int = 6;
+				
+				index = (x/((this.Areachart.width - (space * (this.Areachart.width/730) - 1))/730)) - space;
+				
+				var tempVBox:VBox = new VBox();
+				tempVBox = this.parent.getChildByName("mainVBox") as VBox;
+				var tempHBox:HBox = new HBox();
+				tempHBox = tempVBox.getChildByName("mainHBox") as HBox;
+				var tempCanvas:Canvas = new Canvas()
+				tempCanvas = tempHBox.getChildByName("eventInfoList") as Canvas;
+				var tempLabel:Label = new Label();
+				tempLabel = tempCanvas.getChildByName("eventInfoLabelStart") as Label;
+				
+				tempLabel.text = "" + this.parsedResultsDjango.getItemAt(index).dateEvent;
+			}
+			
+			public function processAtPixelMoveEnd(x:int):void
+			{
+				var index:int;
+				var space:int = 6;
+				
+				index = (x/((this.Areachart.width - (space * (this.Areachart.width/730) - 1))/730)) - space;
+				
+				var tempVBox:VBox = new VBox();
+				tempVBox = this.parent.getChildByName("mainVBox") as VBox;
+				var tempHBox:HBox = new HBox();
+				tempHBox = tempVBox.getChildByName("mainHBox") as HBox;
+				var tempCanvas:Canvas = new Canvas()
+				tempCanvas = tempHBox.getChildByName("eventInfoList") as Canvas;
+				var tempLabel:Label = new Label();
+				tempLabel = tempCanvas.getChildByName("eventInfoLabelEnd") as Label;
+				
+				tempLabel.text = "" + this.parsedResultsDjango.getItemAt(index).dateEvent;
+			}
+			
+			private function initDates():void
+			{
+				processAtPixelMoveStart(leftControlCanvas.x);
+				processAtPixelMoveEnd(rightControlCanvas.x);
 			}
 		]]>
 	</mx:Script>
