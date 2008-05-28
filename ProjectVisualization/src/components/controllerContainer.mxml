@@ -85,7 +85,7 @@
 	<mx:Canvas width="0.5%" height="90%" top="0" backgroundAlpha="0.8" backgroundColor="#FF5A00" id="rightControlCanvas" useHandCursor="true" buttonMode="true" showEffect="{playGlow}">
 	</mx:Canvas>
 	<mx:Image source="assets/images/button-icon-play.png" width="3%" height="30%" verticalCenter="0" id="playerButton" useHandCursor="true" buttonMode="true"/>
-	<mx:Label x="100" bottom="30" text="" id="label1"/>
+	<mx:Label x="100" bottom="30" text="" id="debugLabel"/>
 	
 	<mx:Script>
 		<![CDATA[
@@ -148,7 +148,7 @@
 					this.rightControlCanvas.x = pt.x;
 					this.rightControlCanvas.toolTip = "" + this.rightControlCanvas.x;
 					this.rightCanvas.width = (this.width - this.rightControlCanvas.x - this.rightControlCanvas.width);
-					this.playerButton.x = (((this.leftControlCanvas.width + this.leftControlCanvas.x) + this.rightControlCanvas.x)/2);
+					this.playerButton.x = (((this.leftControlCanvas.width + this.leftControlCanvas.x) + this.rightControlCanvas.x)/2) - ((this.playerButton.width)/2);
 					processAtPixelMoveEnd(this.rightControlCanvas.x);
 				}
 			}
@@ -162,17 +162,22 @@
 					this.leftControlCanvas.x = pt.x;
 					this.leftControlCanvas.toolTip = "" + this.leftControlCanvas.x;
 					this.leftCanvas.width = pt.x;
-					this.playerButton.x = (((this.leftControlCanvas.width + this.leftControlCanvas.x) + this.rightControlCanvas.x)/2);
-					processAtPixelMoveStart(this.leftControlCanvas.x);
+					this.playerButton.x = (((this.leftControlCanvas.width + this.leftControlCanvas.x) + this.rightControlCanvas.x)/2) - ((this.playerButton.width)/2);
+					processAtPixelMoveStart(this.leftControlCanvas.x + this.leftControlCanvas.width);
 				}
 			}
 			
+			//get date from the left controller position while scrubbing
 			public function processAtPixelMoveStart(x:int):void
 			{
 				var index:int;
 				var space:int = 6;
 				
 				index = (x/((this.Areachart.width - (space * (this.Areachart.width/730) - 1))/730)) - space;
+				
+				//fix strange out of bounds bug
+				if(index<0)
+					index = 0;
 				
 				var tempVBox:VBox = new VBox();
 				tempVBox = this.parent.getChildByName("mainVBox") as VBox;
@@ -186,6 +191,7 @@
 				tempLabel.text = "" + this.parsedResultsDjango.getItemAt(index).dateEvent;
 			}
 			
+			//get date from the right controller position while scrubbing
 			public function processAtPixelMoveEnd(x:int):void
 			{
 				var index:int;
