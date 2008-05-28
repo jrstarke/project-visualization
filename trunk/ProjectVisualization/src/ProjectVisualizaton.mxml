@@ -298,7 +298,7 @@
 			//initialize the play controller on the slider to be in the center
 			private function initPlayer():void
 			{
-				controllerCanvas.playerButton.x = (((controllerCanvas.leftControlCanvas.width + controllerCanvas.leftControlCanvas.x) + controllerCanvas.rightControlCanvas.x)/2); 
+				controllerCanvas.playerButton.x = (((controllerCanvas.leftControlCanvas.width + controllerCanvas.leftControlCanvas.x) + controllerCanvas.rightControlCanvas.x)/2) - ((controllerCanvas.playerButton.width)/2); 
 				controllerCanvas.playerButton.addEventListener(MouseEvent.CLICK, playerClick);
 			}
 			
@@ -327,7 +327,7 @@
 					controllerCanvas.rightControlCanvas.x += numStep.value;
 					controllerCanvas.rightControlCanvas.toolTip = "" + controllerCanvas.rightControlCanvas.x
 					controllerCanvas.rightCanvas.width = (controllerCanvas.width - controllerCanvas.rightControlCanvas.x - controllerCanvas.rightControlCanvas.width);
-					controllerCanvas.playerButton.x = (((controllerCanvas.leftControlCanvas.width + controllerCanvas.leftControlCanvas.x) + controllerCanvas.rightControlCanvas.x)/2);
+					controllerCanvas.playerButton.x = (((controllerCanvas.leftControlCanvas.width + controllerCanvas.leftControlCanvas.x) + controllerCanvas.rightControlCanvas.x)/2) - ((controllerCanvas.playerButton.width)/2);
 					processAtPixel(controllerCanvas.rightControlCanvas.x);
 				}
 				
@@ -336,7 +336,7 @@
 					controllerCanvas.rightControlCanvas.x = controllerCanvas.Areachart.width;
 					controllerCanvas.rightControlCanvas.toolTip = "" + controllerCanvas.rightControlCanvas.x
 					controllerCanvas.rightCanvas.width = (controllerCanvas.width - controllerCanvas.rightControlCanvas.x - controllerCanvas.rightControlCanvas.width);
-					controllerCanvas.playerButton.x = (((controllerCanvas.leftControlCanvas.width + controllerCanvas.leftControlCanvas.x) + controllerCanvas.rightControlCanvas.x)/2);
+					controllerCanvas.playerButton.x = (((controllerCanvas.leftControlCanvas.width + controllerCanvas.leftControlCanvas.x) + controllerCanvas.rightControlCanvas.x)/2) - ((controllerCanvas.playerButton.width)/2);
 					processAtPixel(controllerCanvas.rightControlCanvas.x);
 					
 					t.stop();
@@ -361,7 +361,7 @@
 			//debug function for outputting slider controls to the label
 			public function debug(txt:String):void
 			{
-				controllerCanvas.label1.text = txt;
+				controllerCanvas.debugLabel.text = txt;
 			}
 
 			//right slider control mouse down event
