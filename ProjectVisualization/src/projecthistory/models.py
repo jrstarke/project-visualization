@@ -190,8 +190,8 @@ def count_events(start, stop, models=[CommitEvent,NewTicketEvent,TicketChangeEve
     return [m.objects.filter(date__range=(start,stop)).count() for m in models]
 
 def events(start, stop):
-    all_events = _events(start,stop, CommitEvent) + \
-        _events(start,stop, NewTicketEvent) + \
+    all_events = _events(start,stop, NewTicketEvent) + \
+        _events(start,stop, CommitEvent) + \
         _events(start, stop, TicketChangeEvent)
     # should realy be merging these ...
     all_events.sort(lambda a,b: cmp(a.date, b.date))
