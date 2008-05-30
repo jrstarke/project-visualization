@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="13%" width="1000" horizontalCenter="0" creationComplete="getSrv.send()">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="13%" width="1000" horizontalCenter="0" creationComplete="getSrvStats.send()">
 
     <mx:ArrayCollection id="resultsDjango"/>
     <mx:ArrayCollection id="parsedResultsDjango"/>
-    <mx:HTTPService id="getSrv" url="http://localhost:8000/stats/" resultFormat="text" result="handleGetResult()"/>
+    <mx:ArrayCollection id="eventList"/>
+    <mx:HTTPService id="getSrvStats" url="http://localhost:8000/stats/" resultFormat="text" result="handleGetResult()"/>
     
     <mx:Script>
         <![CDATA[
@@ -14,7 +15,7 @@
     	//decode JSON format from the http request
     	private function handleGetResult():void
     	{
-    		var decoded:Object = JSON.decode(getSrv.lastResult.toString());
+    		var decoded:Object = JSON.decode(getSrvStats.lastResult.toString());
     		resultsDjango = new ArrayCollection(decoded as Array);
     		
     		var i:int;
@@ -28,6 +29,7 @@
    			//for(i=0; i<testDjango.length; i++){
    			//	testAC.addItem({dateEvent: testDjango[i][0], commitEvent: testDjango[i][1], newEvent: testDjango[i][2], changeEvent: testDjango[i][3], totalEvents: (testDjango[i][1]+testDjango[i][2]+testDjango[i][3])});
    			//}
+   			
    			initDates();
    			initMonthLabels();
    		}
@@ -89,8 +91,15 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import com.adobe.utils.DictionaryUtil;
+			import mx.rpc.events.ResultEvent;
+			import mx.controls.List;
+			import mx.effects.easing.Linear;
 			import mx.containers.HBox;
 			import mx.containers.VBox;
+			
+			private var getSrvEvents:HTTPService;
+			
 			//initialize month labels for the controller container
 			private function initMonthLabels():void
 			{
@@ -184,11 +193,12 @@
 				var tempHBox:HBox = new HBox();
 				tempHBox = tempVBox.getChildByName("mainHBox") as HBox;
 				var tempCanvas:Canvas = new Canvas()
-				tempCanvas = tempHBox.getChildByName("eventInfoList") as Canvas;
+				tempCanvas = tempHBox.getChildByName("eventInfoCanvas") as Canvas;
 				var tempLabel:Label = new Label();
 				tempLabel = tempCanvas.getChildByName("eventInfoLabelStart") as Label;
 				
 				tempLabel.text = "" + this.parsedResultsDjango.getItemAt(index).dateEvent;
+				//updateEventList(this.parsedResultsDjango.getItemAt(index).dateEvent);
 			}
 			
 			//get date from the right controller position while scrubbing
@@ -199,22 +209,51 @@
 				
 				index = (x/((this.Areachart.width - (space * (this.Areachart.width/730) - 1))/730)) - space;
 				
+				//fix strange out of bounds bug
+				if(index<0)
+					index = 0;
+					
 				var tempVBox:VBox = new VBox();
 				tempVBox = this.parent.getChildByName("mainVBox") as VBox;
 				var tempHBox:HBox = new HBox();
 				tempHBox = tempVBox.getChildByName("mainHBox") as HBox;
 				var tempCanvas:Canvas = new Canvas()
-				tempCanvas = tempHBox.getChildByName("eventInfoList") as Canvas;
+				tempCanvas = tempHBox.getChildByName("eventInfoCanvas") as Canvas;	
 				var tempLabel:Label = new Label();
 				tempLabel = tempCanvas.getChildByName("eventInfoLabelEnd") as Label;
 				
 				tempLabel.text = "" + this.parsedResultsDjango.getItemAt(index).dateEvent;
+				updateEventList(this.parsedResultsDjango.getItemAt(index).dateEvent);
 			}
 			
 			private function initDates():void
 			{
 				processAtPixelMoveStart(leftControlCanvas.x);
 				processAtPixelMoveEnd(rightControlCanvas.x);
+			}
+			
+			public function updateEventList(endDate:String):void
+			{
+				getSrvEvents = new HTTPService();
+				getSrvEvents.url = "http://localhost:8000/events/" + endDate + "/"; 
+				getSrvEvents.resultFormat = "text";
+				getSrvEvents.addEventListener("result", updateEventListResult);
+				
+				if(endDate != null){
+					getSrvEvents.send();
+					debugLabel.text = getSrvEvents.url;
+    			}	
+			}
+			
+			private function updateEventListResult(event:ResultEvent):void
+			{				
+				if(getSrvEvents.lastResult != null)
+				{
+					var decoded:Object = JSON.decode(getSrvEvents.lastResult.toString());
+					var eventDictionary:Array = decoded as Array;
+					
+					eventList.addItemAt(eventDictionary[0].fields.date, 0);
+    			}		
 			}
 		]]>
 	</mx:Script>
