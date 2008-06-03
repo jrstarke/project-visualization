@@ -15,6 +15,8 @@
     	//decode JSON format from the http request
     	private function handleGetResult():void
     	{
+    		getParentProject =  this.parent.parent as ProjectVisualizaton;
+    		
     		var decoded:Object = JSON.decode(getSrvStats.lastResult.toString());
     		resultsDjango = new ArrayCollection(decoded as Array);
     		
@@ -99,6 +101,13 @@
 			import mx.containers.VBox;
 			
 			private var getSrvEvents:HTTPService;
+			private var eventIndex:int = 0;
+			private var eventDictionaryGlob:Array;
+			
+			//create new timer to step through each event for the specified date
+			public var eventTimer:Timer = new Timer(500, 0);
+			
+			private var getParentProject:ProjectVisualizaton = new ProjectVisualizaton();
 			
 			//initialize month labels for the controller container
 			private function initMonthLabels():void
@@ -197,7 +206,7 @@
 				var tempLabel:Label = new Label();
 				tempLabel = tempCanvas.getChildByName("eventInfoLabelStart") as Label;
 				
-				tempLabel.text = "" + this.parsedResultsDjango.getItemAt(index).dateEvent;
+				tempLabel.text = "Start Date: " + this.parsedResultsDjango.getItemAt(index).dateEvent;
 				//updateEventList(this.parsedResultsDjango.getItemAt(index).dateEvent);
 			}
 			
@@ -222,16 +231,18 @@
 				var tempLabel:Label = new Label();
 				tempLabel = tempCanvas.getChildByName("eventInfoLabelEnd") as Label;
 				
-				tempLabel.text = "" + this.parsedResultsDjango.getItemAt(index).dateEvent;
+				tempLabel.text = "End Date: " + this.parsedResultsDjango.getItemAt(index).dateEvent;
 				updateEventList(this.parsedResultsDjango.getItemAt(index).dateEvent);
 			}
 			
+			//set current dates from the initial position of the control sliders
 			private function initDates():void
 			{
 				processAtPixelMoveStart(leftControlCanvas.x);
 				processAtPixelMoveEnd(rightControlCanvas.x);
 			}
 			
+			//create a new httpservice and get the information for that day
 			public function updateEventList(endDate:String):void
 			{
 				getSrvEvents = new HTTPService();
@@ -245,15 +256,42 @@
     			}	
 			}
 			
+			//process the result of the httpservice for a given date
 			private function updateEventListResult(event:ResultEvent):void
 			{				
 				if(getSrvEvents.lastResult != null)
 				{
+					//stop playback timer
+					//var getParentProject:ProjectVisualizaton = new ProjectVisualizaton();
+					//getParentProject =  this.parent.parent as ProjectVisualizaton;
+					getParentProject.t.stop();
+					
 					var decoded:Object = JSON.decode(getSrvEvents.lastResult.toString());
 					var eventDictionary:Array = decoded as Array;
 					
-					eventList.addItemAt(eventDictionary[0].fields.date, 0);
+					eventDictionaryGlob = eventDictionary;
+					
+					eventTimer.start();
+					
+					eventTimer.addEventListener(TimerEvent.TIMER, eventTimerTick);		
     			}		
+    			
+    			function eventTimerTick(e:TimerEvent):void
+    			{
+    				if(eventIndex < eventDictionaryGlob.length){
+    					eventList.addItemAt(eventDictionaryGlob[eventIndex].fields.date + " " + eventDictionaryGlob[eventIndex].pk, 0);
+    					eventIndex++;
+    				}
+    				
+    				else{
+    					eventTimer.stop();
+    					eventTimer.removeEventListener(TimerEvent.TIMER, eventTimerTick);
+    					eventIndex = 0;
+    					eventList.addItemAt("END", 0);
+    					
+						getParentProject.t.start();
+    				}
+    			}
 			}
 		]]>
 	</mx:Script>
