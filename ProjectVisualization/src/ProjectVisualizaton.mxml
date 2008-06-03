@@ -17,7 +17,9 @@
    					<mx:List id="eventInfoList" height="95%" width="100%" bottom="0" dataProvider="{controllerCanvas.eventList}" labelField="pk">
    					</mx:List>
    				</mx:Canvas>
-   				<mx:Canvas height="100%" width="30%" backgroundColor="#AAAAAA"/>
+   				<mx:Canvas height="100%" width="30%" backgroundColor="#AAAAAA">
+   
+   				</mx:Canvas>
    			</mx:HBox>
     	</mx:VBox>
     	<MyComps:controllerContainer id="controllerCanvas" bottom="5" creationComplete="initControllers(); initPlayer()"/>
@@ -38,7 +40,7 @@
 			import mx.effects.AnimateProperty;
 			import mx.containers.Panel;
 			import mx.core.EdgeMetrics;
-			private var t:Timer = new Timer(1000, 0);
+			public var t:Timer = new Timer(1000, 0);
 			private var numComps:Number = 7;
 			private var space:int = 6;
 			
@@ -308,7 +310,8 @@
 			private function playerClick(e:Event):void
 			{
 				if(controllerCanvas.playerButton.source == "assets/images/button-icon-play.png"){
-					t.start();
+					//t.start();
+					controllerCanvas.eventTimer.start();
 					t.addEventListener(TimerEvent.TIMER, timerTick);			
 					controllerCanvas.playerButton.source = "assets/images/button-icon-pause.png";
 					controllerCanvas.rightControlCanvas.visible = false;
@@ -316,6 +319,7 @@
 				}
 				else{
 					t.stop();
+					controllerCanvas.eventTimer.stop();
 					t.removeEventListener(TimerEvent.TIMER, timerTick);	
 					controllerCanvas.playerButton.source = "assets/images/button-icon-play.png";
 				}
