@@ -35,21 +35,6 @@
    			initDates();
    			initMonthLabels();
    		}
-
-        [Bindable]
-        private var expensesAC:ArrayCollection = new ArrayCollection( [
-            { Month: "Jan", Profit: 2000, Expenses: 1500, Amount: 450 },
-            { Month: "Feb", Profit: 1000, Expenses: 200, Amount: 600 },
-            { Month: "Mar", Profit: 1500, Expenses: 500, Amount: 300 },
-            { Month: "Apr", Profit: 1800, Expenses: 1200, Amount: 900 },
-            { Month: "May", Profit: 2400, Expenses: 575, Amount: 500 },
-            { Month: "Jun", Profit: 2000, Expenses: 1500, Amount: 450 },
-            { Month: "Jul", Profit: 1000, Expenses: 200, Amount: 600 },
-            { Month: "Aug", Profit: 1500, Expenses: 500, Amount: 300 },
-            { Month: "Sep", Profit: 1800, Expenses: 1200, Amount: 900 },
-            { Month: "Oct", Profit: 2400, Expenses: 575, Amount: 500 },
-            { Month: "Nov", Profit: 1400, Expenses: 800, Amount: 700 },
-            { Month: "Dec", Profit: 2000, Expenses: 1500, Amount: 450 }]);
         ]]>
     </mx:Script>
     
@@ -93,6 +78,7 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import mx.containers.Panel;
 			import com.adobe.utils.DictionaryUtil;
 			import mx.rpc.events.ResultEvent;
 			import mx.controls.List;
@@ -201,12 +187,10 @@
 				tempVBox = this.parent.getChildByName("mainVBox") as VBox;
 				var tempHBox:HBox = new HBox();
 				tempHBox = tempVBox.getChildByName("mainHBox") as HBox;
-				var tempCanvas:Canvas = new Canvas()
-				tempCanvas = tempHBox.getChildByName("eventInfoCanvas") as Canvas;
-				var tempLabel:Label = new Label();
-				tempLabel = tempCanvas.getChildByName("eventInfoLabelStart") as Label;
+				var tempPanel:Panel = new Panel();
+				tempPanel = tempHBox.getChildByName("eventInfoList") as Panel;
 				
-				tempLabel.text = "Start Date: " + this.parsedResultsDjango.getItemAt(index).dateEvent;
+				tempPanel.title = "Start Date: " + this.parsedResultsDjango.getItemAt(index).dateEvent;
 				//updateEventList(this.parsedResultsDjango.getItemAt(index).dateEvent);
 			}
 			
@@ -226,12 +210,10 @@
 				tempVBox = this.parent.getChildByName("mainVBox") as VBox;
 				var tempHBox:HBox = new HBox();
 				tempHBox = tempVBox.getChildByName("mainHBox") as HBox;
-				var tempCanvas:Canvas = new Canvas()
-				tempCanvas = tempHBox.getChildByName("eventInfoCanvas") as Canvas;	
-				var tempLabel:Label = new Label();
-				tempLabel = tempCanvas.getChildByName("eventInfoLabelEnd") as Label;
+				var tempPanel:Panel = new Panel();
+				tempPanel = tempHBox.getChildByName("eventInfoList") as Panel;
 				
-				tempLabel.text = "End Date: " + this.parsedResultsDjango.getItemAt(index).dateEvent;
+				tempPanel.status = "End Date: " + this.parsedResultsDjango.getItemAt(index).dateEvent;
 				updateEventList(this.parsedResultsDjango.getItemAt(index).dateEvent);
 			}
 			
@@ -279,7 +261,7 @@
     			function eventTimerTick(e:TimerEvent):void
     			{
     				if(eventIndex < eventDictionaryGlob.length){
-    					eventList.addItemAt(eventDictionaryGlob[eventIndex].fields.date + " " + eventDictionaryGlob[eventIndex].pk, 0);
+    					getParentProject.eventInfoList.addEventToList(eventDictionaryGlob[eventIndex]);
     					eventIndex++;
     				}
     				
