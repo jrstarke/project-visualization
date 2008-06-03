@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" titleStyleName="datesStatusStyle" statusStyleName="datesStatusStyle" creationComplete="initParentProject()">
+	<mx:Style>
+        .datesStatusStyle {
+            fontWeight: bold;
+            color: white;
+        }
+        
+        .eventDateStyle{
+        	fontWeight: bold;
+        }
+        
+        .eventCommentStyle{
+        	
+        }
+        
+        .eventSelectedStyle{
+        	color: red;
+        }
+    </mx:Style>
+    <mx:Label id="sizeLabel"/>
+ 	
+	<mx:Script>
+		<![CDATA[
+			import mx.effects.Move;
+			import mx.events.MoveEvent;
+			import mx.containers.HBox;
+			import mx.collections.ArrayCollection;
+			import mx.controls.Label;
+			
+			//create a list of the current events in the main list
+			private var eventList:ArrayCollection = new ArrayCollection();
+			
+			private var maxEventListSize:int;
+			
+			private var getParentProject:ProjectVisualizaton = new ProjectVisualizaton();
+			
+			//determine how many events to be displayed on the main list
+			private function initMaxEventListSize():void
+			{
+				maxEventListSize = 17;
+			}
+			
+			//function to gain easy access to the parent class
+			private function initParentProject():void
+			{
+				getParentProject =  this.parent.parent.parent.parent as ProjectVisualizaton;	
+			}
+			
+			//add event to the list and display on the main list
+			public function addEventToList(event:Object):void
+			{
+				initMaxEventListSize();
+				
+				eventList.addItemAt(event, 0);
+				
+				var eventHBox:HBox = new HBox();
+				var eventDateLabel:Label = new Label();
+				var eventCommentLabel:Label = new Label();
+				
+				eventHBox.name = event.pk + "event";
+				eventDateLabel.name = event.pk + "date";
+				eventCommentLabel.name = event.pk + "comment";
+				
+				eventDateLabel.text = event.fields.date;
+				
+				if(event.fields.comment != null)
+					eventCommentLabel.text = "Comment: " + event.fields.comment;
+				else
+					eventCommentLabel.text = "No comment available";
+					
+				eventDateLabel.styleName = "eventDateStyle";
+				
+				eventHBox.addEventListener(MouseEvent.MOUSE_OVER, eventMouseOver);
+				eventHBox.addEventListener(MoveEvent.MOVE, eventMoveDownEffect);
+				
+				eventHBox.addChild(eventDateLabel);
+				eventHBox.addChild(eventCommentLabel);
+				this.addChildAt(eventHBox, 0);
+				
+				if(eventList.length > maxEventListSize)
+					removeEventFromList();
+			}
+		
+			//remove event from the list and remove display from the main list
+			public function removeEventFromList():void
+			{	
+				var removedEvent:HBox = new HBox();
+				removedEvent = this.getChildByName(eventList[maxEventListSize].pk + "event") as HBox;
+				this.removeChild(removedEvent);
+				eventList.removeItemAt(maxEventListSize);
+			}
+			
+			//perform mouse over effects, pause playback
+			private function eventMouseOver(e:MouseEvent):void
+			{
+				getParentProject.controllerCanvas.eventTimer.stop();
+				
+				var currentHBox:HBox = new HBox();
+				currentHBox = e.currentTarget as HBox;
+				
+				currentHBox.addEventListener(MouseEvent.MOUSE_OUT, eventMouseOut);
+
+				currentHBox.setStyle("borderStyle", "solid");
+			}
+			
+			//perform mouse out effects, resume playback
+			private function eventMouseOut(e:MouseEvent):void
+			{
+				getParentProject.controllerCanvas.eventTimer.start();
+				
+				var currentHBox:HBox = new HBox();
+				currentHBox = e.currentTarget as HBox;
+				currentHBox.setStyle("borderStyle", "none");
+				
+				currentHBox.removeEventListener(MouseEvent.MOUSE_OUT, eventMouseOut);
+			}
+			
+			//NOT IMPLEMENTED
+			//perform slide effect for when events get displayed on the list
+			private function eventMoveDownEffect(e:MoveEvent):void
+			{
+				var effect:Move = new Move();
+				effect.duration = 300;
+				effect.target = e.target;
+			} 
+		]]>
+	</mx:Script>
+</mx:Panel> 
