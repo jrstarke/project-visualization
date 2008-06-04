@@ -11,10 +11,8 @@
     		<MyComps:graphContainer id="barCanvas" horizontalCenter="0" verticalCenter="0" creationComplete="initBar()"/>	 
    			<MyComps:stateContainer id="stateCanvas" horizontalCenter="0" verticalCenter="0" creationComplete="initState()"/>
    			<mx:HBox id="mainHBox" height="55%" width="100%" horizontalCenter="0" horizontalAlign="center">
-   				<MyComps:eventInfoList id="eventInfoList" height="100%" width="100%"/>
-   				<mx:Canvas height="100%" width="30%" backgroundColor="#AAAAAA">
-   
-   				</mx:Canvas>
+   				<MyComps:eventInfoList id="eventInfoList" height="100%" width="70%"/>
+   				<MyComps:authorInfoList id="authorInfoList" height="100%" width="30%"/>
    			</mx:HBox>
     	</mx:VBox>
     	<MyComps:controllerContainer id="controllerCanvas" bottom="5" creationComplete="initControllers(); initPlayer()"/>
@@ -35,7 +33,7 @@
 			import mx.effects.AnimateProperty;
 			import mx.containers.Panel;
 			import mx.core.EdgeMetrics;
-			public var t:Timer = new Timer(1000, 0);
+			public var t:Timer = new Timer(2000, 0);
 			private var numComps:Number = 7;
 			private var space:int = 6;
 			

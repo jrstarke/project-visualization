@@ -29,7 +29,7 @@
 			import mx.controls.Label;
 			
 			//create a list of the current events in the main list
-			private var eventList:ArrayCollection = new ArrayCollection();
+			public var eventList:ArrayCollection = new ArrayCollection();
 			
 			private var maxEventListSize:int;
 			
@@ -54,6 +54,8 @@
 				
 				eventList.addItemAt(event, 0);
 				
+				getParentProject.authorInfoList.addAuthorToList(event);
+				
 				var eventHBox:HBox = new HBox();
 				var eventDateLabel:Label = new Label();
 				var eventCommentLabel:Label = new Label();
@@ -64,10 +66,16 @@
 				
 				eventDateLabel.text = event.fields.date;
 				
-				if(event.fields.comment != null)
-					eventCommentLabel.text = "Comment: " + event.fields.comment;
+				//Check if comment exists
+				if(event.fields.comment != null && event.fields.comment != ""){
+					var s:String = event.fields.comment;
+					s = s.replace("\n", "");
+					s = s.substring(0, 120);
+					eventCommentLabel.text = s;
+					eventHBox.toolTip = "Comment: " + event.fields.comment;
+				}
 				else
-					eventCommentLabel.text = "No comment available";
+					eventCommentLabel.text = "--No comment available--";
 					
 				eventDateLabel.styleName = "eventDateStyle";
 				
@@ -78,8 +86,9 @@
 				eventHBox.addChild(eventCommentLabel);
 				this.addChildAt(eventHBox, 0);
 				
-				if(eventList.length > maxEventListSize)
+				if(eventList.length > maxEventListSize){
 					removeEventFromList();
+				}
 			}
 		
 			//remove event from the list and remove display from the main list
@@ -88,7 +97,16 @@
 				var removedEvent:HBox = new HBox();
 				removedEvent = this.getChildByName(eventList[maxEventListSize].pk + "event") as HBox;
 				this.removeChild(removedEvent);
+				getParentProject.authorInfoList.removeAuthorFromList(eventList[maxEventListSize]);
 				eventList.removeItemAt(maxEventListSize);
+			}
+			
+			//NOT TESTED!!
+			//remove all events from the list and remove displays from the main list
+			public function removeAllEventsFromList():void
+			{	
+				this.removeAllChildren();
+				eventList.removeAll();
 			}
 			
 			//perform mouse over effects, pause playback
@@ -107,7 +125,9 @@
 			//perform mouse out effects, resume playback
 			private function eventMouseOut(e:MouseEvent):void
 			{
-				getParentProject.controllerCanvas.eventTimer.start();
+				//check if the player is playing
+				if(getParentProject.controllerCanvas.playerButton.source == "assets/images/button-icon-pause.png")
+					getParentProject.controllerCanvas.eventTimer.start();
 				
 				var currentHBox:HBox = new HBox();
 				currentHBox = e.currentTarget as HBox;
