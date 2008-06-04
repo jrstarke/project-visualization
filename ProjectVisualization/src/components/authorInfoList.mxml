@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" title="Authors" titleStyleName="authorStatusStyle" creationComplete="initParentProject()">
+	<mx:Style>
+    	.authorStatusStyle {
+        	fontWeight: bold;
+            color: white;
+     	}
+     	
+        .authorNameStyle	{
+        	fontWeight: bold;
+        }
+	</mx:Style>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.containers.HBox;
+			import mx.controls.Label;
+			
+			//create a list of the current authors in the main list
+			private var authorList:ArrayCollection = new ArrayCollection();
+			
+			private var getParentProject:ProjectVisualizaton = new ProjectVisualizaton();
+			
+			//function to gain easy access to the parent class
+			private function initParentProject():void
+			{
+				getParentProject =  this.parent.parent.parent.parent as ProjectVisualizaton;	
+			}
+		
+			public function addAuthorToList(event:Object):void
+			{
+				var author:int = new int();
+				author = event.fields.author;
+				
+				if(authorList.contains(author) == false)
+				{
+					authorList.addItemAt(author, 0);
+					
+					var authorHBox:HBox = new HBox();
+					var authorNameLabel:Label = new Label();
+				
+					authorHBox.name = author + "HBox";
+					authorNameLabel.name = + author + "Label";
+					
+					authorNameLabel.text = "" + author;
+					
+					authorHBox.setStyle("border", "solid");
+					authorNameLabel.styleName = "authorNameStyle";
+					
+					authorHBox.addChild(authorNameLabel);
+					this.addChildAt(authorHBox, 0);
+				}
+			}
+			
+			public function removeAuthorFromList(event:Object):void
+			{
+				var author:int = event.fields.author;
+				
+				var i:int;
+				var count:int = 0;
+				for(i=0; i < getParentProject.eventInfoList.eventList.length; i++)
+				{
+					if(getParentProject.eventInfoList.eventList[i].fields.author == author){
+						count++;
+					}
+				}
+				
+				if(count < 2){
+					var removedAuthor:HBox = new HBox();
+					var index:int = authorList.getItemIndex(event.fields.author);
+					removedAuthor = this.getChildByName(authorList[index] + "HBox") as HBox;
+					this.removeChild(removedAuthor);
+					authorList.removeItemAt(index);
+				}
+					
+			}
+		]]>
+	</mx:Script>
+</mx:Panel>
