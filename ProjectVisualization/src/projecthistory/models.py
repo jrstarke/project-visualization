@@ -1,6 +1,7 @@
-import os, re
+import os, re, datetime
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 from django.db import models
+from datetime import timedelta
 
 class Component(models.Model):
     name = models.TextField()
@@ -193,9 +194,58 @@ def events(start, stop):
     all_events = _events(start,stop, NewTicketEvent) + \
         _events(start,stop, CommitEvent) + \
         _events(start, stop, TicketChangeEvent)
-    # should realy be merging these ...
+    # should really be merging these ...
     all_events.sort(lambda a,b: cmp(a.date, b.date))
     return all_events
     
 def _events(start, stop, model):
     return list(model.objects.filter(date__range=(start, stop)))
+
+def topauthors(start, stop, num_authors):
+    author_counts = {}
+    for a in [Author.objects.get(pk=i) for i in [7,1,40,8,24,63,62,11,18,28,5,162,30,388,13,54,103,14,15,48,2032,512,299,1029,1286,1033,785,452,653,801,804,294,39,425,1322,43,940,429,307,176,689,1074,51,1195,571,2272,66,963,1095,202,206,79,433,217,847,96,481,866,1123,104,1444,488,631,1632]]:
+        author_counts[a.id] = (a.newticketevent_set.filter(date__range=(start,stop)).count(),a.commitevent_set.filter(date__range=(start,stop)).count(),a.ticketchangeevent_set.filter(date__range=(start,stop)).count())
+    sorted_counts = author_counts.items()
+    sorted_counts.sort(lambda a,b: cmp((b[1][0]+b[1][1]+b[1][2]), (a[1][0]+a[1][1]+a[1][2])))
+    top_authors = []
+    for i in sorted_counts[:num_authors]:
+        author = {}
+        author["pk"] = i[0]
+        author["newticketevents"] = i[1][0]
+        author["commitevents"] = i[1][1]
+        author["ticketchangeevents"] = i[1][2]
+        author["author"] = Author.objects.get(pk=i[0]).name
+        top_authors.append(author)
+    top_authors.sort(lambda a,b: cmp(a["author"].lower(),b["author"].lower()))
+    return top_authors
+
+def topauthorsfordays():
+    max_date = datetime.date(2008,1,1)
+    current_date = datetime.date(2006, 1, 1)
+    next_date = current_date + timedelta(1)
+    author_counts = {}
+    while (current_date < max_date):
+        day_counts = {}
+        for e in _events(current_date,next_date,NewTicketEvent):
+            day_counts.setdefault(e.author.id, 0)
+            day_counts[e.author.id] += 1
+        for e in _events(current_date,next_date,CommitEvent):
+            day_counts.setdefault(e.author.id, 0)
+            day_counts[e.author.id] += 1
+        for e in _events(current_date,next_date,TicketChangeEvent):
+            day_counts.setdefault(e.author.id, 0)
+            day_counts[e.author.id] += 1    
+        sorted_day_counts = day_counts.items()
+        sorted_day_counts.sort(lambda a,b: cmp(b[1], a[1]))
+        if sorted_day_counts != []:
+            author_counts.setdefault(sorted_day_counts[0][0], 0)
+            author_counts[sorted_day_counts[0][0]] += 1    
+        current_date = next_date
+        next_date = current_date + timedelta(1)
+    sorted_day_counts = author_counts.items()
+    sorted_day_counts.sort(lambda a,b: cmp(b[1], a[1]))    
+    for a in sorted_day_counts:
+        print '%d\t%d' % a
+    return sorted_day_counts
+        
+        
