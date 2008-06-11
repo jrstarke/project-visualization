@@ -20,6 +20,18 @@ def events(request, date_str):
     all_events = models.events(date, next)
     return HttpResponse(serializers.serialize('json', iter(all_events)))
 
+def topauthors(request, start_date, end_date, num_authors):
+   start = parse_date(start_date)
+   end = parse_date(end_date) + timedelta(1)
+   number = int(num_authors)
+   all_events = models.topauthors(start, end, number)
+   return HttpResponse(simplejson.dumps(all_events))
+   #return HttpResponse(start_date + " " + end_date + " " + num_authors)
+
+def topauthorsfordays(request):
+    models.topauthorsfordays()
+    return HttpResponse("read stuff")
+
 def cross_domain(request):
     return HttpResponse('''
     <?xml version="1.0"?>
