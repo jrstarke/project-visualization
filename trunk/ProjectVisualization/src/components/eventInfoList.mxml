@@ -58,19 +58,24 @@
 				
 				var eventHBox:HBox = new HBox();
 				var eventDateLabel:Label = new Label();
+				var eventAuthorLabel:Label = new Label();
 				var eventCommentLabel:Label = new Label();
 				
 				eventHBox.name = event.pk + "event";
 				eventDateLabel.name = event.pk + "date";
+				eventAuthorLabel.name = event.pk + "author";
 				eventCommentLabel.name = event.pk + "comment";
 				
+				eventAuthorLabel.width = 35;
+				
+				eventAuthorLabel.text = event.fields.author;
 				eventDateLabel.text = event.fields.date;
 				
 				//Check if comment exists
 				if(event.fields.comment != null && event.fields.comment != ""){
 					var s:String = event.fields.comment;
 					s = s.replace("\n", "");
-					s = s.substring(0, 120);
+					s = s.substring(0, 100);
 					eventCommentLabel.text = s;
 					eventHBox.toolTip = "Comment: " + event.fields.comment;
 				}
@@ -83,6 +88,7 @@
 				eventHBox.addEventListener(MoveEvent.MOVE, eventMoveDownEffect);
 				
 				eventHBox.addChild(eventDateLabel);
+				eventHBox.addChild(eventAuthorLabel);
 				eventHBox.addChild(eventCommentLabel);
 				this.addChildAt(eventHBox, 0);
 				
