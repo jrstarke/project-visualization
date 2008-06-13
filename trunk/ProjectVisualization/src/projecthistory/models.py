@@ -216,7 +216,7 @@ def topauthors(start, stop, num_authors):
         author["ticketchangeevents"] = i[1][2]
         author["author_name"] = Author.objects.get(pk=i[0]).name
         top_authors.append(author)
-    top_authors.sort(lambda a,b: cmp(a["author"].lower(),b["author"].lower()))
+    top_authors.sort(lambda a,b: cmp(a["author_name"].lower(),b["author_name"].lower()))
     return top_authors
 
 def topauthorsfordays():
