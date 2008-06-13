@@ -27,7 +27,8 @@
 			{
 				getParentProject =  this.parent.parent.parent.parent as ProjectVisualizaton;	
 			}
-		
+			
+			//add author to author list if not already in list
 			public function addAuthorToList(event:Object):void
 			{
 				var author:int = new int();
@@ -53,6 +54,7 @@
 				}
 			}
 			
+			//remove author from list if there that author no longer exists in the event list
 			public function removeAuthorFromList(event:Object):void
 			{
 				var author:int = event.fields.author;
@@ -66,6 +68,7 @@
 					}
 				}
 				
+				//only remove if the author is the only one in the event list
 				if(count < 2){
 					var removedAuthor:HBox = new HBox();
 					var index:int = authorList.getItemIndex(event.fields.author);
