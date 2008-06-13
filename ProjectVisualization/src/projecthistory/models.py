@@ -210,11 +210,11 @@ def topauthors(start, stop, num_authors):
     top_authors = []
     for i in sorted_counts[:num_authors]:
         author = {}
-        author["pk"] = i[0]
+        author["author"] = i[0]
         author["newticketevents"] = i[1][0]
         author["commitevents"] = i[1][1]
         author["ticketchangeevents"] = i[1][2]
-        author["author"] = Author.objects.get(pk=i[0]).name
+        author["author_name"] = Author.objects.get(pk=i[0]).name
         top_authors.append(author)
     top_authors.sort(lambda a,b: cmp(a["author"].lower(),b["author"].lower()))
     return top_authors
