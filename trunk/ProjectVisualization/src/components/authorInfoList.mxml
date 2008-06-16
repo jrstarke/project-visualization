@@ -22,7 +22,7 @@
 			
 			private var getSrvAuthors:HTTPService;
 			//create a list of the current authors in the main list
-			private var authorList:Array = new Array();
+			public var authorList:Array = new Array();
 			
 			private var getParentProject:ProjectVisualizaton = new ProjectVisualizaton();
 			
@@ -57,23 +57,29 @@
 				var authorDictionary:Array = decoded as Array;
 			
 				authorList = authorDictionary;
+				authorList = authorList.reverse();
 					
 				//authorList.addItemAt(author, 0);
 				var i:int;
 				for(i=0; i<authorList.length; i++){
-					var authorHBox:HBox = new HBox();
-					var authorNameLabel:Label = new Label();
+					if((authorList[i].commitevents + authorList[i].newticketevents + authorList[i].ticketchangeevents) != 0)
+					{
+						var authorHBox:HBox = new HBox();
+						var authorNameLabel:Label = new Label();
 			
-					authorHBox.name = authorList[i].author + "HBox";
-					authorNameLabel.name = + authorList[i].author + "Label";
+						authorHBox.name = authorList[i].author + "";
+						authorNameLabel.name = + authorList[i].author + "Label";
 					
-					authorNameLabel.text = "" + authorList[i].author_name;
+						authorNameLabel.text = "" + authorList[i].author_name;
 					
-					authorHBox.setStyle("border", "solid");
-					authorNameLabel.styleName = "authorNameStyle";
+						authorHBox.setStyle("border", "solid");
+						authorNameLabel.styleName = "authorNameStyle";
+					
+						authorHBox.addEventListener(MouseEvent.MOUSE_OVER, eventMouseOver);
 				
-					authorHBox.addChild(authorNameLabel);
-					this.addChildAt(authorHBox, 0);	
+						authorHBox.addChild(authorNameLabel);
+						this.addChildAt(authorHBox, 0);
+					}	
 				}	
 			}
 			
@@ -81,6 +87,54 @@
 			public function removeAuthorsFromList():void
 			{
 				this.removeAllChildren();
+			}
+			
+			//perform mouse over effects, pause playback
+			private function eventMouseOver(e:MouseEvent):void
+			{
+				getParentProject.controllerCanvas.eventTimer.stop();
+				
+				var currentHBox:HBox = new HBox();
+				currentHBox = e.currentTarget as HBox;
+				
+				currentHBox.addEventListener(MouseEvent.MOUSE_OUT, eventMouseOut);
+
+				currentHBox.setStyle("borderStyle", "solid");
+				
+				//highlight associated event if possible
+				var i:int;
+				for(i=0; i<getParentProject.eventInfoList.eventList.length; i++)
+				{
+					if(currentHBox.name == getParentProject.eventInfoList.eventList[i].fields.author)
+					{
+						var eventHBox:HBox = new HBox();
+						eventHBox = getParentProject.eventInfoList.getChildByName(getParentProject.eventInfoList.eventList[i].pk + "event") as HBox;
+						eventHBox.setStyle("borderStyle", "solid");						
+					}
+				} 
+			}
+			
+			//perform mouse out effects, resume playback
+			private function eventMouseOut(e:MouseEvent):void
+			{
+				//check if the player is playing
+				if(getParentProject.controllerCanvas.playerButton.source == "assets/images/button-icon-pause.png")
+					getParentProject.controllerCanvas.eventTimer.start();
+				
+				var currentHBox:HBox = new HBox();
+				currentHBox = e.currentTarget as HBox;
+				currentHBox.setStyle("borderStyle", "none");
+				
+				currentHBox.removeEventListener(MouseEvent.MOUSE_OUT, eventMouseOut);
+				
+				//unhighlight all events from the event list
+				var i:int;
+				for(i=0; i<getParentProject.eventInfoList.eventList.length; i++)
+				{
+					var eventHBox:HBox = new HBox();
+					eventHBox = getParentProject.eventInfoList.getChildByName(getParentProject.eventInfoList.eventList[i].pk + "event") as HBox;
+					eventHBox.setStyle("borderStyle", "none");						
+				} 
 			}
 		]]>
 	</mx:Script>

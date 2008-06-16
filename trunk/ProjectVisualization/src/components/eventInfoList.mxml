@@ -64,7 +64,7 @@
 				
 				eventHBox.name = event.pk + "event";
 				eventDateLabel.name = event.pk + "date";
-				eventAuthorLabel.name = event.pk + "author";
+				eventAuthorLabel.name = event.fields.author;
 				eventCommentLabel.name = event.pk + "comment";
 				
 				eventAuthorLabel.width = 35;
@@ -86,7 +86,6 @@
 				eventDateLabel.styleName = "eventDateStyle";
 				
 				eventHBox.addEventListener(MouseEvent.MOUSE_OVER, eventMouseOver);
-				eventHBox.addEventListener(MoveEvent.MOVE, eventMoveDownEffect);
 				
 				eventHBox.addChild(eventDateLabel);
 				eventHBox.addChild(eventAuthorLabel);
@@ -127,6 +126,19 @@
 				currentHBox.addEventListener(MouseEvent.MOUSE_OUT, eventMouseOut);
 
 				currentHBox.setStyle("borderStyle", "solid");
+				
+				//highlight associated author if possible
+				var i:int;
+				for(i=0; i<getParentProject.authorInfoList.authorList.length; i++)
+				{
+					var author:Label = currentHBox.getChildAt(1) as Label;
+					if(author.name == getParentProject.authorInfoList.authorList[i].author)
+					{
+						var authorHBox:HBox = new HBox();
+						authorHBox = getParentProject.authorInfoList.getChildByName(getParentProject.authorInfoList.authorList[i].author) as HBox;
+						authorHBox.setStyle("borderStyle", "solid");						
+					}
+				} 
 			}
 			
 			//perform mouse out effects, resume playback
@@ -141,16 +153,16 @@
 				currentHBox.setStyle("borderStyle", "none");
 				
 				currentHBox.removeEventListener(MouseEvent.MOUSE_OUT, eventMouseOut);
+				
+				//unhighlight all authors from the authors list
+				var i:int;
+				for(i=0; i<getParentProject.authorInfoList.authorList.length; i++)
+				{
+					var authorHBox:HBox = new HBox();
+					authorHBox = getParentProject.authorInfoList.getChildByName(getParentProject.authorInfoList.authorList[i].author) as HBox;
+					authorHBox.setStyle("borderStyle", "none");						
+				} 
 			}
-			
-			//NOT IMPLEMENTED
-			//perform slide effect for when events get displayed on the list
-			private function eventMoveDownEffect(e:MoveEvent):void
-			{
-				var effect:Move = new Move();
-				effect.duration = 300;
-				effect.target = e.target;
-			} 
 		]]>
 	</mx:Script>
 </mx:Panel> 
