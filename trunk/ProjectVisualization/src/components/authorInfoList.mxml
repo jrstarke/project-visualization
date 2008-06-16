@@ -13,12 +13,16 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import mx.rpc.http.HTTPService;
 			import mx.collections.ArrayCollection;
 			import mx.containers.HBox;
 			import mx.controls.Label;
+			import mx.rpc.events.ResultEvent;
+			import com.adobe.serialization.json.JSON;
 			
+			private var getSrvAuthors:HTTPService;
 			//create a list of the current authors in the main list
-			private var authorList:ArrayCollection = new ArrayCollection();
+			private var authorList:Array = new Array();
 			
 			private var getParentProject:ProjectVisualizaton = new ProjectVisualizaton();
 			
@@ -28,55 +32,55 @@
 				getParentProject =  this.parent.parent.parent.parent as ProjectVisualizaton;	
 			}
 			
-			//add author to author list if not already in list
-			public function addAuthorToList(event:Object):void
+			//add authors to author list
+			public function addAuthorsToList(startDate:String, endDate:String):void
 			{
-				var author:int = new int();
-				author = event.fields.author;
+				var numOfTopAuth:int = 17;
+
+				getSrvAuthors = new HTTPService();
+				getSrvAuthors.url = "http://localhost:8000/topauthors/" + startDate + "/" + endDate + "/" + numOfTopAuth + "/"; 
+				getSrvAuthors.resultFormat = "text";
+				getSrvAuthors.addEventListener("result", processAuthorList);
 				
-				if(authorList.contains(author) == false)
-				{
-					authorList.addItemAt(author, 0);
+				if(endDate != null){
+					getSrvAuthors.send();
+					//debugLabel.text = getSrvEvents.url;
+   				}	
+			}
+			
+			private function processAuthorList(event:ResultEvent):void
+			{
+				//clear the list
+				removeAuthorsFromList();
+				
+				var decoded:Object = JSON.decode(event.result.toString());
+				var authorDictionary:Array = decoded as Array;
+			
+				authorList = authorDictionary;
 					
+				//authorList.addItemAt(author, 0);
+				var i:int;
+				for(i=0; i<authorList.length; i++){
 					var authorHBox:HBox = new HBox();
 					var authorNameLabel:Label = new Label();
-				
-					authorHBox.name = author + "HBox";
-					authorNameLabel.name = + author + "Label";
+			
+					authorHBox.name = authorList[i].author + "HBox";
+					authorNameLabel.name = + authorList[i].author + "Label";
 					
-					authorNameLabel.text = "" + author;
+					authorNameLabel.text = "" + authorList[i].author_name;
 					
 					authorHBox.setStyle("border", "solid");
 					authorNameLabel.styleName = "authorNameStyle";
-					
+				
 					authorHBox.addChild(authorNameLabel);
-					this.addChildAt(authorHBox, 0);
-				}
+					this.addChildAt(authorHBox, 0);	
+				}	
 			}
 			
 			//remove author from list if there that author no longer exists in the event list
-			public function removeAuthorFromList(event:Object):void
+			public function removeAuthorsFromList():void
 			{
-				var author:int = event.fields.author;
-				
-				var i:int;
-				var count:int = 0;
-				for(i=0; i < getParentProject.eventInfoList.eventList.length; i++)
-				{
-					if(getParentProject.eventInfoList.eventList[i].fields.author == author){
-						count++;
-					}
-				}
-				
-				//only remove if the author is the only one in the event list
-				if(count < 2){
-					var removedAuthor:HBox = new HBox();
-					var index:int = authorList.getItemIndex(event.fields.author);
-					removedAuthor = this.getChildByName(authorList[index] + "HBox") as HBox;
-					this.removeChild(removedAuthor);
-					authorList.removeItemAt(index);
-				}
-					
+				this.removeAllChildren();
 			}
 		]]>
 	</mx:Script>
