@@ -215,6 +215,8 @@
 				
 				tempPanel.status = "End Date: " + this.parsedResultsDjango.getItemAt(index).dateEvent;
 				updateEventList(this.parsedResultsDjango.getItemAt(index).dateEvent);
+				
+				getParentProject.authorInfoList.addAuthorsToList(getParentProject.eventInfoList.title.substring(12, getParentProject.eventInfoList.title.length), getParentProject.eventInfoList.status.substring(10, getParentProject.eventInfoList.status.length));
 			}
 			
 			//set current dates from the initial position of the control sliders
@@ -252,6 +254,9 @@
 					var eventDictionary:Array = decoded as Array;
 					
 					eventDictionaryGlob = eventDictionary;
+					
+					//add authors for the specified date range to the author list
+					getParentProject.authorInfoList.addAuthorsToList(getParentProject.eventInfoList.title.substring(12, getParentProject.eventInfoList.title.length), getParentProject.eventInfoList.status.substring(10, getParentProject.eventInfoList.status.length));
 					
 					eventTimer.start();
 					

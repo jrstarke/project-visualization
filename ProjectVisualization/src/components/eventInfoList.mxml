@@ -54,7 +54,8 @@
 				
 				eventList.addItemAt(event, 0);
 				
-				getParentProject.authorInfoList.addAuthorToList(event);
+				//get list of authors to add
+				//getParentProject.authorInfoList.addAuthorToList(event);
 				
 				var eventHBox:HBox = new HBox();
 				var eventDateLabel:Label = new Label();
@@ -103,7 +104,7 @@
 				var removedEvent:HBox = new HBox();
 				removedEvent = this.getChildByName(eventList[maxEventListSize].pk + "event") as HBox;
 				this.removeChild(removedEvent);
-				getParentProject.authorInfoList.removeAuthorFromList(eventList[maxEventListSize]);
+				//getParentProject.authorInfoList.removeAuthorFromList(eventList[maxEventListSize]);
 				eventList.removeItemAt(maxEventListSize);
 			}
 			
