@@ -396,7 +396,9 @@
 				//fix strange out of bounds bug
 				if(index<0)
 					index = 0;
-					
+				
+				eventInfoList.removeAllEventsFromList();
+				controllerCanvas.eventIndex = 0;
 				controllerCanvas.processAtPixelMoveEnd(index);
 			}
 			
@@ -417,7 +419,9 @@
 				if(index<0)
 					index = 0;
 					
+				
 				controllerCanvas.processAtPixelMoveStart(index);
+				authorInfoList.addAuthorsToList(eventInfoList.title.substring(12, eventInfoList.title.length), eventInfoList.status.substring(10, eventInfoList.status.length));
 			}
 			
 		]]>
