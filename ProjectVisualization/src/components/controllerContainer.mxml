@@ -153,7 +153,27 @@
 					this.rightControlCanvas.toolTip = "" + this.rightControlCanvas.x;
 					this.rightCanvas.width = (this.width - this.rightControlCanvas.x - this.rightControlCanvas.width);
 					this.playerButton.x = (((this.leftControlCanvas.width + this.leftControlCanvas.x) + this.rightControlCanvas.x)/2) - ((this.playerButton.width)/2);
-					processAtPixelMoveEnd(this.rightControlCanvas.x);
+					
+					var index:int;
+					var space:int = 6;
+					var x:int = this.rightControlCanvas.x;
+				
+					index = (x/((this.Areachart.width - (space * (this.Areachart.width/730) - 1))/730)) - space;
+				
+					//fix strange out of bounds bug
+					if(index<0)
+						index = 0;
+					
+					var tempVBox:VBox = new VBox();
+					tempVBox = this.parent.getChildByName("mainVBox") as VBox;
+					var tempHBox:HBox = new HBox();
+					tempHBox = tempVBox.getChildByName("mainHBox") as HBox;
+					var tempPanel:Panel = new Panel();
+					tempPanel = tempHBox.getChildByName("eventInfoList") as Panel;
+				
+					tempPanel.status = "End Date: " + this.parsedResultsDjango.getItemAt(index).dateEvent;
+					
+					//processAtPixelMoveEnd(index);
 				}
 			}
 			
@@ -167,12 +187,46 @@
 					this.leftControlCanvas.toolTip = "" + this.leftControlCanvas.x;
 					this.leftCanvas.width = pt.x;
 					this.playerButton.x = (((this.leftControlCanvas.width + this.leftControlCanvas.x) + this.rightControlCanvas.x)/2) - ((this.playerButton.width)/2);
-					processAtPixelMoveStart(this.leftControlCanvas.x + this.leftControlCanvas.width);
+					
+					var index:int;
+					var space:int = 6;
+					var x:int = this.leftControlCanvas.x + this.leftControlCanvas.width;
+					
+					index = (x/((this.Areachart.width - (space * (this.Areachart.width/730) - 1))/730)) - space;
+				
+					//fix strange out of bounds bug
+					if(index<0)
+						index = 0;
+				
+					var tempVBox:VBox = new VBox();
+					tempVBox = this.parent.getChildByName("mainVBox") as VBox;
+					var tempHBox:HBox = new HBox();
+					tempHBox = tempVBox.getChildByName("mainHBox") as HBox;
+					var tempPanel:Panel = new Panel();
+					tempPanel = tempHBox.getChildByName("eventInfoList") as Panel;
+				
+					tempPanel.title = "Start Date: " + this.parsedResultsDjango.getItemAt(index).dateEvent;
+				
+					//processAtPixelMoveStart(index);
 				}
 			}
 			
 			//get date from the left controller position while scrubbing
-			public function processAtPixelMoveStart(x:int):void
+			public function processAtPixelMoveStart(index:int):void
+			{
+				//updateEventList(this.parsedResultsDjango.getItemAt(index).dateEvent);
+			}
+			
+			//get date from the right controller position while scrubbing
+			public function processAtPixelMoveEnd(index:int):void
+			{
+				updateEventList(this.parsedResultsDjango.getItemAt(index).dateEvent);
+				
+				//getParentProject.authorInfoList.addAuthorsToList(getParentProject.eventInfoList.title.substring(12, getParentProject.eventInfoList.title.length), getParentProject.eventInfoList.status.substring(10, getParentProject.eventInfoList.status.length));
+			}
+			
+			//get date from the left controller position while scrubbing
+			public function processAtPixelStartInit(x:int):void
 			{
 				var index:int;
 				var space:int = 6;
@@ -195,7 +249,7 @@
 			}
 			
 			//get date from the right controller position while scrubbing
-			public function processAtPixelMoveEnd(x:int):void
+			public function processAtPixelEndInit(x:int):void
 			{
 				var index:int;
 				var space:int = 6;
@@ -218,12 +272,11 @@
 				
 				getParentProject.authorInfoList.addAuthorsToList(getParentProject.eventInfoList.title.substring(12, getParentProject.eventInfoList.title.length), getParentProject.eventInfoList.status.substring(10, getParentProject.eventInfoList.status.length));
 			}
-			
 			//set current dates from the initial position of the control sliders
 			private function initDates():void
 			{
-				processAtPixelMoveStart(leftControlCanvas.x);
-				processAtPixelMoveEnd(rightControlCanvas.x);
+				processAtPixelStartInit(leftControlCanvas.x);
+				processAtPixelEndInit(rightControlCanvas.x);
 			}
 			
 			//create a new httpservice and get the information for that day

@@ -386,6 +386,18 @@
 				//debug('Right Canvas Control Up');
 				c1.removeEventListener(MouseEvent.MOUSE_MOVE, controllerCanvas.rightMove);
 				c1.removeEventListener(MouseEvent.MOUSE_UP, rightUp);
+				
+				var index:int;
+				var space:int = 6;
+				var x:int = controllerCanvas.rightControlCanvas.x;
+					
+				index = (x/((controllerCanvas.Areachart.width - (space * (controllerCanvas.Areachart.width/730) - 1))/730)) - space;
+				
+				//fix strange out of bounds bug
+				if(index<0)
+					index = 0;
+					
+				controllerCanvas.processAtPixelMoveEnd(index);
 			}
 			
 			//left slider control mouse up event
@@ -394,6 +406,18 @@
 				//debug('Left Canvas Control Up');
 				c1.removeEventListener(MouseEvent.MOUSE_MOVE, controllerCanvas.leftMove);
 				c1.removeEventListener(MouseEvent.MOUSE_UP, leftUp);
+				
+				var index:int;
+				var space:int = 6;
+				var x:int = controllerCanvas.leftControlCanvas.x + controllerCanvas.leftControlCanvas.width;
+					
+				index = (x/((controllerCanvas.Areachart.width - (space * (controllerCanvas.Areachart.width/730) - 1))/730)) - space;
+				
+				//fix strange out of bounds bug
+				if(index<0)
+					index = 0;
+					
+				controllerCanvas.processAtPixelMoveStart(index);
 			}
 			
 		]]>
