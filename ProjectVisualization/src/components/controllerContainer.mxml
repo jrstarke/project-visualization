@@ -87,7 +87,7 @@
 			import mx.containers.VBox;
 			
 			private var getSrvEvents:HTTPService;
-			private var eventIndex:int = 0;
+			public var eventIndex:int = 0;
 			private var eventDictionaryGlob:Array;
 			
 			//create new timer to step through each event for the specified date
@@ -327,7 +327,7 @@
     					eventTimer.stop();
     					eventTimer.removeEventListener(TimerEvent.TIMER, eventTimerTick);
     					eventIndex = 0;
-    					eventList.addItemAt("END", 0);
+    					//eventList.addItemAt("END", 0);
     					
 						getParentProject.t.start();
     				}
