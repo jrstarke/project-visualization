@@ -64,24 +64,30 @@
 				
 				eventHBox.name = event.pk + "event";
 				eventDateLabel.name = event.pk + "date";
-				eventAuthorLabel.name = event.fields.author;
+				eventAuthorLabel.name = event.author;
 				eventCommentLabel.name = event.pk + "comment";
 				
-				eventAuthorLabel.width = 35;
+				eventAuthorLabel.width = 75;
 				
-				eventAuthorLabel.text = event.fields.author;
-				eventDateLabel.text = event.fields.date;
+				eventAuthorLabel.text = event.author_short_name;
+				eventDateLabel.text = event.date;
 				
 				//Check if comment exists
-				if(event.fields.comment != null && event.fields.comment != ""){
-					var s:String = event.fields.comment;
+				if(event.comment != null && event.comment != ""){
+					var s:String = event.comment;
 					s = s.replace("\n", "");
 					s = s.substring(0, 100);
 					eventCommentLabel.text = s;
-					eventHBox.toolTip = "Comment: " + event.fields.comment;
+					eventHBox.toolTip = "Author: " + event.author_short_name + "\nComment: " + event.comment;
+					eventAuthorLabel.toolTip = eventHBox.toolTip;
+					eventCommentLabel.toolTip = eventHBox.toolTip;
 				}
-				else
+				else{
 					eventCommentLabel.text = "--No comment available--";
+					eventHBox.toolTip = "Author: " + event.author_short_name;
+					eventAuthorLabel.toolTip = eventHBox.toolTip;
+					eventCommentLabel.toolTip = eventHBox.toolTip;
+				}
 					
 				eventDateLabel.styleName = "eventDateStyle";
 				

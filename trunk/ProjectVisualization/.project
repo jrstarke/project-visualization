@@ -2,17 +2,23 @@
 <projectDescription>
 	<name>ProjectVisualization</name>
 	<comment></comment>
-	<projects></projects>
+	<projects>
+	</projects>
 	<buildSpec>
 		<buildCommand>
+			<name>org.python.pydev.PyDevBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
 			<name>com.adobe.flexbuilder.project.flexbuilder</name>
-			<arguments></arguments>
+			<arguments>
+			</arguments>
 		</buildCommand>
 	</buildSpec>
 	<natures>
 		<nature>com.adobe.flexbuilder.project.flexnature</nature>
-		<nature>
-			com.adobe.flexbuilder.project.actionscriptnature
-		</nature>
+		<nature>com.adobe.flexbuilder.project.actionscriptnature</nature>
+		<nature>org.python.pydev.pythonNature</nature>
 	</natures>
 </projectDescription>

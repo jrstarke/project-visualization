@@ -70,7 +70,7 @@
 						authorHBox.name = authorList[i].author + "";
 						authorNameLabel.name = + authorList[i].author + "Label";
 					
-						authorNameLabel.text = "" + authorList[i].author_name;
+						authorNameLabel.text = "" + authorList[i].author_shortname;
 					
 						authorHBox.setStyle("border", "solid");
 						authorNameLabel.styleName = "authorNameStyle";
@@ -105,7 +105,7 @@
 				var i:int;
 				for(i=0; i<getParentProject.eventInfoList.eventList.length; i++)
 				{
-					if(currentHBox.name == getParentProject.eventInfoList.eventList[i].fields.author)
+					if(currentHBox.name == getParentProject.eventInfoList.eventList[i].author)
 					{
 						var eventHBox:HBox = new HBox();
 						eventHBox = getParentProject.eventInfoList.getChildByName(getParentProject.eventInfoList.eventList[i].pk + "event") as HBox;
