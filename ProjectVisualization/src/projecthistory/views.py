@@ -17,8 +17,14 @@ def stats(request):
 def events(request, date_str):
     date = parse_date(date_str)
     next = date + timedelta(1)
-    all_events = models.events(date, next)
-    return HttpResponse(serializers.serialize('json', iter(all_events)))
+    #all_events = models.events(date, next)
+    
+    all_events = [{'date':str(event.date), 'author_short_name':models.authorshortname(event.author.name),
+                   'pk':event.id, 'comment':event.comment, 'author':event.author.id} 
+                   for event in models.events(date, next)]
+        
+    #return HttpResponse(serializers.serialize('json', iter(all_events)))
+    return HttpResponse(simplejson.dumps(all_events))
 
 def topauthors(request, start_date, end_date, num_authors):
    start = parse_date(start_date)

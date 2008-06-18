@@ -60,6 +60,9 @@ class Author(models.Model):
     def from_string(cls, string):
         string = string.replace('&lt;','').replace('&gt;','').strip()
         return cls.objects.get_or_create(name=string)[0]
+    
+    #def short_name(self):
+    #    return self.name
 
 class Ticket(models.Model):
     open_date = models.DateTimeField(null=True)
@@ -134,6 +137,9 @@ class CommitEvent(models.Model):
     date = models.DateTimeField()
     lines = models.IntegerField()
     message = models.TextField(null=True)
+    def _comment(self):
+        return self.message
+    comment = property(_comment,None)
     
     # returns a list of components affected by this event
     def modules(self):
@@ -146,6 +152,9 @@ class NewTicketEvent(models.Model):
     author = models.ForeignKey(Author) # initial owner
     date = models.DateTimeField()
     ticket = models.ForeignKey(Ticket, unique=True)
+    def _comment(self):
+        return ''
+    comment = property(_comment,None)
 
     class Meta:
         ordering = ['date']
@@ -196,6 +205,8 @@ def events(start, stop):
         _events(start, stop, TicketChangeEvent)
     # should really be merging these ...
     all_events.sort(lambda a,b: cmp(a.date, b.date))
+    #for e in all_events:
+    #    e["fields"]["author_shortname"] = authorshortname(e["fields"]["author"])
     return all_events
     
 def _events(start, stop, model):
@@ -215,9 +226,25 @@ def topauthors(start, stop, num_authors):
         author["commitevents"] = i[1][1]
         author["ticketchangeevents"] = i[1][2]
         author["author_name"] = Author.objects.get(pk=i[0]).name
+        author["author_shortname"] = authorshortname(author["author_name"])
         top_authors.append(author)
     top_authors.sort(lambda a,b: cmp(a["author_name"].lower(),b["author_name"].lower()))
+    top_authors = filter(lambda x: (x["newticketevents"] + x["commitevents"] + x["ticketchangeevents"]) > 0, top_authors)
     return top_authors
+
+def authorshortname(author_name):
+    max_shortname_length = 20
+    # Contains just an email address, which we will shorten
+    if author_name.count(" ") == 0 and author_name.count("@") == 1:
+        return author_name[:author_name.rfind("@")]
+    # Contains a name and an email address
+    if author_name.count(" ") > 0 and author_name.count("@") == 1:
+        return author_name[:author_name.rfind(" ")]
+    # Contains a space (usually for the name) which we will remove everything after
+    if len(author_name) > max_shortname_length:
+            return author_name[:max_shortname_length]+'...'
+    # Otherwise: just use their name
+    return author_name
 
 def topauthorsfordays():
     max_date = datetime.date(2008,1,1)
