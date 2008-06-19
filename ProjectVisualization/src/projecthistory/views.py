@@ -20,7 +20,7 @@ def events(request, date_str):
     #all_events = models.events(date, next)
     
     all_events = [{'date':str(event.date), 'author_short_name':models.authorshortname(event.author.name),
-                   'pk':event.id, 'comment':event.comment, 'author':event.author.id} 
+                   'pk':event.id, 'comment':event.comment, 'author':event.author.id, 'author_name':event.author.name} 
                    for event in models.events(date, next)]
         
     #return HttpResponse(serializers.serialize('json', iter(all_events)))
