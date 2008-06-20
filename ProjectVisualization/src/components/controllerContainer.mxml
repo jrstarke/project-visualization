@@ -289,7 +289,7 @@
 				
 				if(endDate != null){
 					getSrvEvents.send();
-					debugLabel.text = getSrvEvents.url;
+					//debugLabel.text = getSrvEvents.url;
     			}	
 			}
 			
