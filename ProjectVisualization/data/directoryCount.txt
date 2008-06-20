@@ -1,0 +1,58 @@
+10333 	/
+8180 	/django/
+2413 		/django/conf/
+2070 			/django/conf/locale/
+1672 		/django/contrib/
+674 			/django/contrib/admin/ 
+130 			/django/contrib/comments/
+106 			/django/contrib/databrowse/
+31 				/django/contrib/formtools/
+287 			/django/contrib/localflavor
+59 				/django/contrib/sessions
+1319 		/django/core/
+69 				/django/core/cache/
+43 				/django/core/mail
+127 			/django/core/management/commands/
+65 				/django/core/serializers/
+60 				/django/core/validators/
+948 		/django/db/
+21 			/django/dispatch/
+21 			/django/forms/
+52 			/django/http
+107 		/django/middleware
+17 				/django/middleware/cache/
+291 		/django/newforms/
+20 			/django/oldforms/
+16 			/django/shortcuts/
+216 		/django/templates/
+35 			/django/templatetags/
+107 		/django/test/
+355 		/django/utils/
+20 				/django/utils/cache/
+24 				/django/utils/feedgenerator/
+360 		/django/views/
+99 				/django/views/generic/
+583 	/docs/
+18 		/examples/
+1282 	/tests/
+549 		/tests/modeltests/
+10 		/tests/templates/
+
+Suggestion of top 8 modules to use:
+1. django/conf
+2. django/contrib
+3. django/core
+4. django/db
+5. django/views
+6. docs
+7. tests
+8. all the rest
+
+Suggestion of top 7 modules to use:
+1. django/conf
+2. django/contrib
+3. django/core
+4. django/db
+5. docs
+6. tests
+7. all the rest
