@@ -16,10 +16,6 @@
    			</mx:HBox>
     	</mx:VBox>
     	<MyComps:controllerContainer id="controllerCanvas" bottom="5" creationComplete="initControllers(); initPlayer()"/>
-    	<mx:HBox id="speedHBox" right="0" bottom="100">
-	    		<mx:Label text="Speed:"/>
-	    		<mx:NumericStepper id="numStep" minimum="1" maximum="20" stepSize="1" value="1"/>
-	    </mx:HBox>
 	</mx:Canvas>
 	
 	<mx:Script>
@@ -36,6 +32,7 @@
 			public var t:Timer = new Timer(2000, 0);
 			private var numComps:Number = 7;
 			private var space:int = 6;
+			private var numStep:int = 1;
 			
 			//initialize the bar graphs
 			private function initBar():void
@@ -322,8 +319,8 @@
 			private function timerTick(e:TimerEvent):void
 			{
 				//move the controller and other related objects
-				if((controllerCanvas.rightControlCanvas.x + numStep.value) < controllerCanvas.Areachart.width){
-					controllerCanvas.rightControlCanvas.x += numStep.value;
+				if((controllerCanvas.rightControlCanvas.x + numStep) < controllerCanvas.Areachart.width){
+					controllerCanvas.rightControlCanvas.x += numStep;
 					controllerCanvas.rightControlCanvas.toolTip = "" + controllerCanvas.rightControlCanvas.x
 					controllerCanvas.rightCanvas.width = (controllerCanvas.width - controllerCanvas.rightControlCanvas.x - controllerCanvas.rightControlCanvas.width);
 					controllerCanvas.playerButton.x = (((controllerCanvas.leftControlCanvas.width + controllerCanvas.leftControlCanvas.x) + controllerCanvas.rightControlCanvas.x)/2) - ((controllerCanvas.playerButton.width)/2);
