@@ -48,10 +48,10 @@
 					panel.percentWidth = 100/numComps;
 					panel.setStyle("backgroundColor", "#000000");
 					panel.setStyle("borderColor", "#FFFFFF");
-					panel.setStyle("borderThicknessLeft", "20");
-					panel.setStyle("borderThicknessRight", "5");
+					panel.setStyle("borderThicknessLeft", "2");
+					panel.setStyle("borderThicknessRight", "2");
 					panel.setStyle("borderThicknessTop", "0");
-					panel.setStyle("borderThicknessBottom", "5");
+					panel.setStyle("borderThicknessBottom", "2");
 					barCanvas.graphHBox.addChild(panel);
 					
 					//create a new HBox and set properties to hold the bars
