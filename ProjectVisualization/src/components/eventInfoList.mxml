@@ -78,13 +78,13 @@
 					s = s.replace("\n", "");
 					s = s.substring(0, 100);
 					eventCommentLabel.text = s;
-					eventHBox.toolTip = "Author: " + event.author_short_name + "\nComment: " + event.comment;
+					eventHBox.toolTip = "Author: " + event.author_name + "\nComment: " + event.comment;
 					eventAuthorLabel.toolTip = eventHBox.toolTip;
 					eventCommentLabel.toolTip = eventHBox.toolTip;
 				}
 				else{
 					eventCommentLabel.text = "--No comment available--";
-					eventHBox.toolTip = "Author: " + event.author_short_name;
+					eventHBox.toolTip = "Author: " + event.author_name;
 					eventAuthorLabel.toolTip = eventHBox.toolTip;
 					eventCommentLabel.toolTip = eventHBox.toolTip;
 				}
