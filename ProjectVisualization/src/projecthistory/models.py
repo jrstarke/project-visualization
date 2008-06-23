@@ -238,9 +238,12 @@ def authorshortname(author_name):
     if author_name.count(" ") == 0 and author_name.count("@") == 1:
         return author_name[:author_name.rfind("@")]
     # Contains a name and an email address
-    if author_name.count(" ") > 0 and author_name.count("@") == 1:
-        return author_name[:author_name.rfind(" ")]
+    if author_name.count(" ",0,max_shortname_length) > 0 and author_name.count("@") == 1:
+        return author_name[:author_name.rfind(" ",0,max_shortname_length)]
     # Contains a space (usually for the name) which we will remove everything after
+    if author_name.count(" ",0,max_shortname_length) > 0:
+        return author_name[:author_name.rfind(" ",0,max_shortname_length)]
+    # There name is too long, but does not fit any of the cases above
     if len(author_name) > max_shortname_length:
             return author_name[:max_shortname_length]+'...'
     # Otherwise: just use their name
