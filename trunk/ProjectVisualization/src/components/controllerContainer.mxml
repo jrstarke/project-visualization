@@ -17,7 +17,7 @@
     	{
     		getParentProject =  this.parent.parent.parent as ProjectVisualizaton;
 
-			debugLabel.text = "" + this.parent.parent.parent;
+			//debugLabel.text = "" + this.parent.parent.parent;
     		var decoded:Object = JSON.decode(getSrvStats.lastResult.toString());
     		resultsDjango = new ArrayCollection(decoded as Array);
     		
