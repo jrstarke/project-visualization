@@ -375,6 +375,7 @@
 				//debug('Right Canvas Control Down');
 				c1.addEventListener(MouseEvent.MOUSE_MOVE, controllerCanvas.rightMove);
 				c1.addEventListener(MouseEvent.MOUSE_UP, rightUp);
+				controllerCanvas.eventTimer.stop();
 			}
 			
 			//left slider control mouse down event
@@ -383,6 +384,7 @@
 				//debug('Left Canvas Control Down');
 				c1.addEventListener(MouseEvent.MOUSE_MOVE, controllerCanvas.leftMove);
 				c1.addEventListener(MouseEvent.MOUSE_UP, leftUp);
+				controllerCanvas.eventTimer.stop();
 			}
 			
 			//right slider control mouse up event
@@ -405,6 +407,7 @@
 				eventInfoList.removeAllEventsFromList();
 				controllerCanvas.eventIndex = 0;
 				controllerCanvas.processAtPixelMoveEnd(index);
+				//controllerCanvas.eventTimer.start();
 			}
 			
 			//left slider control mouse up event
@@ -426,6 +429,7 @@
 				
 				controllerCanvas.processAtPixelMoveStart(index);
 				authorInfoList.addAuthorsToList(eventInfoList.title.substring(12, eventInfoList.title.length), eventInfoList.status.substring(10, eventInfoList.status.length));
+				controllerCanvas.eventTimer.start();
 			}
 			
 		]]>

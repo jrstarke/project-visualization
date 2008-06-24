@@ -74,6 +74,7 @@
 				
 				eventTypeLabel.width = 85;
 				eventAuthorLabel.width = 75;
+				eventCommentLabel.width = 455;
 				
 				eventTypeLabel.text = event.type;
 				eventAuthorLabel.text = event.author_short_name;
@@ -83,7 +84,7 @@
 				if(event.comment != null && event.comment != ""){
 					var s:String = event.comment;
 					s = s.replace("\n", "");
-					s = s.substring(0, 55);
+					//s = s.substring(0, 55);
 					eventCommentLabel.text = s;
 					eventHBox.toolTip = "Author: " + event.author_name + "\nComment: " + event.comment;
 					eventTypeLabel.toolTip = eventHBox.toolTip;
