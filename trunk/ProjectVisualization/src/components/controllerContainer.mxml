@@ -306,19 +306,19 @@
     		
     		private function eventTimerTick(e:TimerEvent):void
     		{
-    				if(eventIndex < eventDictionaryGlob.length){
-    					getParentProject.eventInfoList.addEventToList(eventDictionaryGlob[eventIndex]);
-    					eventIndex++;
-    				}
-    				
-    				else{
-    					eventTimer.stop();
-    					eventTimer.removeEventListener(TimerEvent.TIMER, eventTimerTick);
-    					eventIndex = 0;
-    					//eventList.addItemAt("END", 0);
-    					
-						getParentProject.t.start();
-    				}
+				if(eventIndex < eventDictionaryGlob.length){
+					getParentProject.eventInfoList.addEventToList(eventDictionaryGlob[eventIndex]);
+					eventIndex++;
+				}
+				
+				else{
+					eventTimer.stop();
+					eventTimer.removeEventListener(TimerEvent.TIMER, eventTimerTick);
+					eventIndex = 0;
+					//eventList.addItemAt("END", 0);
+					
+					getParentProject.t.start();
+				}
 			}
 		]]>
 	</mx:Script>
