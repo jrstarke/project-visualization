@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" title="Authors" titleStyleName="authorStatusStyle" creationComplete="initParentProject()">
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" title="Top Authors" titleStyleName="authorStatusStyle" creationComplete="initParentProject()" verticalGap="0">
 	<mx:Style>
     	.authorStatusStyle {
         	fontWeight: bold;
@@ -29,13 +29,13 @@
 			//function to gain easy access to the parent class
 			private function initParentProject():void
 			{
-				getParentProject =  this.parent.parent.parent.parent as ProjectVisualizaton;	
+				getParentProject =  this.parent.parent.parent.parent.parent.parent as ProjectVisualizaton;	
 			}
 			
 			//add authors to author list
 			public function addAuthorsToList(startDate:String, endDate:String):void
 			{
-				var numOfTopAuth:int = 15;
+				var numOfTopAuth:int = 16;
 
 				getSrvAuthors = new HTTPService();
 				getSrvAuthors.url = "http://localhost:8000/topauthors/" + startDate + "/" + endDate + "/" + numOfTopAuth + "/"; 

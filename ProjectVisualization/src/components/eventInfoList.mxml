@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" titleStyleName="datesStatusStyle" statusStyleName="datesStatusStyle" creationComplete="initParentProject()">
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" titleStyleName="datesStatusStyle" statusStyleName="datesStatusStyle" creationComplete="initParentProject()" verticalGap="0">
 	<mx:Style>
         .datesStatusStyle {
             fontWeight: bold;
@@ -38,13 +38,13 @@
 			//determine how many events to be displayed on the main list
 			private function initMaxEventListSize():void
 			{
-				maxEventListSize = 15;
+				maxEventListSize = 16;
 			}
 			
 			//function to gain easy access to the parent class
 			private function initParentProject():void
 			{
-				getParentProject =  this.parent.parent.parent.parent as ProjectVisualizaton;	
+				getParentProject =  this.parent.parent.parent.parent.parent.parent as ProjectVisualizaton;	
 			}
 			
 			//add event to the list and display on the main list
@@ -83,7 +83,7 @@
 				if(event.comment != null && event.comment != ""){
 					var s:String = event.comment;
 					s = s.replace("\n", "");
-					s = s.substring(0, 58);
+					s = s.substring(0, 55);
 					eventCommentLabel.text = s;
 					eventHBox.toolTip = "Author: " + event.author_name + "\nComment: " + event.comment;
 					eventTypeLabel.toolTip = eventHBox.toolTip;
@@ -151,7 +151,7 @@
 				var i:int;
 				for(i=0; i<getParentProject.authorInfoList.authorList.length; i++)
 				{
-					var author:Label = currentHBox.getChildAt(1) as Label;
+					var author:Label = currentHBox.getChildAt(2) as Label;
 					if(author.name == getParentProject.authorInfoList.authorList[i].author)
 					{
 						var authorHBox:HBox = new HBox();
