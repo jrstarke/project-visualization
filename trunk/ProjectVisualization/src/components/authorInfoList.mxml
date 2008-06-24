@@ -35,7 +35,7 @@
 			//add authors to author list
 			public function addAuthorsToList(startDate:String, endDate:String):void
 			{
-				var numOfTopAuth:int = 17;
+				var numOfTopAuth:int = 15;
 
 				getSrvAuthors = new HTTPService();
 				getSrvAuthors.url = "http://localhost:8000/topauthors/" + startDate + "/" + endDate + "/" + numOfTopAuth + "/"; 
@@ -72,8 +72,12 @@
 					
 						authorNameLabel.text = "" + authorList[i].author_shortname;
 					
-						authorHBox.setStyle("border", "solid");
+						authorHBox.setStyle("border", "none");
 						authorNameLabel.styleName = "authorNameStyle";
+						
+						authorHBox.setStyle("paddingTop",1);
+						authorHBox.setStyle("paddingBottom",1);
+						authorHBox.setStyle("paddingLeft",1);	
 					
 						authorHBox.addEventListener(MouseEvent.MOUSE_OVER, eventMouseOver);
 				
@@ -101,6 +105,10 @@
 
 				currentHBox.setStyle("borderStyle", "solid");
 				
+				currentHBox.setStyle("paddingTop",0);
+				currentHBox.setStyle("paddingBottom",0);
+				currentHBox.setStyle("paddingLeft",0);
+				
 				//highlight associated event if possible
 				var i:int;
 				for(i=0; i<getParentProject.eventInfoList.eventList.length; i++)
@@ -109,7 +117,11 @@
 					{
 						var eventHBox:HBox = new HBox();
 						eventHBox = getParentProject.eventInfoList.getChildByName(getParentProject.eventInfoList.eventList[i].pk + "event") as HBox;
-						eventHBox.setStyle("borderStyle", "solid");						
+						eventHBox.setStyle("borderStyle", "solid");	
+						
+						eventHBox.setStyle("paddingTop",0);
+						eventHBox.setStyle("paddingBottom",0);
+						eventHBox.setStyle("paddingLeft",0);					
 					}
 				} 
 			}
@@ -125,6 +137,10 @@
 				currentHBox = e.currentTarget as HBox;
 				currentHBox.setStyle("borderStyle", "none");
 				
+				currentHBox.setStyle("paddingTop",1);
+				currentHBox.setStyle("paddingBottom",1);
+				currentHBox.setStyle("paddingLeft",1);
+				
 				currentHBox.removeEventListener(MouseEvent.MOUSE_OUT, eventMouseOut);
 				
 				//unhighlight all events from the event list
@@ -133,7 +149,11 @@
 				{
 					var eventHBox:HBox = new HBox();
 					eventHBox = getParentProject.eventInfoList.getChildByName(getParentProject.eventInfoList.eventList[i].pk + "event") as HBox;
-					eventHBox.setStyle("borderStyle", "none");						
+					eventHBox.setStyle("borderStyle", "none");	
+					
+					eventHBox.setStyle("paddingTop",1);
+					eventHBox.setStyle("paddingBottom",1);
+					eventHBox.setStyle("paddingLeft",1);					
 				} 
 			}
 		]]>
