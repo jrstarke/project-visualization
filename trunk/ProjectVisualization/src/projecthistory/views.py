@@ -19,7 +19,7 @@ def events(request, date_str):
     next = date + timedelta(1)
     #all_events = models.events(date, next)
     
-    all_events = [{'date':str(event.date), 'author_short_name':models.authorshortname(event.author.name),
+    all_events = [{'date':str(event.date)[:str(event.date).rfind(" ")], 'author_short_name':models.authorshortname(event.author.name),
                    'pk':event.id, 'comment':event.comment, 'author':event.author.id, 'author_name':event.author.name} 
                    for event in models.events(date, next)]
         
