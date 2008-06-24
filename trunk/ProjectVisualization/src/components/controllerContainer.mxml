@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="13%" width="1000" horizontalCenter="0" creationComplete="getSrvStats.send()">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="13%" width="1280" horizontalCenter="0" creationComplete="getSrvStats.send()">
 
     <mx:ArrayCollection id="resultsDjango"/>
     <mx:ArrayCollection id="parsedResultsDjango"/>
