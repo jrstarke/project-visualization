@@ -271,6 +271,9 @@
 				getSrvEvents.resultFormat = "text";
 				getSrvEvents.addEventListener("result", updateEventListResult);
 				
+				//remove event listener for timer if already started
+				eventTimer.removeEventListener(TimerEvent.TIMER, eventTimerTick);
+				
 				if(endDate != null){
 					getSrvEvents.send();
 					//debugLabel.text = getSrvEvents.url;
@@ -299,9 +302,10 @@
 					
 					eventTimer.addEventListener(TimerEvent.TIMER, eventTimerTick);		
     			}		
-    			
-    			function eventTimerTick(e:TimerEvent):void
-    			{
+  			}	
+    		
+    		private function eventTimerTick(e:TimerEvent):void
+    		{
     				if(eventIndex < eventDictionaryGlob.length){
     					getParentProject.eventInfoList.addEventToList(eventDictionaryGlob[eventIndex]);
     					eventIndex++;
@@ -315,7 +319,6 @@
     					
 						getParentProject.t.start();
     				}
-    			}
 			}
 		]]>
 	</mx:Script>
