@@ -17,7 +17,6 @@
     	{
     		getParentProject =  this.parent.parent.parent as ProjectVisualizaton;
 
-			//debugLabel.text = "" + this.parent.parent.parent;
     		var decoded:Object = JSON.decode(getSrvStats.lastResult.toString());
     		resultsDjango = new ArrayCollection(decoded as Array);
     		
@@ -165,12 +164,8 @@
 					if(index<0)
 						index = 0;
 					
-					var tempVBox:VBox = new VBox();
-					tempVBox = this.parent.getChildByName("mainVBox") as VBox;
-					var tempHBox:HBox = new HBox();
-					tempHBox = tempVBox.getChildByName("mainHBox") as HBox;
 					var tempPanel:Panel = new Panel();
-					tempPanel = tempHBox.getChildByName("eventInfoList") as Panel;
+					tempPanel = getParentProject.eventInfoList as Panel;
 				
 					tempPanel.status = "End Date: " + this.parsedResultsDjango.getItemAt(index).dateEvent;
 					
@@ -199,12 +194,8 @@
 					if(index<0)
 						index = 0;
 				
-					var tempVBox:VBox = new VBox();
-					tempVBox = this.parent.getChildByName("mainVBox") as VBox;
-					var tempHBox:HBox = new HBox();
-					tempHBox = tempVBox.getChildByName("mainHBox") as HBox;
 					var tempPanel:Panel = new Panel();
-					tempPanel = tempHBox.getChildByName("eventInfoList") as Panel;
+					tempPanel = getParentProject.eventInfoList as Panel;
 				
 					tempPanel.title = "Start Date: " + this.parsedResultsDjango.getItemAt(index).dateEvent;
 				
@@ -238,12 +229,8 @@
 				if(index<0)
 					index = 0;
 				
-				var tempVBox:VBox = new VBox();
-				tempVBox = this.parent.parent.getChildByName("mainVBox") as VBox;
-				var tempHBox:HBox = new HBox();
-				tempHBox = tempVBox.getChildByName("mainHBox") as HBox;
 				var tempPanel:Panel = new Panel();
-				tempPanel = tempHBox.getChildByName("eventInfoList") as Panel;
+				tempPanel = getParentProject.eventInfoList as Panel;
 				
 				tempPanel.title = "Start Date: " + this.parsedResultsDjango.getItemAt(index).dateEvent;
 				//updateEventList(this.parsedResultsDjango.getItemAt(index).dateEvent);
@@ -260,13 +247,9 @@
 				//fix strange out of bounds bug
 				if(index<0)
 					index = 0;
-					
-				var tempVBox:VBox = new VBox();
-				tempVBox = this.parent.parent.getChildByName("mainVBox") as VBox;
-				var tempHBox:HBox = new HBox();
-				tempHBox = tempVBox.getChildByName("mainHBox") as HBox;
+				
 				var tempPanel:Panel = new Panel();
-				tempPanel = tempHBox.getChildByName("eventInfoList") as Panel;
+				tempPanel = getParentProject.eventInfoList as Panel;
 				
 				tempPanel.status = "End Date: " + this.parsedResultsDjango.getItemAt(index).dateEvent;
 				updateEventList(this.parsedResultsDjango.getItemAt(index).dateEvent);
