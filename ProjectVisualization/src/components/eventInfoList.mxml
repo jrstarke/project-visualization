@@ -59,6 +59,7 @@
 				
 				var eventHBox:HBox = new HBox();
 				var eventDateLabel:Label = new Label();
+				var eventTypeLabel:Label = new Label();
 				var eventAuthorLabel:Label = new Label();
 				var eventCommentLabel:Label = new Label();
 				
@@ -67,11 +68,14 @@
 				eventHBox.setStyle("paddingLeft",1);
 				eventHBox.name = event.pk + "event";
 				eventDateLabel.name = event.pk + "date";
+				eventTypeLabel.name = event.pk + event.type;
 				eventAuthorLabel.name = event.author;
 				eventCommentLabel.name = event.pk + "comment";
 				
+				eventTypeLabel.width = 85;
 				eventAuthorLabel.width = 75;
 				
+				eventTypeLabel.text = event.type;
 				eventAuthorLabel.text = event.author_short_name;
 				eventDateLabel.text = event.date;
 				
@@ -79,15 +83,17 @@
 				if(event.comment != null && event.comment != ""){
 					var s:String = event.comment;
 					s = s.replace("\n", "");
-					s = s.substring(0, 100);
+					s = s.substring(0, 58);
 					eventCommentLabel.text = s;
 					eventHBox.toolTip = "Author: " + event.author_name + "\nComment: " + event.comment;
+					eventTypeLabel.toolTip = eventHBox.toolTip;
 					eventAuthorLabel.toolTip = eventHBox.toolTip;
 					eventCommentLabel.toolTip = eventHBox.toolTip;
 				}
 				else{
 					eventCommentLabel.text = "--No comment available--";
 					eventHBox.toolTip = "Author: " + event.author_name;
+					eventTypeLabel.toolTip = eventHBox.toolTip;
 					eventAuthorLabel.toolTip = eventHBox.toolTip;
 					eventCommentLabel.toolTip = eventHBox.toolTip;
 				}
@@ -97,6 +103,7 @@
 				eventHBox.addEventListener(MouseEvent.MOUSE_OVER, eventMouseOver);
 				
 				eventHBox.addChild(eventDateLabel);
+				eventHBox.addChild(eventTypeLabel);
 				eventHBox.addChild(eventAuthorLabel);
 				eventHBox.addChild(eventCommentLabel);
 				this.addChildAt(eventHBox, 0);
