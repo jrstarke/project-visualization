@@ -38,7 +38,7 @@
 			//determine how many events to be displayed on the main list
 			private function initMaxEventListSize():void
 			{
-				maxEventListSize = 17;
+				maxEventListSize = 15;
 			}
 			
 			//function to gain easy access to the parent class
@@ -62,6 +62,9 @@
 				var eventAuthorLabel:Label = new Label();
 				var eventCommentLabel:Label = new Label();
 				
+				eventHBox.setStyle("paddingTop",1);
+				eventHBox.setStyle("paddingBottom",1);
+				eventHBox.setStyle("paddingLeft",1);
 				eventHBox.name = event.pk + "event";
 				eventDateLabel.name = event.pk + "date";
 				eventAuthorLabel.name = event.author;
@@ -132,6 +135,10 @@
 				currentHBox.addEventListener(MouseEvent.MOUSE_OUT, eventMouseOut);
 
 				currentHBox.setStyle("borderStyle", "solid");
+
+				currentHBox.setStyle("paddingTop",0);
+				currentHBox.setStyle("paddingBottom",0);
+				currentHBox.setStyle("paddingLeft",0);
 				
 				//highlight associated author if possible
 				var i:int;
@@ -142,7 +149,11 @@
 					{
 						var authorHBox:HBox = new HBox();
 						authorHBox = getParentProject.authorInfoList.getChildByName(getParentProject.authorInfoList.authorList[i].author) as HBox;
-						authorHBox.setStyle("borderStyle", "solid");						
+						authorHBox.setStyle("borderStyle", "solid");
+						
+						authorHBox.setStyle("paddingTop",0);
+						authorHBox.setStyle("paddingBottom",0);
+						authorHBox.setStyle("paddingLeft",0);						
 					}
 				} 
 			}
@@ -158,6 +169,10 @@
 				currentHBox = e.currentTarget as HBox;
 				currentHBox.setStyle("borderStyle", "none");
 				
+				currentHBox.setStyle("paddingTop",1);
+				currentHBox.setStyle("paddingBottom",1);
+				currentHBox.setStyle("paddingLeft",1);
+				
 				currentHBox.removeEventListener(MouseEvent.MOUSE_OUT, eventMouseOut);
 				
 				//unhighlight all authors from the authors list
@@ -166,7 +181,11 @@
 				{
 					var authorHBox:HBox = new HBox();
 					authorHBox = getParentProject.authorInfoList.getChildByName(getParentProject.authorInfoList.authorList[i].author) as HBox;
-					authorHBox.setStyle("borderStyle", "none");						
+					authorHBox.setStyle("borderStyle", "none");		
+					
+					authorHBox.setStyle("paddingTop",1);
+					authorHBox.setStyle("paddingBottom",1);
+					authorHBox.setStyle("paddingLeft",1);				
 				} 
 			}
 		]]>
