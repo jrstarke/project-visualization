@@ -10,12 +10,13 @@
     	<mx:VBox height="100%" width="100%" horizontalCenter="0" top="10" id="mainVBox">
     		<MyComps:graphContainer id="barCanvas" horizontalCenter="0" verticalCenter="0" creationComplete="initBar()"/>	 
    			<MyComps:stateContainer id="stateCanvas" horizontalCenter="0" verticalCenter="0" creationComplete="initState()"/>
-   			<mx:HBox id="mainHBox" height="55%" width="100%" horizontalCenter="0" horizontalAlign="center">
-   				<MyComps:eventInfoList id="eventInfoList" height="100%" width="70%"/>
+   			<mx:HBox id="mainHBox" height="62%" width="100%" horizontalCenter="0" horizontalAlign="center">
+   				<MyComps:eventInfoList id="eventInfoList" height="100%" width="50%"/>
    				<MyComps:authorInfoList id="authorInfoList" height="100%" width="30%"/>
+   				<MyComps:authorInfoList id="testInfoList" height="100%" width="20%"/>
    			</mx:HBox>
+   			<MyComps:controllerContainer id="controllerCanvas" creationComplete="initControllers(); initPlayer()"/>
     	</mx:VBox>
-    	<MyComps:controllerContainer id="controllerCanvas" bottom="5" creationComplete="initControllers(); initPlayer()"/>
 	</mx:Canvas>
 	
 	<mx:Script>
@@ -415,7 +416,6 @@
 				//fix strange out of bounds bug
 				if(index<0)
 					index = 0;
-					
 				
 				controllerCanvas.processAtPixelMoveStart(index);
 				authorInfoList.addAuthorsToList(eventInfoList.title.substring(12, eventInfoList.title.length), eventInfoList.status.substring(10, eventInfoList.status.length));

@@ -15,8 +15,9 @@
     	//decode JSON format from the http request
     	private function handleGetResult():void
     	{
-    		getParentProject =  this.parent.parent as ProjectVisualizaton;
-    		
+    		getParentProject =  this.parent.parent.parent as ProjectVisualizaton;
+
+			debugLabel.text = "" + this.parent.parent.parent;
     		var decoded:Object = JSON.decode(getSrvStats.lastResult.toString());
     		resultsDjango = new ArrayCollection(decoded as Array);
     		
@@ -238,7 +239,7 @@
 					index = 0;
 				
 				var tempVBox:VBox = new VBox();
-				tempVBox = this.parent.getChildByName("mainVBox") as VBox;
+				tempVBox = this.parent.parent.getChildByName("mainVBox") as VBox;
 				var tempHBox:HBox = new HBox();
 				tempHBox = tempVBox.getChildByName("mainHBox") as HBox;
 				var tempPanel:Panel = new Panel();
@@ -261,7 +262,7 @@
 					index = 0;
 					
 				var tempVBox:VBox = new VBox();
-				tempVBox = this.parent.getChildByName("mainVBox") as VBox;
+				tempVBox = this.parent.parent.getChildByName("mainVBox") as VBox;
 				var tempHBox:HBox = new HBox();
 				tempHBox = tempVBox.getChildByName("mainHBox") as HBox;
 				var tempPanel:Panel = new Panel();
