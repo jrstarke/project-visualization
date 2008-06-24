@@ -153,7 +153,7 @@ class NewTicketEvent(models.Model):
     date = models.DateTimeField()
     ticket = models.ForeignKey(Ticket, unique=True)
     def _comment(self):
-        return ''
+        return self.ticket.summary
     comment = property(_comment,None)
 
     class Meta:
