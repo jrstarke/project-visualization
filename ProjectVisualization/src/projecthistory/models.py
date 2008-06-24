@@ -214,10 +214,10 @@ def _events(start, stop, model):
 
 def topauthors(start, stop, num_authors):
     author_counts = {}
-    for a in [Author.objects.get(pk=i) for i in [7,1,40,8,24,63,62,11,18,28,5,162,30,388,13,54,103,14,15,48,2032,512,299,1029,1286,1033,785,452,653,801,804,294,39,425,1322,43,940,429,307,176,689,1074,51,1195,571,2272,66,963,1095,202,206,79,433,217,847,96,481,866,1123,104,1444,488,631,1632]]:
+    for a in [Author.objects.get(pk=i) for i in [7,1,8,24,40,62,63,30,11,18,28,13,5,54,66,5,54,66,79,162,388,163,429,15,103,14]]:
         author_counts[a.id] = (a.newticketevent_set.filter(date__range=(start,stop)).count(),a.commitevent_set.filter(date__range=(start,stop)).count(),a.ticketchangeevent_set.filter(date__range=(start,stop)).count())
     sorted_counts = author_counts.items()
-    sorted_counts.sort(lambda a,b: cmp((b[1][0]+b[1][1]+b[1][2]), (a[1][0]+a[1][1]+a[1][2])))
+    # sorted_counts.sort(lambda a,b: cmp((b[1][0]+b[1][1]+b[1][2]), (a[1][0]+a[1][1]+a[1][2])))
     top_authors = []
     for i in sorted_counts[:num_authors]:
         author = {}
