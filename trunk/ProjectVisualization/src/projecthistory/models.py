@@ -240,6 +240,7 @@ def modules():
         aModule["name"] = m.directory
         aModule["pk"] = m.id
         modules.append(aModule)
+    modules.sort(lambda a,b: cmp(a['name'],b['name']))
     return modules
 
 def authorshortname(author_name):
