@@ -38,7 +38,7 @@
 			//determine how many events to be displayed on the main list
 			private function initMaxEventListSize():void
 			{
-				maxEventListSize = 16;
+				maxEventListSize = 15;
 			}
 			
 			//function to gain easy access to the parent class

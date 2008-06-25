@@ -1,9 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" title="Modules" titleStyleName="modulesStatusStyle" verticalGap="0">
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" title="Modules" titleStyleName="modulesStatusStyle" verticalGap="0" creationComplete="init()">
 	<mx:Style>
     	.modulesStatusStyle {
         	fontWeight: bold;
             color: white;
      	}
      </mx:Style>
+     
+     <mx:Script>
+     	<![CDATA[
+     		import mx.rpc.events.ResultEvent;
+     		import mx.rpc.http.HTTPService;
+     		import com.adobe.serialization.json.JSON;
+     		import mx.containers.HBox;
+			import mx.controls.Label;
+     		
+			private var getParentProject:ProjectVisualizaton = new ProjectVisualizaton();
+			private var getSrvModules:HTTPService;
+			public var moduleList:Array = new Array();
+			
+			//function to gain easy access to the parent class
+			private function init():void
+			{
+				getParentProject =  this.parent.parent.parent.parent as ProjectVisualizaton;	
+				
+				getSrvModules = new HTTPService();
+				getSrvModules.url = "http://localhost:8000/modules/"; 
+				getSrvModules.resultFormat = "text";
+				getSrvModules.addEventListener("result", processModuleList);
+				
+				getSrvModules.send();
+			}
+			
+			private function processModuleList(event:ResultEvent):void{
+				var decoded:Object = JSON.decode(event.result.toString());
+				moduleList = decoded as Array;
+				moduleList = moduleList.reverse();
+				
+				var i:int;
+				for(i=0; i<moduleList.length; i++){
+					var moduleHBox:HBox = new HBox();
+					var moduleNameLabel:Label = new Label();
+			
+					moduleHBox.name = moduleList[i].pk + "";
+				
+					moduleNameLabel.name = moduleList[i].pk + "Label";					
+					moduleNameLabel.text = "" + moduleList[i].name
+					
+					moduleNameLabel.width = 190;
+					
+					moduleHBox.addChild(moduleNameLabel);
+					this.addChildAt(moduleHBox, 0);;
+				}
+			}
+     	]]>
+     </mx:Script>
 </mx:Panel>

@@ -15,7 +15,7 @@
 		    			<MyComps:authorInfoList id="testInfoList2" height="100%" width="30%"/>
 		    			<MyComps:authorInfoList id="testInfoList3" height="100%" width="30%"/>
 		   			</mx:HBox>
-		   			<mx:HBox id="mainHBox" height="100%" width="100%" horizontalCenter="0" horizontalAlign="center">
+		   			<mx:HBox id="mainHBox" height="90%" width="100%" horizontalCenter="0" horizontalAlign="center">
 		   				<MyComps:eventInfoList id="eventInfoList" height="100%" width="70%"/>
 		   				<MyComps:authorInfoList id="authorInfoList" height="100%" width="30%"/>
 		   			</mx:HBox>
