@@ -236,7 +236,6 @@ def topauthors(start, stop, num_authors):
 def modules():
     modules = []
     for m in Module.objects.all():
-        print(m.directory)
         aModule = {}
         aModule["name"] = m.directory
         aModule["pk"] = m.id

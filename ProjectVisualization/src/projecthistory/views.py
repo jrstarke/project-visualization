@@ -19,10 +19,19 @@ def events(request, date_str):
     next = date + timedelta(1)
     #all_events = models.events(date, next)
     
-    all_events = [{'date':str(event.date)[:str(event.date).rfind(" ")], 'author_short_name':models.authorshortname(event.author.name),
+    all_events = []
+    for event in models.events(date,next):
+        files = []
+        modules = []
+        if event.__class__.__name__ == 'CommitEvent':
+            for p in event.path_set.all():
+                if not files.__contains__(p.dest_file):   
+                    files.append(p.dest_file[p.dest_file.rfind("/")+1:])
+                if (not modules.__contains__(p.module.id)):
+                    modules.append(p.module.id)
+        all_events.append({'date':str(event.date)[:str(event.date).rfind(" ")], 'author_short_name':models.authorshortname(event.author.name),
                    'pk':event.id, 'comment':event.comment, 'author':event.author.id, 'author_name':event.author.name,
-                   'type':event.__class__.__name__.replace('Event', '')} 
-                   for event in models.events(date, next)]
+                   'type':event.__class__.__name__.replace('Event', ''), 'files':files, 'modules':modules}) 
         
     #return HttpResponse(serializers.serialize('json', iter(all_events)))
     return HttpResponse(simplejson.dumps(all_events))
@@ -32,11 +41,20 @@ def eventrange(request, date_str_start, date_str_stop):
     stop = parse_date(date_str_stop) + timedelta(1)
     #all_events = models.events(date, next)
     
-    all_events = [{'date':str(event.date)[:str(event.date).rfind(" ")], 'author_short_name':models.authorshortname(event.author.name),
+    all_events = []
+    for event in models.events(start,stop):
+        files = []
+        modules = []
+        if event.__class__.__name__ == 'CommitEvent':
+            for p in event.path_set.all():
+                if not files.__contains__(p.dest_file):   
+                    files.append(p.dest_file)
+                if (not modules.__contains__(p.module.id)):
+                    modules.append(p.module.id)
+        all_events.append({'date':str(event.date)[:str(event.date).rfind(" ")], 'author_short_name':models.authorshortname(event.author.name),
                    'pk':event.id, 'comment':event.comment, 'author':event.author.id, 'author_name':event.author.name,
-                   'type':event.__class__.__name__.replace('Event', '')} 
-                   for event in models.events(start, stop)]
-        
+                   'type':event.__class__.__name__.replace('Event', ''), 'files':files, 'modules':modules}) 
+                   
     #return HttpResponse(serializers.serialize('json', iter(all_events)))
     return HttpResponse(simplejson.dumps(all_events))
 
