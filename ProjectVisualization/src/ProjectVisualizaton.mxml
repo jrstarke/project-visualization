@@ -20,7 +20,7 @@
 		   				<MyComps:authorInfoList id="authorInfoList" height="100%" width="30%"/>
 		   			</mx:HBox>
 	   			</mx:VBox>
-	   			<MyComps:authorInfoList id="testInfoList" height="100%" width="20%"/>
+	   			<MyComps:modulesList id="modulesList" height="100%" width="20%"/>
 	   		</mx:HBox>
 	   		<MyComps:controllerContainer id="controllerCanvas" creationComplete="initControllers(); initPlayer()"/>
     	</mx:VBox>
