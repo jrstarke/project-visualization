@@ -35,7 +35,7 @@
 			//add authors to author list
 			public function addAuthorsToList(startDate:String, endDate:String):void
 			{
-				var numOfTopAuth:int = 16;
+				var numOfTopAuth:int = 15;
 
 				getSrvAuthors = new HTTPService();
 				getSrvAuthors.url = "http://localhost:8000/topauthors/" + startDate + "/" + endDate + "/" + numOfTopAuth + "/"; 
