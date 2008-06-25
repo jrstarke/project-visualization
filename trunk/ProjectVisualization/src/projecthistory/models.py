@@ -243,6 +243,15 @@ def modules():
     modules.sort(lambda a,b: cmp(a['name'],b['name']))
     return modules
 
+def files_in_module(module_id):
+    files = []
+    module = Module.objects.get(id=module_id)
+    for p in module.path_set.all():
+        name = p.dest_file[p.dest_file.rfind("/")+1:]
+        if not files.__contains__(name):
+            files.append(name)
+    return files
+
 def authorshortname(author_name):
     max_shortname_length = 20
     # Contains just an email address, which we will shorten
