@@ -7,5 +7,6 @@ urlpatterns = patterns('',
     (r'^topauthors/(?P<start_date>[\d-]+)/(?P<end_date>[\d-]+)/(?P<num_authors>\d+)/$', 'projecthistory.views.topauthors'),
     (r'^topauthorsfordays/', 'projecthistory.views.topauthorsfordays'),
     (r'^modules/$', 'projecthistory.views.modules'),
+    (r'^filesinmodule/(?P<module_id_str>[\d-]+)/$', 'projecthistory.views.filesinmodule'),
     (r'^crossdomain.xml', 'projecthistory.views.cross_domain'),    
 )
