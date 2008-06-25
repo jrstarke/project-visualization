@@ -62,8 +62,9 @@
 				//authorList.addItemAt(author, 0);
 				var i:int;
 				for(i=0; i<authorList.length; i++){
-					if((authorList[i].commitevents + authorList[i].newticketevents + authorList[i].ticketchangeevents) != 0)
-					{
+					//check to see if the total number of events for an author is > 0
+					//if((authorList[i].commitevents + authorList[i].newticketevents + authorList[i].ticketchangeevents) != 0)
+					//{
 						var authorHBox:HBox = new HBox();
 						var authorNameLabel:Label = new Label();
 			
@@ -71,6 +72,8 @@
 						authorNameLabel.name = + authorList[i].author + "Label";
 					
 						authorNameLabel.text = "" + authorList[i].author_shortname;
+						
+						authorNameLabel.width = 92;
 					
 						authorHBox.setStyle("border", "none");
 						authorNameLabel.styleName = "authorNameStyle";
@@ -83,7 +86,7 @@
 				
 						authorHBox.addChild(authorNameLabel);
 						this.addChildAt(authorHBox, 0);
-					}	
+					//}	
 				}	
 			}
 			
