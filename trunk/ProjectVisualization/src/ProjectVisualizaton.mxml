@@ -41,6 +41,7 @@
 			private var numComps:Number = 7;
 			private var space:int = 6;
 			private var numStep:int = 1;
+			private var currentDate:String = "";
 			
 			//initialize the bar graphs
 /*			private function initBar():void
@@ -328,7 +329,11 @@
 			{
 				//move the controller and other related objects
 				if((controllerCanvas.rightControlCanvas.x + numStep) < controllerCanvas.Areachart.width){
-					controllerCanvas.rightControlCanvas.x += numStep;
+					var index:int;
+					index = (controllerCanvas.rightControlCanvas.x/((controllerCanvas.Areachart.width - (space * (controllerCanvas.Areachart.width/730) - 1))/730)) - space;
+					currentDate = controllerCanvas.parsedResultsDjango.getItemAt(index).dateEvent;
+					
+					controllerCanvas.rightControlCanvas.x += numStep;					
 					controllerCanvas.rightControlCanvas.toolTip = "" + controllerCanvas.rightControlCanvas.x
 					controllerCanvas.rightCanvas.width = (controllerCanvas.width - controllerCanvas.rightControlCanvas.x - controllerCanvas.rightControlCanvas.width);
 					controllerCanvas.playerButton.x = (((controllerCanvas.leftControlCanvas.width + controllerCanvas.leftControlCanvas.x) + controllerCanvas.rightControlCanvas.x)/2) - ((controllerCanvas.playerButton.width)/2);
@@ -360,7 +365,11 @@
 				index = (x/((controllerCanvas.Areachart.width - (space * (controllerCanvas.Areachart.width/730) - 1))/730)) - space;
 				//eventInfoLabel.text = "" + index;
 				eventInfoList.status = "End Date: " + controllerCanvas.parsedResultsDjango.getItemAt(index).dateEvent;
-				controllerCanvas.updateEventList(controllerCanvas.parsedResultsDjango.getItemAt(index).dateEvent);
+				
+				if(currentDate != controllerCanvas.parsedResultsDjango.getItemAt(index).dateEvent){
+					controllerCanvas.updateEventList(controllerCanvas.parsedResultsDjango.getItemAt(index).dateEvent);
+					currentDate = controllerCanvas.parsedResultsDjango.getItemAt(index).dateEvent;
+				}
 			}
 			
 			//debug function for outputting slider controls to the label
