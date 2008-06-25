@@ -56,10 +56,77 @@
 					moduleHBox.setStyle("paddingBottom",1);
 					moduleHBox.setStyle("paddingLeft",1);	
 					
+					moduleHBox.addEventListener(MouseEvent.MOUSE_OVER, eventMouseOver);
+					
 					moduleHBox.addChild(moduleNameLabel);
 					this.addChildAt(moduleHBox, 0);;
 				}
 			}
+			
+			//perform mouse over effects, pause playback
+			private function eventMouseOver(e:MouseEvent):void
+			{
+				getParentProject.controllerCanvas.eventTimer.stop();
+				
+				var currentHBox:HBox = new HBox();
+				currentHBox = e.currentTarget as HBox;
+				
+				currentHBox.addEventListener(MouseEvent.MOUSE_OUT, eventMouseOut);
+
+				currentHBox.setStyle("borderStyle", "solid");
+				
+				currentHBox.setStyle("paddingTop",0);
+				currentHBox.setStyle("paddingBottom",0);
+				currentHBox.setStyle("paddingLeft",0);
+				
+				//highlight associated event if possible
+				/*var i:int;
+				for(i=0; i<getParentProject.eventInfoList.eventList.length; i++)
+				{
+					if(currentHBox.name == getParentProject.eventInfoList.eventList[i].author)
+					{
+						var eventHBox:HBox = new HBox();
+						eventHBox = getParentProject.eventInfoList.getChildByName(getParentProject.eventInfoList.eventList[i].pk + "event") as HBox;
+						eventHBox.setStyle("borderStyle", "solid");	
+						
+						eventHBox.setStyle("paddingTop",0);
+						eventHBox.setStyle("paddingBottom",0);
+						eventHBox.setStyle("paddingLeft",0);					
+					}
+				} */
+			}
+
+			//perform mouse out effects, resume playback
+			private function eventMouseOut(e:MouseEvent):void
+			{
+				//check if the player is playing
+				if(getParentProject.controllerCanvas.playerButton.source == "assets/images/button-icon-pause.png")
+					getParentProject.controllerCanvas.eventTimer.start();
+				
+				var currentHBox:HBox = new HBox();
+				currentHBox = e.currentTarget as HBox;
+				currentHBox.setStyle("borderStyle", "none");
+				
+				currentHBox.setStyle("paddingTop",1);
+				currentHBox.setStyle("paddingBottom",1);
+				currentHBox.setStyle("paddingLeft",1);
+				
+				currentHBox.removeEventListener(MouseEvent.MOUSE_OUT, eventMouseOut);
+				
+				//unhighlight all events from the event list
+				/*var i:int;
+				for(i=0; i<getParentProject.eventInfoList.eventList.length; i++)
+				{
+					var eventHBox:HBox = new HBox();
+					eventHBox = getParentProject.eventInfoList.getChildByName(getParentProject.eventInfoList.eventList[i].pk + "event") as HBox;
+					eventHBox.setStyle("borderStyle", "none");	
+					
+					eventHBox.setStyle("paddingTop",1);
+					eventHBox.setStyle("paddingBottom",1);
+					eventHBox.setStyle("paddingLeft",1);					
+				} */
+			}
+			
      	]]>
      </mx:Script>
 </mx:Panel>
