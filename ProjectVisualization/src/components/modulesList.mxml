@@ -49,6 +49,13 @@
 					
 					moduleNameLabel.width = 190;
 					
+					moduleHBox.setStyle("border", "none");
+					moduleNameLabel.styleName = "authorNameStyle";
+						
+					moduleHBox.setStyle("paddingTop",1);
+					moduleHBox.setStyle("paddingBottom",1);
+					moduleHBox.setStyle("paddingLeft",1);	
+					
 					moduleHBox.addChild(moduleNameLabel);
 					this.addChildAt(moduleHBox, 0);;
 				}

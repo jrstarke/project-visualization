@@ -22,6 +22,7 @@
  	
 	<mx:Script>
 		<![CDATA[
+			import mx.controls.List;
 			import mx.effects.Move;
 			import mx.events.MoveEvent;
 			import mx.containers.HBox;
@@ -62,6 +63,7 @@
 				var eventTypeLabel:Label = new Label();
 				var eventAuthorLabel:Label = new Label();
 				var eventCommentLabel:Label = new Label();
+				var eventModuleLabel:Label = new Label();
 				
 				eventHBox.setStyle("paddingTop",1);
 				eventHBox.setStyle("paddingBottom",1);
@@ -71,7 +73,8 @@
 				eventTypeLabel.name = event.pk + event.type;
 				eventAuthorLabel.name = event.author;
 				eventCommentLabel.name = event.pk + "comment";
-				
+				eventModuleLabel.name = event.modules;
+					
 				eventTypeLabel.width = 85;
 				eventAuthorLabel.width = 75;
 				eventCommentLabel.width = 455;
@@ -107,6 +110,7 @@
 				eventHBox.addChild(eventTypeLabel);
 				eventHBox.addChild(eventAuthorLabel);
 				eventHBox.addChild(eventCommentLabel);
+				eventHBox.addChild(eventModuleLabel);
 				this.addChildAt(eventHBox, 0);
 				
 				if(eventList.length > maxEventListSize){
@@ -164,6 +168,29 @@
 						authorHBox.setStyle("paddingLeft",0);						
 					}
 				} 
+				
+				//highlight associated modules if possible
+				var module:Label = currentHBox.getChildAt(4) as Label;
+				var moduleList:Array = new Array();
+				moduleList = module.name.split(",");
+
+				for(i=0; i<moduleList.length; i++)
+				{
+					var j:int;
+					for(j=0; j<getParentProject.modulesList.moduleList.length; j++)
+					{
+						if(moduleList[i] == getParentProject.modulesList.moduleList[j].pk){
+							var moduleHBox:HBox = new HBox();
+							moduleHBox = getParentProject.modulesList.getChildByName(getParentProject.modulesList.moduleList[j].pk) as HBox;
+						
+							moduleHBox.setStyle("borderStyle", "solid");
+						
+							moduleHBox.setStyle("paddingTop",0);
+							moduleHBox.setStyle("paddingBottom",0);
+							moduleHBox.setStyle("paddingLeft",0);
+						}	
+					}						
+				}
 			}
 			
 			//perform mouse out effects, resume playback
@@ -195,6 +222,18 @@
 					authorHBox.setStyle("paddingBottom",1);
 					authorHBox.setStyle("paddingLeft",1);				
 				} 
+				
+				//unhighlight all modules from the modules list
+				for(i=0; i<getParentProject.modulesList.moduleList.length; i++)
+				{
+					var moduleHBox:HBox = new HBox();
+					moduleHBox = getParentProject.modulesList.getChildByName(getParentProject.modulesList.moduleList[i].pk) as HBox;
+					moduleHBox.setStyle("borderStyle", "none");		
+					
+					moduleHBox.setStyle("paddingTop",1);
+					moduleHBox.setStyle("paddingBottom",1);
+					moduleHBox.setStyle("paddingLeft",1);	
+				}
 			}
 		]]>
 	</mx:Script>
