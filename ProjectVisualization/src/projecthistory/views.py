@@ -27,6 +27,19 @@ def events(request, date_str):
     #return HttpResponse(serializers.serialize('json', iter(all_events)))
     return HttpResponse(simplejson.dumps(all_events))
 
+def eventrange(request, date_str_start, date_str_stop):
+    start = parse_date(date_str_start)
+    stop = parse_date(date_str_stop) + timedelta(1)
+    #all_events = models.events(date, next)
+    
+    all_events = [{'date':str(event.date)[:str(event.date).rfind(" ")], 'author_short_name':models.authorshortname(event.author.name),
+                   'pk':event.id, 'comment':event.comment, 'author':event.author.id, 'author_name':event.author.name,
+                   'type':event.__class__.__name__.replace('Event', '')} 
+                   for event in models.events(start, stop)]
+        
+    #return HttpResponse(serializers.serialize('json', iter(all_events)))
+    return HttpResponse(simplejson.dumps(all_events))
+
 def topauthors(request, start_date, end_date, num_authors):
    start = parse_date(start_date)
    end = parse_date(end_date) + timedelta(1)
@@ -38,6 +51,10 @@ def topauthors(request, start_date, end_date, num_authors):
 def topauthorsfordays(request):
     models.topauthorsfordays()
     return HttpResponse("read stuff")
+
+def modules(request):
+    modules = models.modules()
+    return HttpResponse(simplejson.dumps(modules))
 
 def cross_domain(request):
     return HttpResponse('''
