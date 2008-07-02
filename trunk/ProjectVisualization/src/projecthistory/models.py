@@ -211,11 +211,11 @@ def events(start, stop):
     return all_events
     
 def _events(start, stop, model):
-    return list(model.objects.filter(date__range=(start, stop)))
+    return list(model.objects.select_related().filter(date__range=(start, stop)))
 
 def topauthors(start, stop, num_authors):
     author_counts = {}
-    for a in [Author.objects.get(pk=i) for i in [7,1,8,24,40,11,62,63,30,18,28,5,54,66,13,79,162,163,429,82,299,312,15,370,111,103,16,6]]:
+    for a in [Author.objects.get(pk=i) for i in [7,1,8,11,18,5,16,15,6,14,13,4,3,17,10,12,9,2]]:
         author_counts[a.id] = (a.newticketevent_set.filter(date__range=(start,stop)).count(),a.commitevent_set.filter(date__range=(start,stop)).count(),a.ticketchangeevent_set.filter(date__range=(start,stop)).count())
     sorted_counts = author_counts.items()
     # sorted_counts.sort(lambda a,b: cmp((b[1][0]+b[1][1]+b[1][2]), (a[1][0]+a[1][1]+a[1][2])))
