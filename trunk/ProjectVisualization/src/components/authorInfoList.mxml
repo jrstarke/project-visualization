@@ -29,7 +29,7 @@
 			//function to gain easy access to the parent class
 			private function initParentProject():void
 			{
-				getParentProject =  this.parent.parent.parent.parent.parent.parent as ProjectVisualizaton;	
+				getParentProject =  this.parent.parent.parent.parent as ProjectVisualizaton;	
 			}
 			
 			//add authors to author list
