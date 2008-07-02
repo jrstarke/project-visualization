@@ -58,7 +58,7 @@
 					moduleNameLabel.width = 190;
 					
 					moduleHBox.setStyle("border", "none");
-					//moduleNameLabel.styleName = "authorNameStyle";
+					moduleNameLabel.styleName = "moduleLabelStyle";
 						
 					moduleHBox.setStyle("paddingTop",1);
 					moduleHBox.setStyle("paddingBottom",1);
@@ -74,7 +74,14 @@
 			
 			//perform click to hightlight the module name and set the filter
 			private function eventMouseClick(e:MouseEvent):void
-			{
+			{			
+				var currentHBox:HBox = new HBox();
+				currentHBox = e.currentTarget as HBox;
+				var currentLabel:Label = new Label();
+				currentLabel = currentHBox.getChildAt(0) as Label;
+				var tempStyleName:String = currentLabel.styleName.toString();
+					
+				//reset all selected modules
 				var i:int;
 				for(i=0; i<moduleList.length; i++)
 				{
@@ -84,15 +91,20 @@
 					var tempLabel:Label = new Label();
 					tempLabel = tempHBox.getChildAt(0) as Label;
 					tempHBox.opaqueBackground = 0xffffff;
-					tempLabel.styleName = "moduleLabelStyle";
+					tempLabel.styleName = "authorLabelStyle";
 				}
 				
-				var currentHBox:HBox = new HBox();
-				currentHBox = e.currentTarget as HBox;
-				var currentLabel:Label = new Label();
-				currentLabel = currentHBox.getChildAt(0) as Label;
-				currentHBox.opaqueBackground = 0xc3c4c4;
-				currentLabel.styleName = "moduleLabelStyleHighlight";
+				//check to see if we must deselect a module
+				if(tempStyleName != "moduleLabelStyleHighlight"){
+					currentHBox.opaqueBackground = 0xc3c4c4;
+					currentLabel.styleName = "moduleLabelStyleHighlight";
+				}
+				
+				else
+				{
+					currentHBox.opaqueBackground = 0xffffff;
+					currentLabel.styleName = "moduleLabelStyle";
+				}
 			}
 			
 			//perform mouse over effects, pause playback
