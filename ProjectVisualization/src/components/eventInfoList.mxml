@@ -75,11 +75,12 @@
 				eventCommentLabel.name = event.pk + "comment";
 				eventModuleLabel.name = event.modules;
 					
-				eventTypeLabel.width = 85;
+				//eventDateLabel.width = 75;
+				eventTypeLabel.width = 0;
 				eventAuthorLabel.width = 75;
 				eventCommentLabel.width = 455;
 				
-				eventTypeLabel.text = event.type;
+				//eventTypeLabel.text = event.type;
 				eventAuthorLabel.text = event.author_short_name;
 				eventDateLabel.text = event.date;
 				
