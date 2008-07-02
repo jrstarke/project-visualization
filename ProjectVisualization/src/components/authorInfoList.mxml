@@ -84,7 +84,7 @@
 						authorNameLabel.width = 92;
 					
 						authorHBox.setStyle("border", "none");
-						//authorNameLabel.styleName = "authorNameStyle";
+						authorNameLabel.styleName = "authorLabelStyle";
 						
 						authorHBox.setStyle("paddingTop",1);
 						authorHBox.setStyle("paddingBottom",1);
@@ -107,7 +107,14 @@
 			
 			//perform click to hightlight the author name and set the filter
 			private function eventMouseClick(e:MouseEvent):void
-			{				
+			{			
+				var currentHBox:HBox = new HBox();
+				currentHBox = e.currentTarget as HBox;
+				var currentLabel:Label = new Label();
+				currentLabel = currentHBox.getChildAt(0) as Label;
+				var tempStyleName:String = currentLabel.styleName.toString();
+					
+				//reset all selected authors
 				var i:int;
 				for(i=0; i<authorList.length; i++)
 				{
@@ -120,12 +127,17 @@
 					tempLabel.styleName = "authorLabelStyle";
 				}
 				
-				var currentHBox:HBox = new HBox();
-				currentHBox = e.currentTarget as HBox;
-				var currentLabel:Label = new Label();
-				currentLabel = currentHBox.getChildAt(0) as Label;
-				currentHBox.opaqueBackground = 0xc3c4c4;
-				currentLabel.styleName = "authorLabelStyleHighlight";
+				//check to see if we must deselect a author
+				if(tempStyleName != "authorLabelStyleHighlight"){
+					currentHBox.opaqueBackground = 0xc3c4c4;
+					currentLabel.styleName = "authorLabelStyleHighlight";
+				}
+				
+				else
+				{
+					currentHBox.opaqueBackground = 0xffffff;
+					currentLabel.styleName = "authorLabelStyle";
+				}
 			}
 			
 			//perform mouse over effects, pause playback
