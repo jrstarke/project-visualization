@@ -10,8 +10,14 @@ def parse_date(date_str):
     return date(*strptime(date_str, '%Y-%m-%d')[0:3])
 
 def stats(request):
-    stats = [(str(s.date), s.log_normal_count) for s in models.DailyStats.objects.all()]
-    return HttpResponse(simplejson.dumps(stats))
+    #stats = [(str(s.date), s.log_normal_count) for s in models.DailyStats.objects.all()]
+    #return HttpResponse(simplejson.dumps(stats))
+    return HttpResponse(simplejson.dumps(models.daily_stats()))
+
+def selectedstats(request, author_id_str, module_id_str):
+    author_id = int(author_id_str)
+    module_id = int(module_id_str)
+    return HttpResponse(simplejson.dumps(models.selectedstats(author_id,module_id)))
 
 # returns a list of events for the given day
 def events(request, date_str):

@@ -1,7 +1,8 @@
 import os, re, datetime
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
-from django.db import models
-from datetime import timedelta
+from django.db import models, connection
+from datetime import timedelta, date
+import math
 
 class Component(models.Model):
     name = models.TextField()
@@ -252,6 +253,42 @@ def files_in_module(module_id):
             files.append(name)
     return files
 
+def daily_stats():
+    return selectedstats(0,0)               
+
+def selectedstats(author_id, module_id):
+    start = d = date(2006,01,01) # hard coded dates for now
+    stop = date(2008, 01, 01)
+
+    cursor = connection.cursor()
+    cursor.execute("SELECT MAX(days.daycount) from ( select DATE(c.date), count(*) as daycount from projecthistory_commitevent as c where c.date >= '" + str(start) + "' and c.date < '" + str(stop) + "' group by DATE(c.date)) as days")
+    max = cursor.fetchone()[0]
+    if not (author_id == 0 or module_id == 0): #neither is 0
+        cursor.execute("select DATE(c.date), count(*) from projecthistory_commitevent as c, projecthistory_path as p where c.date >= '" + str(start) + "' and c.date < '" + str(stop) + "' and c.author_id = " + str(author_id) + " and p.module_id = " + str(module_id) + " and p.event_id = c.id group by DATE(c.date) order by c.date")
+    elif not author_id == 0:
+        cursor.execute("select DATE(c.date), count(*) from projecthistory_commitevent as c where c.date >= '" + str(start) + "' and c.date < '" + str(stop) + "' and c.author_id = " + str(author_id) + " group by DATE(c.date) order by c.date")
+    elif not module_id == 0:
+        cursor.execute("select DATE(c.date), count(*) from projecthistory_commitevent as c, projecthistory_path as p where c.date >= '" + str(start) + "' and c.date < '" + str(stop) + "' and p.module_id = " + str(module_id) + " and p.event_id = c.id group by DATE(c.date) order by c.date")         
+    else:
+        cursor.execute("select DATE(c.date), count(*) from projecthistory_commitevent as c where c.date >= '" + str(start) + "' and c.date < '" + str(stop) + "' group by DATE(c.date) order by c.date")
+    next_tuple = cursor.fetchone()
+
+    stats = []
+    while d < stop:
+        day = []
+        day.append(str(d))
+        next = d + timedelta(1)
+        if not next_tuple == None and next_tuple[0]==d: 
+            day.append(log_normalize(next_tuple[1],max))
+            next_tuple = cursor.fetchone()
+        else:
+            day.append(0.0)
+        stats.append(day)
+        
+        d = next
+    
+    return stats             
+
 def authorshortname(author_name):
     max_shortname_length = 20
     # Contains just an email address, which we will shorten
@@ -268,6 +305,11 @@ def authorshortname(author_name):
             return author_name[:max_shortname_length]+'...'
     # Otherwise: just use their name
     return author_name
+
+def log_normalize(count, max_count):
+   #print '%d (%d)' % (count, max_count)
+   l = lambda f: math.log(f or 1, math.e)
+   return l(count)/l(max_count)
 
 def topauthorsfordays():
     max_date = datetime.date(2008,1,1)
