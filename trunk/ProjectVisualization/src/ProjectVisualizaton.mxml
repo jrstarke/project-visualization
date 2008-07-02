@@ -9,9 +9,9 @@
     <mx:Canvas id = "c1" y="0" height="100%" width="100%" horizontalCenter="0">
     	<mx:VBox height="100%" width="100%" horizontalCenter="0" top="10" id="mainVBox">
     		<mx:HBox height="100%" width="100%" horizontalCenter="0" id="outterHBox">
-		   		<MyComps:authorInfoList id="authorInfoList" height="100%" width="10%"/>
-	   			<MyComps:modulesList id="modulesList" height="100%" width="20%"/>
-	   			<MyComps:eventInfoList id="eventInfoList" height="100%" width="70%"/>
+		   		<MyComps:authorInfoList id="authorInfoList" height="100%" width="9%"/>
+	   			<MyComps:modulesList id="modulesList" height="100%" width="16%"/>
+	   			<MyComps:eventInfoList id="eventInfoList" height="100%" width="75%"/>
 	   		</mx:HBox>
 	   		<MyComps:controllerContainer id="controllerCanvas" creationComplete="initControllers(); initPlayer()"/>
     	</mx:VBox>

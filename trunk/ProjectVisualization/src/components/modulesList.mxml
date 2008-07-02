@@ -5,6 +5,14 @@
         	fontWeight: bold;
             color: white;
      	}
+     	
+     	.moduleLabelStyle	{
+        	color: #c3c4c4;
+        }
+        
+        .moduleLabelStyleHighlight	{
+        	color: white;
+        }
      </mx:Style>
      
      <mx:Script>
@@ -50,17 +58,41 @@
 					moduleNameLabel.width = 190;
 					
 					moduleHBox.setStyle("border", "none");
-					moduleNameLabel.styleName = "authorNameStyle";
+					//moduleNameLabel.styleName = "authorNameStyle";
 						
 					moduleHBox.setStyle("paddingTop",1);
 					moduleHBox.setStyle("paddingBottom",1);
 					moduleHBox.setStyle("paddingLeft",1);	
 					
 					moduleHBox.addEventListener(MouseEvent.MOUSE_OVER, eventMouseOver);
+					moduleHBox.addEventListener(MouseEvent.CLICK, eventMouseClick);
 					
 					moduleHBox.addChild(moduleNameLabel);
 					this.addChildAt(moduleHBox, 0);;
 				}
+			}
+			
+			//perform click to hightlight the module name and set the filter
+			private function eventMouseClick(e:MouseEvent):void
+			{
+				var i:int;
+				for(i=0; i<moduleList.length; i++)
+				{
+					var tempHBox:HBox = new HBox();
+					tempHBox = getParentProject.modulesList.getChildByName(moduleList[i].pk) as HBox;
+					
+					var tempLabel:Label = new Label();
+					tempLabel = tempHBox.getChildAt(0) as Label;
+					tempHBox.opaqueBackground = 0xffffff;
+					tempLabel.styleName = "moduleLabelStyle";
+				}
+				
+				var currentHBox:HBox = new HBox();
+				currentHBox = e.currentTarget as HBox;
+				var currentLabel:Label = new Label();
+				currentLabel = currentHBox.getChildAt(0) as Label;
+				currentHBox.opaqueBackground = 0xc3c4c4;
+				currentLabel.styleName = "moduleLabelStyleHighlight";
 			}
 			
 			//perform mouse over effects, pause playback
