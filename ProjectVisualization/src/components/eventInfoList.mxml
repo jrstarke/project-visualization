@@ -45,7 +45,7 @@
 			//function to gain easy access to the parent class
 			private function initParentProject():void
 			{
-				getParentProject =  this.parent.parent.parent.parent.parent.parent as ProjectVisualizaton;	
+				getParentProject =  this.parent.parent.parent.parent as ProjectVisualizaton;	
 			}
 			
 			//add event to the list and display on the main list
@@ -128,7 +128,6 @@
 				eventList.removeItemAt(maxEventListSize);
 			}
 			
-			//NOT TESTED!!
 			//remove all events from the list and remove displays from the main list
 			public function removeAllEventsFromList():void
 			{	
