@@ -23,8 +23,10 @@
      		import mx.containers.HBox;
 			import mx.controls.Label;
      		
+     		public var highlightedModule:int = 0;
 			private var getParentProject:ProjectVisualizaton = new ProjectVisualizaton();
 			private var getSrvModules:HTTPService;
+			private var getSrvModuleStats:HTTPService;
 			public var moduleList:Array = new Array();
 			
 			//function to gain easy access to the parent class
@@ -98,13 +100,33 @@
 				if(tempStyleName != "moduleLabelStyleHighlight"){
 					currentHBox.opaqueBackground = 0xc3c4c4;
 					currentLabel.styleName = "moduleLabelStyleHighlight";
+					
+					highlightedModule = int(currentHBox.name);
+					
+					getSrvModuleStats = new HTTPService();
+					getSrvModuleStats.url = "http://localhost:8000/selectedstats/" + getParentProject.authorInfoList.highlightedAuthor + "/" + highlightedModule + "/"; 
+					getSrvModuleStats.resultFormat = "text";
+					getSrvModuleStats.addEventListener("result", processModuleStats);
+					getSrvModuleStats.send();
 				}
 				
 				else
 				{
 					currentHBox.opaqueBackground = 0xffffff;
 					currentLabel.styleName = "moduleLabelStyle";
+					highlightedModule = 0;
+					
+					getSrvModuleStats = new HTTPService();
+					getSrvModuleStats.url = "http://localhost:8000/selectedstats/" + getParentProject.authorInfoList.highlightedAuthor + "/" + highlightedModule + "/"; 
+					getSrvModuleStats.resultFormat = "text";
+					getSrvModuleStats.addEventListener("result", processModuleStats);
+					getSrvModuleStats.send();
 				}
+			}
+			
+			private function processModuleStats(event:ResultEvent):void
+			{
+				getParentProject.controllerCanvas.processGetResult(getSrvModuleStats.lastResult.toString());
 			}
 			
 			//perform mouse over effects, pause playback
