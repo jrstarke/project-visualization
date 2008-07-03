@@ -35,7 +35,10 @@
    		}
         ]]>
     </mx:Script>
-    
+   	<mx:SolidColor id="sc1" color="red" alpha=".3"/>
+    <mx:Stroke id = "s1" color="red" weight="2"/>
+    <mx:SolidColor id="sc2" color="blue" alpha=".3"/>
+    <mx:Stroke id = "s2" color="blue" weight="2"/>
     <mx:SolidColor id="sc3" color="green" alpha=".3"/>
     <mx:Stroke id = "s3" color="green" weight="2"/>
     <mx:Glow id="playGlow" duration="2000" strength="255" color="0xFFFFFF" inner="true"/>
@@ -61,8 +64,8 @@
 		
       	  <mx:series>
         	    <mx:AreaSeries yField="normalizedEvents" form="curve" displayName="Total Events for Date" areaStroke="{s3}" areaFill="{sc3}"/>
-        	    <mx:AreaSeries yField="normalizedModule" form="curve" displayName="Total Events for Module" areaStroke="{s3}" areaFill="{sc3}"/>
-        	    <mx:AreaSeries yField="normalizedAuthor" form="curve" displayName="Total Events for Author" areaStroke="{s3}" areaFill="{sc3}"/>
+        	    <mx:AreaSeries yField="normalizedModule" form="curve" displayName="Total Events for Module" areaStroke="{s2}" areaFill="{sc2}"/>
+        	    <mx:AreaSeries yField="normalizedAuthor" form="curve" displayName="Total Events for Author" areaStroke="{s1}" areaFill="{sc1}"/>
       	  </mx:series>
    	 </mx:AreaChart> 
 	<mx:Canvas left="0" width="30%" height="90%" top="0" backgroundAlpha="0.5" backgroundColor="#5A5A5A" id="leftCanvas">
