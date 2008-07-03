@@ -200,19 +200,29 @@ class DailyStats(models.Model):
 def count_events(start, stop, models=[CommitEvent,NewTicketEvent,TicketChangeEvent]):
     return [m.objects.filter(date__range=(start,stop)).count() for m in models]
 
-def events(start, stop):
-    all_events = _events(start,stop, CommitEvent)
+def events(start, stop, author_id=0, module_id=0):
+    #all_events = _events(start,stop, CommitEvent)
     #all_events = _events(start,stop, NewTicketEvent) + \
     #    _events(start,stop, CommitEvent) + \
     #    _events(start, stop, TicketChangeEvent)
     # should really be merging these ...
-    all_events.sort(lambda a,b: cmp(a.date, b.date))
+    
+    ## it was redundant to sort, since we now are getting a sorted list
+    #all_events.sort(lambda a,b: cmp(a.date, b.date))
     #for e in all_events:
     #    e["fields"]["author_shortname"] = authorshortname(e["fields"]["author"])
-    return all_events
+    #return all_events
+    if author_id == 0 and module_id == 0:
+        return list(CommitEvent.objects.select_related().filter(date__range=(start, stop)).order_by('date'))
+    if module_id == 0:
+        return list(CommitEvent.objects.select_related().filter(date__range=(start, stop),author__exact=author_id).order_by('date'))    
+    if author_id == 0:
+        return list(CommitEvent.objects.extra(where=['projecthistory_commitevent.id IN (SELECT projecthistory_path.event_id from projecthistory_path where projecthistory_path.module_id = ' + str(module_id)+ ')']).select_related().filter(date__range=(start, stop)).order_by('date'))
+    else:
+        return list(CommitEvent.objects.extra(where=['projecthistory_commitevent.id IN (SELECT projecthistory_path.event_id from projecthistory_path where projecthistory_path.module_id = ' + str(module_id)+ ')']).select_related().filter(date__range=(start, stop),author__exact=author_id).order_by('date'))
     
 def _events(start, stop, model):
-    return list(model.objects.select_related().filter(date__range=(start, stop)))
+    return list(model.objects.select_related().filter(date__range=(start, stop)).order_by('date'))
 
 def topauthors(start, stop, num_authors):
     author_counts = {}

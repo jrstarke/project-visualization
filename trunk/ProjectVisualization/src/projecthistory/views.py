@@ -35,13 +35,7 @@ def events(request, date_str):
                 if not files.__contains__(p.dest_file):   
                     files.append(p.dest_file)
                 if (not modules.__contains__(p.module.id)):
-                    modules.append(p.module.id)
-        if event.__class__.__name__ == 'NewTicketEvent':
-            new_status = 'new'           
-        if event.__class__.__name__ == 'TicketChangeEvent':
-            for tc in event.ticketchange_set.all():
-                if tc.changed_field == "status":
-                  new_status = tc.to_value          
+                    modules.append(p.module.id)     
         all_events.append({'date':str(event.date)[:str(event.date).rfind(" ")], 'author_short_name':models.authorshortname(event.author.name),
                    'pk':event.id, 'comment':event.comment, 'author':event.author.id, 'author_name':event.author.name,
                    'type':event.__class__.__name__.replace('Event', ''), 'files':files, 'modules':modules, 'new_status':new_status}) 
@@ -52,29 +46,53 @@ def events(request, date_str):
 def eventrange(request, date_str_start, date_str_stop):
     start = parse_date(date_str_start)
     stop = parse_date(date_str_stop) + timedelta(1)
-    #all_events = models.events(date, next)
+    files = {}
+    modules = {}
     
+    
+    for p in models.Path.objects.all():
+        if not files.setdefault(p.event_id,[]).__contains__(p.dest_file):
+            files[p.event_id].append(p.dest_file)
+
+        if not modules.setdefault(p.event_id,[]).__contains__(p.module_id):
+            modules[p.event_id].append(p.module_id) 
+    print("completed path")
+    #all_events = models.events(date, next)
     all_events = []
     for event in models.events(start,stop):
-        files = []
-        modules = []
-        new_status = ""
-        if event.__class__.__name__ == 'CommitEvent':
-            for p in event.path_set.all():
-                if not files.__contains__(p.dest_file):   
-                    files.append(p.dest_file)
-                if (not modules.__contains__(p.module.id)):
-                    modules.append(p.module.id)
-        if event.__class__.__name__ == 'NewTicketEvent':
-            new_status = 'new'           
-        if event.__class__.__name__ == 'TicketChangeEvent':
-            for tc in event.ticketchange_set.all():
-                  new_status = tc.to_value          
+      #  if event.__class__.__name__ == 'CommitEvent':
+      #      for p in event.path_set.all():
+      #          if not files.__contains__(p.dest_file):   
+      #              files.append(p.dest_file)
+      #          if (not modules.__contains__(p.module.id)):
+      #              modules.append(p.module.id)
         all_events.append({'date':str(event.date)[:str(event.date).rfind(" ")], 'author_short_name':models.authorshortname(event.author.name),
                    'pk':event.id, 'comment':event.comment, 'author':event.author.id, 'author_name':event.author.name,
-                   'type':event.__class__.__name__.replace('Event', ''), 'files':files, 'modules':modules, 'new_status':new_status}) 
+                   'modules':modules.get(event.id,[]),'files':files.get(event.id,[])}) 
                    
     #return HttpResponse(serializers.serialize('json', iter(all_events)))
+    return HttpResponse(simplejson.dumps(all_events))
+
+def selectedeventrange(request, date_str_start, date_str_stop, author_id_str, module_id_str):
+    start = parse_date(date_str_start)
+    stop = parse_date(date_str_stop) + timedelta(1)
+    author_id = int(author_id_str)
+    module_id = int(module_id_str)
+    files = {}
+    modules = {}
+    
+    for p in models.Path.objects.all():
+        if not files.setdefault(p.event_id,[]).__contains__(p.dest_file):
+            files[p.event_id].append(p.dest_file)
+
+        if not modules.setdefault(p.event_id,[]).__contains__(p.module_id):
+            modules[p.event_id].append(p.module_id) 
+    all_events = []
+    for event in models.events(start,stop,author_id,module_id):
+        all_events.append({'date':str(event.date)[:str(event.date).rfind(" ")], 'author_short_name':models.authorshortname(event.author.name),
+                   'pk':event.id, 'comment':event.comment, 'author':event.author.id, 'author_name':event.author.name,
+                   'modules':modules.get(event.id,[]),'files':files.get(event.id,[])}) 
+                   
     return HttpResponse(simplejson.dumps(all_events))
 
 def topauthors(request, start_date, end_date, num_authors):
