@@ -28,7 +28,9 @@
 			import mx.rpc.events.ResultEvent;
 			import com.adobe.serialization.json.JSON;
 			
+			public var highlightedAuthor:int = 0;
 			private var getSrvAuthors:HTTPService;
+			private var getSrvAuthorStats:HTTPService;
 			//create a list of the current authors in the main list
 			public var authorList:Array = new Array();
 			
@@ -131,13 +133,32 @@
 				if(tempStyleName != "authorLabelStyleHighlight"){
 					currentHBox.opaqueBackground = 0xc3c4c4;
 					currentLabel.styleName = "authorLabelStyleHighlight";
+					highlightedAuthor = int(currentHBox.name);
+					
+					getSrvAuthorStats = new HTTPService();
+					getSrvAuthorStats.url = "http://localhost:8000/selectedstats/" + highlightedAuthor + "/" + getParentProject.modulesList.highlightedModule + "/"; 
+					getSrvAuthorStats.resultFormat = "text";
+					getSrvAuthorStats.addEventListener("result", processAuthorStats);
+					getSrvAuthorStats.send();
 				}
 				
 				else
 				{
 					currentHBox.opaqueBackground = 0xffffff;
 					currentLabel.styleName = "authorLabelStyle";
+					highlightedAuthor = 0;
+					
+					getSrvAuthorStats = new HTTPService();
+					getSrvAuthorStats.url = "http://localhost:8000/selectedstats/" + highlightedAuthor + "/" + getParentProject.modulesList.highlightedModule + "/"; 
+					getSrvAuthorStats.resultFormat = "text";
+					getSrvAuthorStats.addEventListener("result", processAuthorStats);
+					getSrvAuthorStats.send();
 				}
+			}
+			
+			private function processAuthorStats(event:ResultEvent):void
+			{
+				getParentProject.controllerCanvas.processGetResult(getSrvAuthorStats.lastResult.toString());
 			}
 			
 			//perform mouse over effects, pause playback
