@@ -17,6 +17,9 @@
     	private function handleGetResult():void
     	{
     		getParentProject =  this.parent.parent.parent as ProjectVisualizaton;
+    		
+    		//added to remove playback (FOR DEMO)
+    		this.removeChild(this.getChildByName("playerButton"));
 			
 			processGetResult(getSrvStats.lastResult.toString());
    		}
@@ -255,7 +258,9 @@
 				tempPanel = getParentProject.eventInfoList as Panel;
 				
 				tempPanel.status = "End Date: " + this.parsedResultsDjango.getItemAt(index).dateEvent;
-				updateEventList(this.parsedResultsDjango.getItemAt(index).dateEvent);
+				
+				//removed for demo!!! 
+				//updateEventList(this.parsedResultsDjango.getItemAt(index).dateEvent);
 				
 				getParentProject.authorInfoList.addAuthorsToList(getParentProject.eventInfoList.title.substring(12, getParentProject.eventInfoList.title.length), getParentProject.eventInfoList.status.substring(10, getParentProject.eventInfoList.status.length));
 			}
