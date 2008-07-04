@@ -68,6 +68,7 @@
 				eventHBox.setStyle("paddingTop",1);
 				eventHBox.setStyle("paddingBottom",1);
 				eventHBox.setStyle("paddingLeft",1);
+				eventHBox.setStyle("paddingRight",1);
 				eventHBox.name = event.pk + "event";
 				eventDateLabel.name = event.pk + "date";
 				eventTypeLabel.name = event.pk + event.type;
@@ -151,6 +152,7 @@
 				currentHBox.setStyle("paddingTop",0);
 				currentHBox.setStyle("paddingBottom",0);
 				currentHBox.setStyle("paddingLeft",0);
+				currentHBox.setStyle("paddingRight",0);
 				
 				//highlight associated author if possible
 				var i:int;
@@ -165,7 +167,8 @@
 						
 						authorHBox.setStyle("paddingTop",0);
 						authorHBox.setStyle("paddingBottom",0);
-						authorHBox.setStyle("paddingLeft",0);						
+						authorHBox.setStyle("paddingLeft",0);
+						authorHBox.setStyle("paddingRight",0);						
 					}
 				} 
 				
@@ -188,6 +191,7 @@
 							moduleHBox.setStyle("paddingTop",0);
 							moduleHBox.setStyle("paddingBottom",0);
 							moduleHBox.setStyle("paddingLeft",0);
+							moduleHBox.setStyle("paddingRight",0);
 						}	
 					}						
 				}
@@ -207,6 +211,7 @@
 				currentHBox.setStyle("paddingTop",1);
 				currentHBox.setStyle("paddingBottom",1);
 				currentHBox.setStyle("paddingLeft",1);
+				currentHBox.setStyle("paddingRight",1);
 				
 				currentHBox.removeEventListener(MouseEvent.MOUSE_OUT, eventMouseOut);
 				
@@ -220,7 +225,8 @@
 					
 					authorHBox.setStyle("paddingTop",1);
 					authorHBox.setStyle("paddingBottom",1);
-					authorHBox.setStyle("paddingLeft",1);				
+					authorHBox.setStyle("paddingLeft",1);	
+					authorHBox.setStyle("paddingRight",1);				
 				} 
 				
 				//unhighlight all modules from the modules list
@@ -232,7 +238,8 @@
 					
 					moduleHBox.setStyle("paddingTop",1);
 					moduleHBox.setStyle("paddingBottom",1);
-					moduleHBox.setStyle("paddingLeft",1);	
+					moduleHBox.setStyle("paddingLeft",1);
+					moduleHBox.setStyle("paddingRight",1);	
 				}
 			}
 		]]>
