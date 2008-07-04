@@ -57,7 +57,7 @@
 					moduleNameLabel.name = moduleList[i].pk + "Label";					
 					moduleNameLabel.text = "" + moduleList[i].name
 					
-					moduleNameLabel.width = 190;
+					//moduleNameLabel.width = 190;
 					
 					moduleHBox.setStyle("border", "none");
 					moduleNameLabel.styleName = "moduleLabelStyle";
@@ -65,6 +65,7 @@
 					moduleHBox.setStyle("paddingTop",1);
 					moduleHBox.setStyle("paddingBottom",1);
 					moduleHBox.setStyle("paddingLeft",1);	
+					moduleHBox.setStyle("paddingRight",1);	
 					
 					moduleHBox.addEventListener(MouseEvent.MOUSE_OVER, eventMouseOver);
 					moduleHBox.addEventListener(MouseEvent.CLICK, eventMouseClick);
@@ -144,6 +145,7 @@
 				currentHBox.setStyle("paddingTop",0);
 				currentHBox.setStyle("paddingBottom",0);
 				currentHBox.setStyle("paddingLeft",0);
+				currentHBox.setStyle("paddingRight",0);
 				
 				//highlight associated event if possible
 				/*var i:int;
@@ -176,6 +178,7 @@
 				currentHBox.setStyle("paddingTop",1);
 				currentHBox.setStyle("paddingBottom",1);
 				currentHBox.setStyle("paddingLeft",1);
+				currentHBox.setStyle("paddingRight",1);
 				
 				currentHBox.removeEventListener(MouseEvent.MOUSE_OUT, eventMouseOut);
 				

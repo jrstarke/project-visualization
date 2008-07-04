@@ -83,14 +83,15 @@
 					
 						authorNameLabel.text = "" + authorList[i].author_shortname;
 						
-						authorNameLabel.width = 92;
+						//authorNameLabel.width = 92;
 					
 						authorHBox.setStyle("border", "none");
 						authorNameLabel.styleName = "authorLabelStyle";
 						
 						authorHBox.setStyle("paddingTop",1);
 						authorHBox.setStyle("paddingBottom",1);
-						authorHBox.setStyle("paddingLeft",1);	
+						authorHBox.setStyle("paddingLeft",1);
+						authorHBox.setStyle("paddingRight",1);	
 					
 						authorHBox.addEventListener(MouseEvent.MOUSE_OVER, eventMouseOver);
 						authorHBox.addEventListener(MouseEvent.CLICK, eventMouseClick);
@@ -176,6 +177,7 @@
 				currentHBox.setStyle("paddingTop",0);
 				currentHBox.setStyle("paddingBottom",0);
 				currentHBox.setStyle("paddingLeft",0);
+				currentHBox.setStyle("paddingRight",0);
 				
 				//highlight associated event if possible
 				var i:int;
@@ -189,7 +191,8 @@
 						
 						eventHBox.setStyle("paddingTop",0);
 						eventHBox.setStyle("paddingBottom",0);
-						eventHBox.setStyle("paddingLeft",0);					
+						eventHBox.setStyle("paddingLeft",0);	
+						eventHBox.setStyle("paddingRight",0);					
 					}
 				} 
 			}
@@ -208,6 +211,7 @@
 				currentHBox.setStyle("paddingTop",1);
 				currentHBox.setStyle("paddingBottom",1);
 				currentHBox.setStyle("paddingLeft",1);
+				currentHBox.setStyle("paddingRight",1);
 				
 				currentHBox.removeEventListener(MouseEvent.MOUSE_OUT, eventMouseOut);
 				
@@ -221,7 +225,8 @@
 					
 					eventHBox.setStyle("paddingTop",1);
 					eventHBox.setStyle("paddingBottom",1);
-					eventHBox.setStyle("paddingLeft",1);					
+					eventHBox.setStyle("paddingLeft",1);
+					eventHBox.setStyle("paddingRight",1);					
 				} 
 			}
 		]]>
