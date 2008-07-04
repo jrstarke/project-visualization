@@ -155,6 +155,12 @@
 					getSrvAuthorStats.addEventListener("result", processAuthorStats);
 					getSrvAuthorStats.send();
 				}
+				
+				//reset the events list
+				getParentProject.eventInfoList.removeAllEventsFromList();
+				getParentProject.controllerCanvas.eventIndex = 0;
+				var index:int = 0;
+				getParentProject.controllerCanvas.processAtPixelMoveStart(index);
 			}
 			
 			private function processAuthorStats(event:ResultEvent):void
