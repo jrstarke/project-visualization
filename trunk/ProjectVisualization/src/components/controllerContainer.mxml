@@ -213,12 +213,15 @@
 			public function processAtPixelMoveStart(index:int):void
 			{
 				//updateEventList(this.parsedResultsDjango.getItemAt(index).dateEvent);
+				//added for demo!
+				updateEventList(getParentProject.eventInfoList.title.substring(12, getParentProject.eventInfoList.title.length), getParentProject.eventInfoList.status.substring(10, getParentProject.eventInfoList.status.length));
 			}
 			
 			//get date from the right controller position while scrubbing
 			public function processAtPixelMoveEnd(index:int):void
 			{
-				updateEventList(this.parsedResultsDjango.getItemAt(index).dateEvent);
+				//updateEventList(this.parsedResultsDjango.getItemAt(index).dateEvent);
+				updateEventList(getParentProject.eventInfoList.title.substring(12, getParentProject.eventInfoList.title.length), this.parsedResultsDjango.getItemAt(index).dateEvent);
 				
 				//getParentProject.authorInfoList.addAuthorsToList(getParentProject.eventInfoList.title.substring(12, getParentProject.eventInfoList.title.length), getParentProject.eventInfoList.status.substring(10, getParentProject.eventInfoList.status.length));
 			}
@@ -259,8 +262,7 @@
 				
 				tempPanel.status = "End Date: " + this.parsedResultsDjango.getItemAt(index).dateEvent;
 				
-				//removed for demo!!! 
-				//updateEventList(this.parsedResultsDjango.getItemAt(index).dateEvent);
+				updateEventList(getParentProject.eventInfoList.title.substring(12, getParentProject.eventInfoList.title.length), this.parsedResultsDjango.getItemAt(index).dateEvent);
 				
 				getParentProject.authorInfoList.addAuthorsToList(getParentProject.eventInfoList.title.substring(12, getParentProject.eventInfoList.title.length), getParentProject.eventInfoList.status.substring(10, getParentProject.eventInfoList.status.length));
 			}
@@ -272,10 +274,10 @@
 			}
 			
 			//create a new httpservice and get the information for that day
-			public function updateEventList(endDate:String):void
+			public function updateEventList(startDate:String, endDate:String):void
 			{
 				getSrvEvents = new HTTPService();
-				getSrvEvents.url = "http://localhost:8000/events/" + endDate + "/"; 
+				getSrvEvents.url = "http://localhost:8000/selectedeventrange/" + startDate + "/" + endDate + "/" + getParentProject.authorInfoList.highlightedAuthor + "/" + getParentProject.modulesList.highlightedModule + "/";; 
 				getSrvEvents.resultFormat = "text";
 				getSrvEvents.addEventListener("result", updateEventListResult);
 				
@@ -325,7 +327,8 @@
 					eventIndex = 0;
 					//eventList.addItemAt("END", 0);
 					
-					getParentProject.t.start();
+					//removed for demo!
+					//getParentProject.t.start();
 				}
 			}
 		]]>

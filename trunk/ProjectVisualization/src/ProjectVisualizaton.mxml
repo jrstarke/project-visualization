@@ -358,7 +358,8 @@
 				eventInfoList.status = "End Date: " + controllerCanvas.parsedResultsDjango.getItemAt(index).dateEvent;
 				
 				if(currentDate != controllerCanvas.parsedResultsDjango.getItemAt(index).dateEvent){
-					controllerCanvas.updateEventList(controllerCanvas.parsedResultsDjango.getItemAt(index).dateEvent);
+					//removed for demo!
+					//controllerCanvas.updateEventList(controllerCanvas.parsedResultsDjango.getItemAt(index).dateEvent);
 					currentDate = controllerCanvas.parsedResultsDjango.getItemAt(index).dateEvent;
 				}
 			}
@@ -427,9 +428,13 @@
 				if(index<0)
 					index = 0;
 				
+				eventInfoList.removeAllEventsFromList();
+				controllerCanvas.eventIndex = 0;
 				controllerCanvas.processAtPixelMoveStart(index);
 				//authorInfoList.addAuthorsToList(eventInfoList.title.substring(12, eventInfoList.title.length), eventInfoList.status.substring(10, eventInfoList.status.length));
-				controllerCanvas.eventTimer.start();
+				
+				//removed for demo!
+				//controllerCanvas.eventTimer.start();
 			}
 			
 		]]>

@@ -201,7 +201,8 @@
 			private function eventMouseOut(e:MouseEvent):void
 			{
 				//check if the player is playing
-				if(getParentProject.controllerCanvas.playerButton.source == "assets/images/button-icon-pause.png")
+				//removed for demo!
+				//if(getParentProject.controllerCanvas.playerButton.source == "assets/images/button-icon-pause.png")
 					getParentProject.controllerCanvas.eventTimer.start();
 				
 				var currentHBox:HBox = new HBox();
