@@ -308,11 +308,20 @@
 					//add authors for the specified date range to the author list
 					//getParentProject.authorInfoList.addAuthorsToList(getParentProject.eventInfoList.title.substring(12, getParentProject.eventInfoList.title.length), getParentProject.eventInfoList.status.substring(10, getParentProject.eventInfoList.status.length));
 					
+					//update the progress bars
+					processProgBars();
+					
 					eventTimer.start();
 					
 					eventTimer.addEventListener(TimerEvent.TIMER, eventTimerTick);		
     			}		
   			}	
+    		
+    		//updates the authors/modules progress bars
+    		private function processProgBars():void
+    		{
+    			
+    		}
     		
     		private function eventTimerTick(e:TimerEvent):void
     		{

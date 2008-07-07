@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" title="Modules" titleStyleName="modulesStatusStyle" verticalGap="0" creationComplete="init()">
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" title="Modules" titleStyleName="modulesStatusStyle" verticalGap="0" creationComplete="init()" borderThicknessBottom="5" borderThicknessLeft="5" borderThicknessRight="5">
 	<mx:Style>
     	.modulesStatusStyle {
         	fontWeight: bold;
@@ -17,6 +17,7 @@
      
      <mx:Script>
      	<![CDATA[
+     		import mx.controls.ProgressBar;
      		import mx.rpc.events.ResultEvent;
      		import mx.rpc.http.HTTPService;
      		import com.adobe.serialization.json.JSON;
@@ -51,13 +52,14 @@
 				for(i=0; i<moduleList.length; i++){
 					var moduleHBox:HBox = new HBox();
 					var moduleNameLabel:Label = new Label();
+					var moduleProgressBar:ProgressBar = new ProgressBar();
 			
 					moduleHBox.name = moduleList[i].pk + "";
 				
 					moduleNameLabel.name = moduleList[i].pk + "Label";					
 					moduleNameLabel.text = "" + moduleList[i].name
 					
-					//moduleNameLabel.width = 190;
+					moduleNameLabel.width = 170;
 					
 					moduleHBox.setStyle("border", "none");
 					moduleNameLabel.styleName = "moduleLabelStyle";
@@ -66,12 +68,21 @@
 					moduleHBox.setStyle("paddingBottom",1);
 					moduleHBox.setStyle("paddingLeft",1);	
 					moduleHBox.setStyle("paddingRight",1);	
+					moduleHBox.setStyle("verticalGap", 0);
+					
+					moduleProgressBar.mode = "manual";
+					moduleProgressBar.label = "";
+					moduleProgressBar.labelPlacement = "right";
+					moduleProgressBar.setStyle("verticalCenter", 0);
+					moduleProgressBar.setStyle("verticalGap", 0);
+					moduleProgressBar.width = 50;
 					
 					moduleHBox.addEventListener(MouseEvent.MOUSE_OVER, eventMouseOver);
 					moduleHBox.addEventListener(MouseEvent.CLICK, eventMouseClick);
 					
 					moduleHBox.addChild(moduleNameLabel);
-					this.addChildAt(moduleHBox, 0);;
+					moduleHBox.addChild(moduleProgressBar);
+					this.addChildAt(moduleHBox, 0);
 				}
 			}
 			
