@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" title="Authors" titleStyleName="authorStatusStyle" creationComplete="initParentProject()" verticalGap="0">
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" title="Authors" titleStyleName="authorStatusStyle" creationComplete="initParentProject()" verticalGap="0" borderThicknessBottom="5" borderThicknessLeft="5" borderThicknessRight="5">
 	<mx:Style>
     	.authorStatusStyle {
         	fontWeight: bold;
@@ -21,9 +21,11 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import mx.controls.ProgressBar;
 			import mx.rpc.http.HTTPService;
 			import mx.collections.ArrayCollection;
 			import mx.containers.HBox;
+			import mx.containers.VBox;
 			import mx.controls.Label;
 			import mx.rpc.events.ResultEvent;
 			import com.adobe.serialization.json.JSON;
@@ -77,13 +79,14 @@
 					//{
 						var authorHBox:HBox = new HBox();
 						var authorNameLabel:Label = new Label();
+						var authorProgressBar:ProgressBar = new ProgressBar();
 			
 						authorHBox.name = authorList[i].author + "";
 						authorNameLabel.name = + authorList[i].author + "Label";
 					
 						authorNameLabel.text = "" + authorList[i].author_shortname;
 						
-						//authorNameLabel.width = 92;
+						authorNameLabel.width = 72;
 					
 						authorHBox.setStyle("border", "none");
 						authorNameLabel.styleName = "authorLabelStyle";
@@ -92,11 +95,20 @@
 						authorHBox.setStyle("paddingBottom",1);
 						authorHBox.setStyle("paddingLeft",1);
 						authorHBox.setStyle("paddingRight",1);	
+						authorHBox.setStyle("verticalGap", 0);
+						
+						authorProgressBar.mode = "manual";
+						authorProgressBar.label = "";
+						authorProgressBar.labelPlacement = "right";
+						authorProgressBar.setStyle("verticalCenter", 0);
+						authorProgressBar.setStyle("verticalGap", 0);
+						authorProgressBar.width = 50;
 					
 						authorHBox.addEventListener(MouseEvent.MOUSE_OVER, eventMouseOver);
 						authorHBox.addEventListener(MouseEvent.CLICK, eventMouseClick);
 				
 						authorHBox.addChild(authorNameLabel);
+						authorHBox.addChild(authorProgressBar);
 						this.addChildAt(authorHBox, 0);
 					//}	
 				}	
@@ -168,7 +180,6 @@
 			{
 				getParentProject.controllerCanvas.processGetResult(getSrvAuthorStats.lastResult.toString());
 			}
-			
 			//perform mouse over effects, pause playback
 			private function eventMouseOver(e:MouseEvent):void
 			{

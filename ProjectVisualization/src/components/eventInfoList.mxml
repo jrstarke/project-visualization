@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" titleStyleName="datesStatusStyle" statusStyleName="datesStatusStyle" creationComplete="initParentProject()" verticalGap="0">
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" titleStyleName="datesStatusStyle" statusStyleName="datesStatusStyle" creationComplete="initParentProject()" verticalGap="0" borderThicknessBottom="5" borderThicknessLeft="5" borderThicknessRight="5">
 	<mx:Style>
         .datesStatusStyle {
             fontWeight: bold;

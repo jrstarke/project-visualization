@@ -8,10 +8,10 @@
     
     <mx:Canvas id = "c1" y="0" height="100%" width="100%" horizontalCenter="0">
     	<mx:VBox height="100%" width="100%" horizontalCenter="0" top="10" id="mainVBox">
-    		<mx:HBox height="100%" width="100%" horizontalCenter="0" id="outterHBox">
+    		<mx:HBox height="100%" width="100%" horizontalCenter="0" id="outterHBox" horizontalGap="2">
 		   		<MyComps:authorInfoList id="authorInfoList" height="100%" width="5%"/>
 	   			<MyComps:modulesList id="modulesList" height="100%" width="5%"/>
-	   			<MyComps:eventInfoList id="eventInfoList" height="100%" width="75%"/>
+	   			<MyComps:eventInfoList id="eventInfoList" height="100%" width="100%"/>
 	   		</mx:HBox>
 	   		<MyComps:controllerContainer id="controllerCanvas" creationComplete="initControllers(); initPlayer()"/>
     	</mx:VBox>
