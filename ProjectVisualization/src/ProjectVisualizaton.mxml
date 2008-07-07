@@ -407,6 +407,7 @@
 				
 				eventInfoList.removeAllEventsFromList();
 				controllerCanvas.eventIndex = 0;
+				eventInfoList.maxEventListCount = 0;
 				controllerCanvas.processAtPixelMoveEnd(index);
 				//controllerCanvas.eventTimer.start();
 			}
@@ -430,6 +431,7 @@
 				
 				eventInfoList.removeAllEventsFromList();
 				controllerCanvas.eventIndex = 0;
+				eventInfoList.maxEventListCount = 0;
 				controllerCanvas.processAtPixelMoveStart(index);
 				//authorInfoList.addAuthorsToList(eventInfoList.title.substring(12, eventInfoList.title.length), eventInfoList.status.substring(10, eventInfoList.status.length));
 				

@@ -22,6 +22,7 @@
  	
 	<mx:Script>
 		<![CDATA[
+			import mx.containers.VBox;
 			import mx.controls.List;
 			import mx.effects.Move;
 			import mx.events.MoveEvent;
@@ -32,14 +33,21 @@
 			//create a list of the current events in the main list
 			public var eventList:ArrayCollection = new ArrayCollection();
 			
-			private var maxEventListSize:int;
+			private var maxEventListMax:int = 41;
+			private var maxEventListSize:int = 0;
+			public var maxEventListCount:int = 0;;
 			
 			private var getParentProject:ProjectVisualizaton = new ProjectVisualizaton();
 			
 			//determine how many events to be displayed on the main list
 			private function initMaxEventListSize():void
-			{
-				maxEventListSize = 15;
+			{				
+				var files:Array = eventList[0].files;
+					
+				if(files.length <= 3)
+					maxEventListCount = maxEventListCount + files.length + 2;
+				else
+					maxEventListCount = maxEventListCount + 6;
 			}
 			
 			//function to gain easy access to the parent class
@@ -50,26 +58,31 @@
 			
 			//add event to the list and display on the main list
 			public function addEventToList(event:Object):void
-			{
-				initMaxEventListSize();
-				
+			{				
 				eventList.addItemAt(event, 0);
-				
+			
+				initMaxEventListSize();	
 				//get list of authors to add
 				//getParentProject.authorInfoList.addAuthorToList(event);
 				
 				var eventHBox:HBox = new HBox();
+				var eventVBox:VBox = new VBox();
+				var eventInnerHBox:HBox = new HBox();
 				var eventDateLabel:Label = new Label();
 				var eventTypeLabel:Label = new Label();
 				var eventAuthorLabel:Label = new Label();
 				var eventCommentLabel:Label = new Label();
 				var eventModuleLabel:Label = new Label();
+				var eventSpace:Label = new Label();
 				
 				eventHBox.setStyle("paddingTop",1);
 				eventHBox.setStyle("paddingBottom",1);
 				eventHBox.setStyle("paddingLeft",1);
 				eventHBox.setStyle("paddingRight",1);
+				eventVBox.setStyle("verticalGap", 0);
 				eventHBox.name = event.pk + "event";
+				eventVBox.name = event.author;
+				eventInnerHBox.name = event.pk + "eventInnerHBox";
 				eventDateLabel.name = event.pk + "date";
 				eventTypeLabel.name = event.pk + event.type;
 				eventAuthorLabel.name = event.author;
@@ -78,6 +91,8 @@
 					
 				//eventDateLabel.width = 75;
 				eventTypeLabel.width = 0;
+				eventTypeLabel.height = 0;
+				eventModuleLabel.height = 0;
 				eventAuthorLabel.width = 75;
 				eventCommentLabel.width = 455;
 				
@@ -108,14 +123,47 @@
 				
 				eventHBox.addEventListener(MouseEvent.MOUSE_OVER, eventMouseOver);
 				
-				eventHBox.addChild(eventDateLabel);
-				eventHBox.addChild(eventTypeLabel);
-				eventHBox.addChild(eventAuthorLabel);
-				eventHBox.addChild(eventCommentLabel);
-				eventHBox.addChild(eventModuleLabel);
+				eventHBox.addChild(eventVBox);
+				eventVBox.addChild(eventInnerHBox);
+				eventInnerHBox.addChild(eventDateLabel);
+				eventInnerHBox.addChild(eventTypeLabel);
+				eventInnerHBox.addChild(eventAuthorLabel);
+				eventVBox.addChild(eventCommentLabel);
+				eventVBox.addChild(eventModuleLabel);
 				this.addChildAt(eventHBox, 0);
 				
-				if(eventList.length > maxEventListSize){
+				//add files to each event
+				var i:int;
+				var files:Array = event.files;
+				for(i=0; i<3; i++)
+				{
+					if(i < files.length){
+						var eventFile:Label = new Label();
+						eventFile.text = files[i];
+						eventVBox.addChild(eventFile);
+					}
+				}
+				
+				//add '...' if more than 3 files in an event
+				if(files.length > 3)
+				{
+					var eventFileLarge:Label = new Label();
+					eventFileLarge.text = "...";
+					eventFileLarge.toolTip = files.toString();
+					eventVBox.addChild(eventFileLarge);
+				}
+				
+				//eventVBox.addChild(eventSpace);
+				
+				//remove event from list if it is full
+				while(maxEventListCount > maxEventListMax){					
+					var eventFiles:Array = eventList[eventList.length-1].files;
+					
+					if(eventFiles.length <= 3)
+						maxEventListCount = maxEventListCount - eventFiles.length - 2;
+					else
+						maxEventListCount = maxEventListCount - 6;
+					
 					removeEventFromList();
 				}
 			}
@@ -124,10 +172,10 @@
 			public function removeEventFromList():void
 			{	
 				var removedEvent:HBox = new HBox();
-				removedEvent = this.getChildByName(eventList[maxEventListSize].pk + "event") as HBox;
+				removedEvent = this.getChildByName(eventList[eventList.length-1].pk + "event") as HBox;
 				this.removeChild(removedEvent);
 				//getParentProject.authorInfoList.removeAuthorFromList(eventList[maxEventListSize]);
-				eventList.removeItemAt(maxEventListSize);
+				eventList.removeItemAt(eventList.length-1);
 			}
 			
 			//remove all events from the list and remove displays from the main list
@@ -158,7 +206,7 @@
 				var i:int;
 				for(i=0; i<getParentProject.authorInfoList.authorList.length; i++)
 				{
-					var author:Label = currentHBox.getChildAt(2) as Label;
+					var author:VBox = currentHBox.getChildAt(0) as VBox;
 					if(author.name == getParentProject.authorInfoList.authorList[i].author)
 					{
 						var authorHBox:HBox = new HBox();
@@ -173,7 +221,8 @@
 				} 
 				
 				//highlight associated modules if possible
-				var module:Label = currentHBox.getChildAt(4) as Label;
+				var currentVBox:VBox = currentHBox.getChildAt(0) as VBox;
+				var module:Label = currentVBox.getChildAt(2) as Label;
 				var moduleList:Array = new Array();
 				moduleList = module.name.split(",");
 
