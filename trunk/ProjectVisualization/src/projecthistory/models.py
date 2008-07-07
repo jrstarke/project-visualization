@@ -241,7 +241,8 @@ def topauthors(start, stop, num_authors):
         author["author_shortname"] = authorshortname(author["author_name"])
         top_authors.append(author)
     top_authors.sort(lambda a,b: cmp(a["author_name"].lower(),b["author_name"].lower()))
-    # top_authors = filter(lambda x: (x["newticketevents"] + x["commitevents"] + x["ticketchangeevents"]) > 0, top_authors)
+    #top_authors = filter(lambda x: (x["newticketevents"] + x["commitevents"] + x["ticketchangeevents"]) > 0, top_authors)
+    top_authors = filter(lambda x: x["commitevents"] > 0, top_authors)
     return top_authors
 
 def modules():
