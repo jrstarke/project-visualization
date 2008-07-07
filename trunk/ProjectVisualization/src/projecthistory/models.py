@@ -262,10 +262,7 @@ def files_in_module(module_id):
         name = p.dest_file[p.dest_file.rfind("/")+1:]
         if not files.__contains__(name):
             files.append(name)
-    return files
-
-def daily_stats():
-    return selectedstats(0,0)               
+    return files           
 
 def selectedstats(author_id, module_id):
     start = d = date(2006,01,01) # hard coded dates for now
