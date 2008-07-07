@@ -94,7 +94,7 @@
 				eventTypeLabel.height = 0;
 				eventModuleLabel.height = 0;
 				eventAuthorLabel.width = 75;
-				eventCommentLabel.width = 455;
+				eventCommentLabel.width = 875;
 				
 				//eventTypeLabel.text = event.type;
 				eventAuthorLabel.text = event.author_short_name;
