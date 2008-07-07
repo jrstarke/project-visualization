@@ -126,6 +126,7 @@
 				
 				//reset the events list
 				getParentProject.eventInfoList.removeAllEventsFromList();
+				getParentProject.eventInfoList.maxEventListCount = 0;
 				getParentProject.controllerCanvas.eventIndex = 0;
 				var index:int = 0;
 				getParentProject.controllerCanvas.processAtPixelMoveStart(index);
