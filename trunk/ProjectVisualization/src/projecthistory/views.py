@@ -96,8 +96,10 @@ def selectedeventrange(request, date_str_start, date_str_stop, author_id_str, mo
     return HttpResponse(simplejson.dumps(all_events))
 
 def topauthors(request, start_date, end_date, num_authors):
-   start = parse_date(start_date)
-   end = parse_date(end_date) + timedelta(1)
+   #start = parse_date(start_date)
+   #end = parse_date(end_date) + timedelta(1)
+   start = date(2006,01,01)
+   end = date(2007,12,31) + timedelta(1)
    number = int(num_authors)
    all_events = models.topauthors(start, end, number)
    return HttpResponse(simplejson.dumps(all_events))
