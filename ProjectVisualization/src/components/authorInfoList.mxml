@@ -113,6 +113,7 @@
 						this.addChildAt(authorHBox, 0);
 					//}	
 				}	
+				getParentProject.controllerCanvas.processProgBars();
 			}
 			
 			//remove author from list if there that author no longer exists in the event list
