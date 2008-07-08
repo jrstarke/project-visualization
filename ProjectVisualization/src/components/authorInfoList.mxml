@@ -11,7 +11,7 @@
         }
         
         .authorLabelStyle	{
-        	color: #c3c4c4;
+        	color: #4d4f4f;
         }
         
         .authorLabelStyleHighlight	{
@@ -145,7 +145,7 @@
 				
 				//check to see if we must deselect a author
 				if(tempStyleName != "authorLabelStyleHighlight"){
-					currentHBox.opaqueBackground = 0xc3c4c4;
+					currentHBox.opaqueBackground = 0x4d4f4f;
 					currentLabel.styleName = "authorLabelStyleHighlight";
 					highlightedAuthor = int(currentHBox.name);
 					

@@ -96,6 +96,7 @@
 			private var getSrvEvents:HTTPService;
 			public var eventIndex:int = 0;
 			private var eventDictionaryGlob:Array;
+			private var globIndex:int = 0;
 			
 			//create new timer to step through each event for the specified date
 			public var eventTimer:Timer = new Timer(500, 0);
@@ -116,6 +117,7 @@
 					if(curDate.substring(5, 10) == "01-01")
 					{
 						var janLabel:Label = new Label();
+						janLabel.setStyle("color", 0xffffff);
 						janLabel.x = ((Areachart.width/730)*i) + space;
 						janLabel.text = "Jan " + curDate.substring(2,4);
 						janLabel.setStyle("bottom", 0);
@@ -125,6 +127,7 @@
 					
 					else if(curDate.substring(5,10) == "04-01"){
 						var aprLabel:Label = new Label();
+						aprLabel.setStyle("color", 0xffffff);
 						aprLabel.text = "Apr";
 						aprLabel.setStyle("bottom", 0);
 						aprLabel.x = ((Areachart.width/730)*i) + space;
@@ -133,6 +136,7 @@
 					
 					else if(curDate.substring(5,10) == "07-01"){
 						var julLabel:Label = new Label();
+						julLabel.setStyle("color", 0xffffff);
 						julLabel.text = "Jul";
 						julLabel.setStyle("bottom", 0);
 						julLabel.x = ((Areachart.width/730)*i) + space;
@@ -141,6 +145,7 @@
 					
 					else if(curDate.substring(5,10) == "10-01"){
 						var octLabel:Label = new Label();
+						octLabel.setStyle("color", 0xffffff);
 						octLabel.text = "Oct";
 						octLabel.setStyle("bottom", 0);
 						octLabel.x = ((Areachart.width/730)*i) + space;
@@ -170,6 +175,8 @@
 					//fix strange out of bounds bug
 					if(index<0)
 						index = 0;
+					
+					globIndex = index;
 					
 					var tempPanel:Panel = new Panel();
 					tempPanel = getParentProject.eventInfoList as Panel;
@@ -257,6 +264,8 @@
 				//fix strange out of bounds bug
 				if(index<0)
 					index = 0;
+				
+				globIndex = index;
 				
 				var tempPanel:Panel = new Panel();
 				tempPanel = getParentProject.eventInfoList as Panel;
@@ -368,6 +377,12 @@
     		{
 				if(eventIndex < eventDictionaryGlob.length){
 					getParentProject.eventInfoList.addEventToList(eventDictionaryGlob[eventIndex]);
+					
+					var tempPanel:Panel = new Panel();
+					tempPanel = getParentProject.eventInfoList as Panel;
+				
+					tempPanel.status = eventIndex + "/" + eventDictionaryGlob.length + "                                                                                                   " + "End Date: " + this.parsedResultsDjango.getItemAt(globIndex).dateEvent;
+					
 					eventIndex++;
 				}
 				

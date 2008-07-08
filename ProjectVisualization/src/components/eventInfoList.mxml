@@ -120,6 +120,7 @@
 				}
 					
 				eventDateLabel.styleName = "eventDateStyle";
+				eventAuthorLabel.styleName = "eventDateStyle";
 				
 				eventHBox.addEventListener(MouseEvent.MOUSE_OVER, eventMouseOver);
 				
@@ -135,11 +136,22 @@
 				//add files to each event
 				var i:int;
 				var files:Array = event.files;
+				var status:Array = event.status;
 				for(i=0; i<3; i++)
 				{
 					if(i < files.length){
 						var eventFile:Label = new Label();
 						eventFile.text = files[i];
+						
+						if(status[i] == "M")
+							eventFile.setStyle("color", 0x3dbaba);
+						if(status[i] == "A")
+							eventFile.setStyle("color", 0x43ba3d);
+						if(status[i] == "R")
+							eventFile.setStyle("color", 0xeadc15);
+						if(status[i] == "D")
+							eventFile.setStyle("color", 0xba3d3d);
+						
 						eventVBox.addChild(eventFile);
 					}
 				}

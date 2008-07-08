@@ -7,7 +7,7 @@
      	}
      	
      	.moduleLabelStyle	{
-        	color: #c3c4c4;
+        	color: #4d4f4f;
         }
         
         .moduleLabelStyleHighlight	{
@@ -110,7 +110,7 @@
 				
 				//check to see if we must deselect a module
 				if(tempStyleName != "moduleLabelStyleHighlight"){
-					currentHBox.opaqueBackground = 0xc3c4c4;
+					currentHBox.opaqueBackground = 0x4d4f4f;
 					currentLabel.styleName = "moduleLabelStyleHighlight";
 					
 					highlightedModule = int(currentHBox.name);
