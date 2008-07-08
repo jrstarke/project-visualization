@@ -222,7 +222,7 @@
 			{
 				//updateEventList(this.parsedResultsDjango.getItemAt(index).dateEvent);
 				//added for demo!
-				updateEventList(getParentProject.eventInfoList.title.substring(12, getParentProject.eventInfoList.title.length), getParentProject.eventInfoList.status.substring(10, getParentProject.eventInfoList.status.length));
+				updateEventList(getParentProject.eventInfoList.title.substring(12, getParentProject.eventInfoList.title.length), getParentProject.eventInfoList.status.substring(getParentProject.eventInfoList.status.length-10, getParentProject.eventInfoList.status.length));
 			}
 			
 			//get date from the right controller position while scrubbing
@@ -328,7 +328,7 @@
   			}	
     		
     		//updates the authors/modules progress bars
-    		private function processProgBars():void
+    		public function processProgBars():void
     		{
     			var i:int;
     			
@@ -389,6 +389,12 @@
 				else{
 					eventTimer.stop();
 					eventTimer.removeEventListener(TimerEvent.TIMER, eventTimerTick);
+					
+					var tempPanel1:Panel = new Panel();
+					tempPanel1 = getParentProject.eventInfoList as Panel;
+				
+					tempPanel1.status = eventIndex + "/" + eventDictionaryGlob.length + "                                                                                                   " + "End Date: " + this.parsedResultsDjango.getItemAt(globIndex).dateEvent;
+		
 					eventIndex = 0;
 					//eventList.addItemAt("END", 0);
 					
