@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:MyComps="components.*" layout="absolute" color="#C3C4C4" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#000000, #000000]" xmlns:myObjects="myObjects.*">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:MyComps="components.*" layout="absolute" color="#4d4f4f" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#000000, #000000]" xmlns:myObjects="myObjects.*">
     
     <mx:Glow id="newEventGlow" duration="5000" strength="255" color="0xFFFFFF" inner="true" />
     <mx:Glow id="mouseOverEventGlow" duration="5000" strength="255" color="0xFFFFFF" inner="true" />
     <mx:AnimateProperty id="testEffect" duration="5000" fromValue="0x000000" toValue="0xFFFFFF" property="backgroundColor"/>
     <mx:Blur id="playBlur" duration="1000"/>
     
-    <mx:Canvas id = "c1" y="0" height="100%" width="100%" horizontalCenter="0">
-    	<mx:VBox height="100%" width="100%" horizontalCenter="0" top="10" id="mainVBox">
+    <mx:Canvas id = "c1" y="0" height="100%" width="100%" horizontalCenter="0" color="#4D4F4F">
+    	<mx:VBox height="100%" width="100%" horizontalCenter="0" top="10" id="mainVBox" borderColor="#4D4F4F">
     		<mx:HBox height="100%" width="100%" horizontalCenter="0" id="outterHBox" horizontalGap="2">
 		   		<MyComps:authorInfoList id="authorInfoList" height="100%" width="5%"/>
 	   			<MyComps:modulesList id="modulesList" height="100%" width="5%"/>
