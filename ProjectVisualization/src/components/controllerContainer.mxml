@@ -84,6 +84,7 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import mx.controls.ProgressBar;
 			import mx.containers.Panel;
 			import com.adobe.utils.DictionaryUtil;
 			import mx.rpc.events.ResultEvent;
@@ -320,6 +321,46 @@
     		//updates the authors/modules progress bars
     		private function processProgBars():void
     		{
+    			var i:int;
+    			
+    			//go through each author and find out how many events are associated with them
+    			for(i=0;i<getParentProject.authorInfoList.authorList.length; i++)
+    			{
+    				var authorCount:int = 0;
+    				var j:int;
+    				for(j=0; j<eventDictionaryGlob.length; j++)
+    				{
+    					if(eventDictionaryGlob[j].author == getParentProject.authorInfoList.authorList[i].author)
+    						authorCount++;
+    				}
+    				
+    				var currentAuthorHBox:HBox = getParentProject.authorInfoList.getChildByName(getParentProject.authorInfoList.authorList[i].author) as HBox;
+    				var currentAuthorProgBar:ProgressBar = currentAuthorHBox.getChildByName(getParentProject.authorInfoList.authorList[i].author + "Bar") as ProgressBar;
+    				
+    				currentAuthorProgBar.setProgress(authorCount, eventDictionaryGlob.length);
+    				currentAuthorProgBar.toolTip = authorCount + "/" + eventDictionaryGlob.length;
+    			}
+    			
+    			//go through each module and find out how many events are associated with them
+    			for(i=0;i<getParentProject.modulesList.moduleList.length; i++)
+    			{
+    				var moduleCount:int = 0;
+    				var l:int;
+    				for(l=0; l<eventDictionaryGlob.length; l++)
+    				{
+    					var k:int;
+    					for(k=0; k<eventDictionaryGlob[l].modules.length; k++){
+    						if(eventDictionaryGlob[l].modules[k] == getParentProject.modulesList.moduleList[i].pk)
+    							moduleCount++;
+    					}
+    				}
+    				
+    				var currentModuleHBox:HBox = getParentProject.modulesList.getChildByName(getParentProject.modulesList.moduleList[i].pk) as HBox;
+    				var currentModuleProgBar:ProgressBar = currentModuleHBox.getChildByName(getParentProject.modulesList.moduleList[i].pk + "Bar") as ProgressBar;
+    				
+    				currentModuleProgBar.setProgress(moduleCount, eventDictionaryGlob.length);
+    				currentModuleProgBar.toolTip = moduleCount + "/" + eventDictionaryGlob.length;
+    			}
     			
     		}
     		

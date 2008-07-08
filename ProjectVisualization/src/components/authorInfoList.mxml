@@ -82,7 +82,8 @@
 						var authorProgressBar:ProgressBar = new ProgressBar();
 			
 						authorHBox.name = authorList[i].author + "";
-						authorNameLabel.name = + authorList[i].author + "Label";
+						authorNameLabel.name = authorList[i].author + "Label";
+						authorProgressBar.name = authorList[i].author + "Bar";
 					
 						authorNameLabel.text = "" + authorList[i].author_shortname;
 						
