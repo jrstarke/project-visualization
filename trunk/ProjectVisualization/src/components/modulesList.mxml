@@ -55,7 +55,7 @@
 					var moduleProgressBar:ProgressBar = new ProgressBar();
 			
 					moduleHBox.name = moduleList[i].pk + "";
-				
+					moduleProgressBar.name = moduleList[i].pk + "Bar";
 					moduleNameLabel.name = moduleList[i].pk + "Label";					
 					moduleNameLabel.text = "" + moduleList[i].name
 					
