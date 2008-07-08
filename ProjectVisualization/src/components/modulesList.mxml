@@ -166,20 +166,25 @@
 				currentHBox.setStyle("paddingRight",0);
 				
 				//highlight associated event if possible
-				/*var i:int;
+				var i:int;
 				for(i=0; i<getParentProject.eventInfoList.eventList.length; i++)
 				{
-					if(currentHBox.name == getParentProject.eventInfoList.eventList[i].author)
+					var j:int;
+					for(j=0; j<getParentProject.eventInfoList.eventList[i].modules.length;j++)
 					{
-						var eventHBox:HBox = new HBox();
-						eventHBox = getParentProject.eventInfoList.getChildByName(getParentProject.eventInfoList.eventList[i].pk + "event") as HBox;
-						eventHBox.setStyle("borderStyle", "solid");	
-						
-						eventHBox.setStyle("paddingTop",0);
-						eventHBox.setStyle("paddingBottom",0);
-						eventHBox.setStyle("paddingLeft",0);					
+						if(currentHBox.name == getParentProject.eventInfoList.eventList[i].modules[j])
+						{
+							var eventHBox:HBox = new HBox();
+							eventHBox = getParentProject.eventInfoList.getChildByName(getParentProject.eventInfoList.eventList[i].pk + "event") as HBox;
+							eventHBox.setStyle("borderStyle", "solid");
+							
+							eventHBox.setStyle("paddingTop",0);
+							eventHBox.setStyle("paddingBottom",0);
+							eventHBox.setStyle("paddingLeft",0);	
+							eventHBox.setStyle("paddingRight",0);					
+						}
 					}
-				} */
+				} 
 			}
 
 			//perform mouse out effects, resume playback
@@ -202,7 +207,7 @@
 				currentHBox.removeEventListener(MouseEvent.MOUSE_OUT, eventMouseOut);
 				
 				//unhighlight all events from the event list
-				/*var i:int;
+				var i:int;
 				for(i=0; i<getParentProject.eventInfoList.eventList.length; i++)
 				{
 					var eventHBox:HBox = new HBox();
@@ -211,8 +216,9 @@
 					
 					eventHBox.setStyle("paddingTop",1);
 					eventHBox.setStyle("paddingBottom",1);
-					eventHBox.setStyle("paddingLeft",1);					
-				} */
+					eventHBox.setStyle("paddingLeft",1);
+					eventHBox.setStyle("paddingRight",1);					
+				} 
 			}
 			
      	]]>
