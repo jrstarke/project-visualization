@@ -71,9 +71,9 @@
         	    <mx:AreaSeries yField="normalizedAuthor" form="curve" displayName="Total Events for Author" areaStroke="{s1}" areaFill="{sc1}"/>
       	  </mx:series>
    	 </mx:AreaChart> 
-	<mx:Canvas left="0" width="30%" height="90%" top="0" backgroundAlpha="0.5" backgroundColor="#5A5A5A" id="leftCanvas">
+	<mx:Canvas left="0" width="0%" height="90%" top="0" backgroundAlpha="0.5" backgroundColor="#5A5A5A" id="leftCanvas">
 	</mx:Canvas>
-	<mx:Canvas right="0" width="30%" height="90%" top="0" backgroundAlpha="0.5" backgroundColor="#5A5A5A" id="rightCanvas">
+	<mx:Canvas right="0" width="0.6%" height="90%" top="0" backgroundAlpha="0.5" backgroundColor="#5A5A5A" id="rightCanvas">
 	</mx:Canvas>
 	<mx:Canvas width="0.5%" height="90%" top="0" backgroundAlpha="0.8" backgroundColor="#A8FF00" id="leftControlCanvas" useHandCursor="true" buttonMode="true" showEffect="{playGlow}">
 	</mx:Canvas>
