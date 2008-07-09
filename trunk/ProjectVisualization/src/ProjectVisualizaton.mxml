@@ -287,6 +287,7 @@
 				controllerCanvas.leftControlCanvas.addEventListener(MouseEvent.MOUSE_DOWN, leftDown);
 				controllerCanvas.rightControlCanvas.x = (controllerCanvas.width - controllerCanvas.rightCanvas.width - controllerCanvas.rightControlCanvas.width);
 				controllerCanvas.leftControlCanvas.x = controllerCanvas.leftCanvas.width;	
+				controllerCanvas.dateCanvas.x = controllerCanvas.leftControlCanvas.x + controllerCanvas.leftControlCanvas.width;
 			}
 			
 			//initialize the play controller on the slider to be in the center
