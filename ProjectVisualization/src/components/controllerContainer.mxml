@@ -79,6 +79,8 @@
 	</mx:Canvas>
 	<mx:Canvas width="0.5%" height="90%" top="0" backgroundAlpha="0.8" backgroundColor="#FF5A00" id="rightControlCanvas" useHandCursor="true" buttonMode="true" showEffect="{playGlow}">
 	</mx:Canvas>
+	<mx:Canvas width="0.1%" height="90%" top="0" backgroundAlpha="0.8" backgroundColor="#FFFFFF" id="dateCanvas">
+	</mx:Canvas>
 	<mx:Image source="assets/images/button-icon-play.png" width="3%" height="30%" verticalCenter="0" id="playerButton" useHandCursor="true" buttonMode="true"/>
 	<mx:Label x="100" bottom="30" text="" id="debugLabel"/>
 	
@@ -96,7 +98,8 @@
 			private var getSrvEvents:HTTPService;
 			public var eventIndex:int = 0;
 			private var eventDictionaryGlob:Array;
-			private var globIndex:int = 0;
+			private var globIndexStart:int = 0;
+			private var globIndexEnd:int = 0;
 			
 			//create new timer to step through each event for the specified date
 			public var eventTimer:Timer = new Timer(500, 0);
@@ -176,7 +179,7 @@
 					if(index<0)
 						index = 0;
 					
-					globIndex = index;
+					globIndexEnd = index;
 					
 					var tempPanel:Panel = new Panel();
 					tempPanel = getParentProject.eventInfoList as Panel;
@@ -208,6 +211,8 @@
 					if(index<0)
 						index = 0;
 				
+					globIndexStart = index;
+					
 					var tempPanel:Panel = new Panel();
 					tempPanel = getParentProject.eventInfoList as Panel;
 				
@@ -246,6 +251,8 @@
 				if(index<0)
 					index = 0;
 				
+				globIndexStart = index;
+				
 				var tempPanel:Panel = new Panel();
 				tempPanel = getParentProject.eventInfoList as Panel;
 				
@@ -265,7 +272,7 @@
 				if(index<0)
 					index = 0;
 				
-				globIndex = index;
+				globIndexEnd = index;
 				
 				var tempPanel:Panel = new Panel();
 				tempPanel = getParentProject.eventInfoList as Panel;
@@ -381,7 +388,8 @@
 					var tempPanel:Panel = new Panel();
 					tempPanel = getParentProject.eventInfoList as Panel;
 				
-					tempPanel.status = eventIndex + "/" + eventDictionaryGlob.length + "                                                                                                   " + "End Date: " + this.parsedResultsDjango.getItemAt(globIndex).dateEvent;
+					tempPanel.status = eventIndex + "/" + eventDictionaryGlob.length + "                                                                                                   " + "End Date: " + this.parsedResultsDjango.getItemAt(globIndexEnd).dateEvent;
+					moveDateEvent(eventDictionaryGlob[eventIndex].date);
 					
 					eventIndex++;
 				}
@@ -393,14 +401,38 @@
 					var tempPanel1:Panel = new Panel();
 					tempPanel1 = getParentProject.eventInfoList as Panel;
 				
-					tempPanel1.status = eventIndex + "/" + eventDictionaryGlob.length + "                                                                                                   " + "End Date: " + this.parsedResultsDjango.getItemAt(globIndex).dateEvent;
-		
+					tempPanel1.status = eventIndex + "/" + eventDictionaryGlob.length + "                                                                                                   " + "End Date: " + this.parsedResultsDjango.getItemAt(globIndexEnd).dateEvent;
+
 					eventIndex = 0;
 					//eventList.addItemAt("END", 0);
 					
 					//removed for demo!
 					//getParentProject.t.start();
 				}
+			}
+			
+			private function moveDateEvent(date:String):void
+			{
+				var msInDay:int = 24*60*60*1000;
+				var space:int = 0;
+				
+				var splitStartDate:Array = new Array();
+				var splitEndDate:Array = new Array();
+				
+				var startDateString:String = this.parsedResultsDjango.getItemAt(globIndexStart).dateEvent
+				//var endDateString:String = this.parsedResultsDjango.getItemAt(globIndexEnd).dateEvent
+				var endDateString:String = date;
+				
+				splitStartDate = startDateString.split("-");
+				splitEndDate = endDateString.split("-");
+				
+				var startDate:Date = new Date(splitStartDate[0], splitStartDate[1]-1, splitStartDate[2]);
+				var endDate:Date = new Date(splitEndDate[0], splitEndDate[1]-1, splitEndDate[2]);
+				
+				var tDiff:Number = new Number(endDate.getTime() - startDate.getTime());
+				var tDiffDays:int = tDiff/msInDay;
+				
+				dateCanvas.x = leftControlCanvas.x + leftControlCanvas.width + ((this.Areachart.width/730)*tDiffDays) + space;
 			}
 		]]>
 	</mx:Script>
