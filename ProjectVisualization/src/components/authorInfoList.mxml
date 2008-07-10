@@ -180,7 +180,10 @@
 			
 			private function processAuthorStats(event:ResultEvent):void
 			{
-				getParentProject.controllerCanvas.processGetResult(getSrvAuthorStats.lastResult.toString());
+				if(highlightedAuthor == 0 && getParentProject.modulesList.highlightedModule == 0)
+					getParentProject.controllerCanvas.processGetResult(getSrvAuthorStats.lastResult.toString(), 1);
+				else
+					getParentProject.controllerCanvas.processGetResult(getSrvAuthorStats.lastResult.toString(), 2);
 			}
 			//perform mouse over effects, pause playback
 			private function eventMouseOver(e:MouseEvent):void
