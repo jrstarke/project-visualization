@@ -145,7 +145,10 @@
 			
 			private function processModuleStats(event:ResultEvent):void
 			{
-				getParentProject.controllerCanvas.processGetResult(getSrvModuleStats.lastResult.toString());
+				if(highlightedModule == 0 && getParentProject.authorInfoList.highlightedAuthor == 0)
+					getParentProject.controllerCanvas.processGetResult(getSrvModuleStats.lastResult.toString(), 1);
+				else
+					getParentProject.controllerCanvas.processGetResult(getSrvModuleStats.lastResult.toString(), 2);
 			}
 			
 			//perform mouse over effects, pause playback
