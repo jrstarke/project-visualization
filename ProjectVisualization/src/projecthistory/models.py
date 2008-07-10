@@ -316,7 +316,7 @@ def authorshortname(author_name):
 
 def log_normalize(count, max_count):
    #print '%d (%d)' % (count, max_count)
-   l = lambda f: math.log(f or 1, math.e)
+   l = lambda f: math.log(f+1 or 1, math.e)
    return l(count)/l(max_count)
 
 def topauthorsfordays():

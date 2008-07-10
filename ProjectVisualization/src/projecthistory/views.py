@@ -35,8 +35,8 @@ def selectedeventrange(request, date_str_start, date_str_stop, author_id_str, mo
     modules = {}
     
     for p in models.Path.objects.all():
-        if not files.setdefault(p.event_id,[]).__contains__(p.dest_file):
-            files[p.event_id].append(p.dest_file)
+        if not files.setdefault(p.event_id,[]).__contains__(p.dest_file.replace("/django/trunk","")):
+            files[p.event_id].append(p.dest_file.replace("/django/trunk",""))
             status.setdefault(p.event_id,[]).append(p.action)
 
         if not modules.setdefault(p.event_id,[]).__contains__(p.module_id):
