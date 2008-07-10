@@ -79,7 +79,7 @@
 	</mx:Canvas>
 	<mx:Canvas width="0.5%" height="90%" top="0" backgroundAlpha="0.8" backgroundColor="#FF5A00" id="rightControlCanvas" useHandCursor="true" buttonMode="true" showEffect="{playGlow}">
 	</mx:Canvas>
-	<mx:Canvas width="0.1%" height="90%" top="0" backgroundAlpha="0.8" backgroundColor="#FFFFFF" id="dateCanvas">
+	<mx:Canvas width="1" height="90%" top="0" backgroundAlpha="0.8" backgroundColor="#FFFFFF" id="dateCanvas">
 	</mx:Canvas>
 	<mx:Image source="assets/images/button-icon-play.png" width="3%" height="30%" verticalCenter="0" id="playerButton" useHandCursor="true" buttonMode="true"/>
 	<mx:Label x="100" bottom="30" text="" id="debugLabel"/>
