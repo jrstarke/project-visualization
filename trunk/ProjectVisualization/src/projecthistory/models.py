@@ -269,16 +269,16 @@ def selectedstats(author_id, module_id):
     stop = date(2008, 01, 01)
 
     cursor = connection.cursor()
-    cursor.execute("SELECT MAX(days.daycount) from ( select DATE(c.date), count(*) as daycount from projecthistory_commitevent as c where c.date >= '" + str(start) + "' and c.date < '" + str(stop) + "' group by DATE(c.date)) as days")
+    cursor.execute("SELECT MAX(days.daycount) from ( select DATE(c.date), count(distinct c.id) as daycount from projecthistory_commitevent as c where c.date >= '" + str(start) + "' and c.date < '" + str(stop) + "' group by DATE(c.date)) as days")
     max = cursor.fetchone()[0]
     if not (author_id == 0 or module_id == 0): #neither is 0
-        cursor.execute("select DATE(c.date), count(*) from projecthistory_commitevent as c, projecthistory_path as p where c.date >= '" + str(start) + "' and c.date < '" + str(stop) + "' and c.author_id = " + str(author_id) + " and p.module_id = " + str(module_id) + " and p.event_id = c.id group by DATE(c.date) order by c.date")
+        cursor.execute("select DATE(c.date), count(distinct c.id) from projecthistory_commitevent as c, projecthistory_path as p where c.date >= '" + str(start) + "' and c.date < '" + str(stop) + "' and c.author_id = " + str(author_id) + " and p.module_id = " + str(module_id) + " and p.event_id = c.id group by DATE(c.date) order by c.date")
     elif not author_id == 0:
-        cursor.execute("select DATE(c.date), count(*) from projecthistory_commitevent as c where c.date >= '" + str(start) + "' and c.date < '" + str(stop) + "' and c.author_id = " + str(author_id) + " group by DATE(c.date) order by c.date")
+        cursor.execute("select DATE(c.date), count(distinct c.id) from projecthistory_commitevent as c where c.date >= '" + str(start) + "' and c.date < '" + str(stop) + "' and c.author_id = " + str(author_id) + " group by DATE(c.date) order by c.date")
     elif not module_id == 0:
-        cursor.execute("select DATE(c.date), count(*) from projecthistory_commitevent as c, projecthistory_path as p where c.date >= '" + str(start) + "' and c.date < '" + str(stop) + "' and p.module_id = " + str(module_id) + " and p.event_id = c.id group by DATE(c.date) order by c.date")         
+        cursor.execute("select DATE(c.date), count(distinct c.id) from projecthistory_commitevent as c, projecthistory_path as p where c.date >= '" + str(start) + "' and c.date < '" + str(stop) + "' and p.module_id = " + str(module_id) + " and p.event_id = c.id group by DATE(c.date) order by c.date")         
     else:
-        cursor.execute("select DATE(c.date), count(*) from projecthistory_commitevent as c where c.date >= '" + str(start) + "' and c.date < '" + str(stop) + "' group by DATE(c.date) order by c.date")
+        cursor.execute("select DATE(c.date), count(distinct c.id) from projecthistory_commitevent as c where c.date >= '" + str(start) + "' and c.date < '" + str(stop) + "' group by DATE(c.date) order by c.date")
     next_tuple = cursor.fetchone()
 
     stats = []
