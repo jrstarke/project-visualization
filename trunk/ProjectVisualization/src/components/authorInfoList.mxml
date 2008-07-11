@@ -93,11 +93,11 @@
 						authorHBox.opaqueBackground = 0xffffff;
 						authorNameLabel.styleName = "authorLabelStyle";
 						
-						/* authorHBox.setStyle("paddingTop",1);
+						authorHBox.setStyle("paddingTop",1);
 						authorHBox.setStyle("paddingBottom",1);
 						authorHBox.setStyle("paddingLeft",1);
 						authorHBox.setStyle("paddingRight",1);	
-						authorHBox.setStyle("verticalGap", 0); */
+						authorHBox.setStyle("verticalGap", 0);
 						
 						authorProgressBar.mode = "manual";
 						authorProgressBar.label = "";

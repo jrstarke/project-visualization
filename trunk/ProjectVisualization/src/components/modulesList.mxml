@@ -65,10 +65,10 @@
 					moduleHBox.opaqueBackground = 0xffffff;	
 					moduleNameLabel.styleName = "moduleLabelStyle";
 						
-					/* moduleHBox.setStyle("paddingTop",1);
+					 moduleHBox.setStyle("paddingTop",1);
 					moduleHBox.setStyle("paddingBottom",1);
 					moduleHBox.setStyle("paddingLeft",1);	
-					moduleHBox.setStyle("paddingRight",1); */	
+					moduleHBox.setStyle("paddingRight",1); 	
 					moduleHBox.setStyle("verticalGap", 0);
 					
 					moduleProgressBar.mode = "manual";
