@@ -208,7 +208,7 @@
 				currentHBox.addEventListener(MouseEvent.MOUSE_OUT, eventMouseOut);
 
 				//currentHBox.setStyle("borderStyle", "solid");
-				currentHBox.opaqueBackground = 0xf2f2f2;	
+				currentHBox.opaqueBackground = 0xeaeaea;	
 
 				/* currentHBox.setStyle("paddingTop",0);
 				currentHBox.setStyle("paddingBottom",0);
@@ -226,7 +226,7 @@
 						authorHBox = getParentProject.authorInfoList.getChildByName(getParentProject.authorInfoList.authorList[i].author) as HBox;
 						//authorHBox.setStyle("borderStyle", "solid");
 						if(authorHBox.opaqueBackground != 0x4d4f4f) 
-							authorHBox.opaqueBackground = 0xf2f2f2;	
+							authorHBox.opaqueBackground = 0xeaeaea;	
 						
 						/* authorHBox.setStyle("paddingTop",0);
 						authorHBox.setStyle("paddingBottom",0);
@@ -252,7 +252,7 @@
 						
 							//moduleHBox.setStyle("borderStyle", "solid");
 							if(moduleHBox.opaqueBackground != 0x4d4f4f) 
-								moduleHBox.opaqueBackground = 0xf2f2f2;	
+								moduleHBox.opaqueBackground = 0xeaeaea;	
 						
 							/* moduleHBox.setStyle("paddingTop",0);
 							moduleHBox.setStyle("paddingBottom",0);

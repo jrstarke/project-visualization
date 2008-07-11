@@ -198,7 +198,7 @@
 
 				//currentHBox.setStyle("borderStyle", "solid");
 				if(currentHBox.opaqueBackground != 0x4d4f4f) 
-					currentHBox.opaqueBackground = 0xf2f2f2;
+					currentHBox.opaqueBackground = 0xeaeaea;
 				
 				/* currentHBox.setStyle("paddingTop",0);
 				currentHBox.setStyle("paddingBottom",0);
@@ -214,7 +214,7 @@
 						var eventHBox:HBox = new HBox();
 						eventHBox = getParentProject.eventInfoList.getChildByName(getParentProject.eventInfoList.eventList[i].pk + "event") as HBox;
 						//eventHBox.setStyle("borderStyle", "solid");	
-						eventHBox.opaqueBackground = 0xf2f2f2;
+						eventHBox.opaqueBackground = 0xeaeaea;
 						
 						/* eventHBox.setStyle("paddingTop",0);
 						eventHBox.setStyle("paddingBottom",0);
