@@ -75,10 +75,10 @@
 				var eventModuleLabel:Label = new Label();
 				var eventSpace:Label = new Label();
 				
-				eventHBox.setStyle("paddingTop",1);
+				/* eventHBox.setStyle("paddingTop",1);
 				eventHBox.setStyle("paddingBottom",1);
 				eventHBox.setStyle("paddingLeft",1);
-				eventHBox.setStyle("paddingRight",1);
+				eventHBox.setStyle("paddingRight",1); */
 				eventVBox.setStyle("verticalGap", 0);
 				eventHBox.name = event.pk + "event";
 				eventVBox.name = event.author;
@@ -207,12 +207,13 @@
 				
 				currentHBox.addEventListener(MouseEvent.MOUSE_OUT, eventMouseOut);
 
-				currentHBox.setStyle("borderStyle", "solid");
+				//currentHBox.setStyle("borderStyle", "solid");
+				currentHBox.opaqueBackground = 0xf2f2f2;	
 
-				currentHBox.setStyle("paddingTop",0);
+				/* currentHBox.setStyle("paddingTop",0);
 				currentHBox.setStyle("paddingBottom",0);
 				currentHBox.setStyle("paddingLeft",0);
-				currentHBox.setStyle("paddingRight",0);
+				currentHBox.setStyle("paddingRight",0); */
 				
 				//highlight associated author if possible
 				var i:int;
@@ -223,12 +224,14 @@
 					{
 						var authorHBox:HBox = new HBox();
 						authorHBox = getParentProject.authorInfoList.getChildByName(getParentProject.authorInfoList.authorList[i].author) as HBox;
-						authorHBox.setStyle("borderStyle", "solid");
+						//authorHBox.setStyle("borderStyle", "solid");
+						if(authorHBox.opaqueBackground != 0x4d4f4f) 
+							authorHBox.opaqueBackground = 0xf2f2f2;	
 						
-						authorHBox.setStyle("paddingTop",0);
+						/* authorHBox.setStyle("paddingTop",0);
 						authorHBox.setStyle("paddingBottom",0);
 						authorHBox.setStyle("paddingLeft",0);
-						authorHBox.setStyle("paddingRight",0);						
+						authorHBox.setStyle("paddingRight",0);	 */					
 					}
 				} 
 				
@@ -247,12 +250,14 @@
 							var moduleHBox:HBox = new HBox();
 							moduleHBox = getParentProject.modulesList.getChildByName(getParentProject.modulesList.moduleList[j].pk) as HBox;
 						
-							moduleHBox.setStyle("borderStyle", "solid");
+							//moduleHBox.setStyle("borderStyle", "solid");
+							if(moduleHBox.opaqueBackground != 0x4d4f4f) 
+								moduleHBox.opaqueBackground = 0xf2f2f2;	
 						
-							moduleHBox.setStyle("paddingTop",0);
+							/* moduleHBox.setStyle("paddingTop",0);
 							moduleHBox.setStyle("paddingBottom",0);
 							moduleHBox.setStyle("paddingLeft",0);
-							moduleHBox.setStyle("paddingRight",0);
+							moduleHBox.setStyle("paddingRight",0); */
 						}	
 					}						
 				}
@@ -268,12 +273,13 @@
 				
 				var currentHBox:HBox = new HBox();
 				currentHBox = e.currentTarget as HBox;
-				currentHBox.setStyle("borderStyle", "none");
+				//currentHBox.setStyle("borderStyle", "none");
+				currentHBox.opaqueBackground = 0xffffff;	
 				
-				currentHBox.setStyle("paddingTop",1);
+				/* currentHBox.setStyle("paddingTop",1);
 				currentHBox.setStyle("paddingBottom",1);
 				currentHBox.setStyle("paddingLeft",1);
-				currentHBox.setStyle("paddingRight",1);
+				currentHBox.setStyle("paddingRight",1); */
 				
 				currentHBox.removeEventListener(MouseEvent.MOUSE_OUT, eventMouseOut);
 				
@@ -283,12 +289,14 @@
 				{
 					var authorHBox:HBox = new HBox();
 					authorHBox = getParentProject.authorInfoList.getChildByName(getParentProject.authorInfoList.authorList[i].author) as HBox;
-					authorHBox.setStyle("borderStyle", "none");		
+					//authorHBox.setStyle("borderStyle", "none");
+					if(authorHBox.opaqueBackground != 0x4d4f4f) 
+						authorHBox.opaqueBackground = 0xffffff;			
 					
-					authorHBox.setStyle("paddingTop",1);
+					/* authorHBox.setStyle("paddingTop",1);
 					authorHBox.setStyle("paddingBottom",1);
 					authorHBox.setStyle("paddingLeft",1);	
-					authorHBox.setStyle("paddingRight",1);				
+					authorHBox.setStyle("paddingRight",1);	 */			
 				} 
 				
 				//unhighlight all modules from the modules list
@@ -296,12 +304,14 @@
 				{
 					var moduleHBox:HBox = new HBox();
 					moduleHBox = getParentProject.modulesList.getChildByName(getParentProject.modulesList.moduleList[i].pk) as HBox;
-					moduleHBox.setStyle("borderStyle", "none");		
+					//moduleHBox.setStyle("borderStyle", "none");
+					if(moduleHBox.opaqueBackground != 0x4d4f4f) 
+						moduleHBox.opaqueBackground = 0xffffff;		
 					
-					moduleHBox.setStyle("paddingTop",1);
+					/* moduleHBox.setStyle("paddingTop",1);
 					moduleHBox.setStyle("paddingBottom",1);
 					moduleHBox.setStyle("paddingLeft",1);
-					moduleHBox.setStyle("paddingRight",1);	
+					moduleHBox.setStyle("paddingRight",1); */	
 				}
 			}
 		]]>
