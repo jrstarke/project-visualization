@@ -360,7 +360,7 @@
     				var currentAuthorProgBar:ProgressBar = currentAuthorHBox.getChildByName(getParentProject.authorInfoList.authorList[i].author + "Bar") as ProgressBar;
     				
     				currentAuthorProgBar.setProgress(authorCount, eventDictionaryGlob.length);
-    				currentAuthorProgBar.toolTip = authorCount + "/" + eventDictionaryGlob.length;
+    				currentAuthorHBox.toolTip = authorCount + "/" + eventDictionaryGlob.length;
     			}
     			
     			//go through each module and find out how many events are associated with them
@@ -381,7 +381,7 @@
     				var currentModuleProgBar:ProgressBar = currentModuleHBox.getChildByName(getParentProject.modulesList.moduleList[i].pk + "Bar") as ProgressBar;
     				
     				currentModuleProgBar.setProgress(moduleCount, eventDictionaryGlob.length);
-    				currentModuleProgBar.toolTip = moduleCount + "/" + eventDictionaryGlob.length;
+    				currentModuleHBox.toolTip = moduleCount + "/" + eventDictionaryGlob.length;
     			}
     			
     		}
