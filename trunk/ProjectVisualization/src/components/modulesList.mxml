@@ -61,13 +61,14 @@
 					
 					moduleNameLabel.width = 170;
 					
-					moduleHBox.setStyle("border", "none");
+					//moduleHBox.setStyle("border", "none");
+					moduleHBox.opaqueBackground = 0xffffff;	
 					moduleNameLabel.styleName = "moduleLabelStyle";
 						
-					moduleHBox.setStyle("paddingTop",1);
+					/* moduleHBox.setStyle("paddingTop",1);
 					moduleHBox.setStyle("paddingBottom",1);
 					moduleHBox.setStyle("paddingLeft",1);	
-					moduleHBox.setStyle("paddingRight",1);	
+					moduleHBox.setStyle("paddingRight",1); */	
 					moduleHBox.setStyle("verticalGap", 0);
 					
 					moduleProgressBar.mode = "manual";
@@ -161,12 +162,14 @@
 				
 				currentHBox.addEventListener(MouseEvent.MOUSE_OUT, eventMouseOut);
 
-				currentHBox.setStyle("borderStyle", "solid");
+				//currentHBox.setStyle("borderStyle", "solid");
+				if(currentHBox.opaqueBackground != 0x4d4f4f) 
+					currentHBox.opaqueBackground = 0xf2f2f2;	
 				
-				currentHBox.setStyle("paddingTop",0);
+				/* currentHBox.setStyle("paddingTop",0);
 				currentHBox.setStyle("paddingBottom",0);
 				currentHBox.setStyle("paddingLeft",0);
-				currentHBox.setStyle("paddingRight",0);
+				currentHBox.setStyle("paddingRight",0); */
 				
 				//highlight associated event if possible
 				var i:int;
@@ -179,12 +182,13 @@
 						{
 							var eventHBox:HBox = new HBox();
 							eventHBox = getParentProject.eventInfoList.getChildByName(getParentProject.eventInfoList.eventList[i].pk + "event") as HBox;
-							eventHBox.setStyle("borderStyle", "solid");
+							//eventHBox.setStyle("borderStyle", "solid");
+							eventHBox.opaqueBackground = 0xf2f2f2;	
 							
-							eventHBox.setStyle("paddingTop",0);
+							/* eventHBox.setStyle("paddingTop",0);
 							eventHBox.setStyle("paddingBottom",0);
 							eventHBox.setStyle("paddingLeft",0);	
-							eventHBox.setStyle("paddingRight",0);					
+							eventHBox.setStyle("paddingRight",0); */					
 						}
 					}
 				} 
@@ -200,12 +204,14 @@
 				
 				var currentHBox:HBox = new HBox();
 				currentHBox = e.currentTarget as HBox;
-				currentHBox.setStyle("borderStyle", "none");
+				//currentHBox.setStyle("borderStyle", "none");
+				if(currentHBox.opaqueBackground != 0x4d4f4f) 
+					currentHBox.opaqueBackground = 0xffffff;	
 				
-				currentHBox.setStyle("paddingTop",1);
+				/* currentHBox.setStyle("paddingTop",1);
 				currentHBox.setStyle("paddingBottom",1);
 				currentHBox.setStyle("paddingLeft",1);
-				currentHBox.setStyle("paddingRight",1);
+				currentHBox.setStyle("paddingRight",1); */
 				
 				currentHBox.removeEventListener(MouseEvent.MOUSE_OUT, eventMouseOut);
 				
@@ -215,12 +221,13 @@
 				{
 					var eventHBox:HBox = new HBox();
 					eventHBox = getParentProject.eventInfoList.getChildByName(getParentProject.eventInfoList.eventList[i].pk + "event") as HBox;
-					eventHBox.setStyle("borderStyle", "none");	
+					//eventHBox.setStyle("borderStyle", "none");
+					eventHBox.opaqueBackground = 0xffffff;		
 					
-					eventHBox.setStyle("paddingTop",1);
+					/* eventHBox.setStyle("paddingTop",1);
 					eventHBox.setStyle("paddingBottom",1);
 					eventHBox.setStyle("paddingLeft",1);
-					eventHBox.setStyle("paddingRight",1);					
+					eventHBox.setStyle("paddingRight",1); */					
 				} 
 			}
 			
