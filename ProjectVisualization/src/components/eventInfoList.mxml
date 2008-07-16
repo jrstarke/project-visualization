@@ -94,7 +94,7 @@
 				eventTypeLabel.height = 0;
 				eventModuleLabel.height = 0;
 				eventAuthorLabel.width = 75;
-				eventCommentLabel.width = 875;
+				eventCommentLabel.width = 835;
 				
 				//eventTypeLabel.text = event.type;
 				eventAuthorLabel.text = event.author_short_name;
@@ -144,13 +144,13 @@
 						eventFile.text = files[i];
 						
 						if(status[i] == "M")
-							eventFile.setStyle("color", 0x3dbaba);
+							eventFile.setStyle("color", 0x0003e2);
 						if(status[i] == "A")
-							eventFile.setStyle("color", 0x43ba3d);
+							eventFile.setStyle("color", 0x00c201);
 						if(status[i] == "R")
 							eventFile.setStyle("color", 0xeadc15);
 						if(status[i] == "D")
-							eventFile.setStyle("color", 0xba3d3d);
+							eventFile.setStyle("color", 0xe20300);
 						
 						eventVBox.addChild(eventFile);
 					}

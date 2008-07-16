@@ -95,8 +95,8 @@
 						
 						authorHBox.setStyle("paddingTop",1);
 						authorHBox.setStyle("paddingBottom",1);
-						authorHBox.setStyle("paddingLeft",1);
-						authorHBox.setStyle("paddingRight",1);	
+						//authorHBox.setStyle("paddingLeft",1);
+						//authorHBox.setStyle("paddingRight",1);	
 						authorHBox.setStyle("verticalGap", 0);
 						
 						authorProgressBar.mode = "manual";
@@ -104,7 +104,9 @@
 						authorProgressBar.labelPlacement = "right";
 						authorProgressBar.setStyle("verticalCenter", 0);
 						authorProgressBar.setStyle("verticalGap", 0);
-						authorProgressBar.width = 50;
+						authorProgressBar.width = 70;
+						authorProgressBar.setStyle("barColor", 0xe20300);
+						authorProgressBar.setStyle("borderColor", 0xFFFFFF);
 					
 						authorHBox.addEventListener(MouseEvent.MOUSE_OVER, eventMouseOver);
 						authorHBox.addEventListener(MouseEvent.CLICK, eventMouseClick);

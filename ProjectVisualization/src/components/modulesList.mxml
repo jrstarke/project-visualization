@@ -67,8 +67,8 @@
 						
 					 moduleHBox.setStyle("paddingTop",1);
 					moduleHBox.setStyle("paddingBottom",1);
-					moduleHBox.setStyle("paddingLeft",1);	
-					moduleHBox.setStyle("paddingRight",1); 	
+					//moduleHBox.setStyle("paddingLeft",1);	
+					//moduleHBox.setStyle("paddingRight",1); 	
 					moduleHBox.setStyle("verticalGap", 0);
 					
 					moduleProgressBar.mode = "manual";
@@ -76,7 +76,9 @@
 					moduleProgressBar.labelPlacement = "right";
 					moduleProgressBar.setStyle("verticalCenter", 0);
 					moduleProgressBar.setStyle("verticalGap", 0);
-					moduleProgressBar.width = 50;
+					moduleProgressBar.width = 70;
+					moduleProgressBar.setStyle("barColor", 0xe20300);
+					moduleProgressBar.setStyle("borderColor", 0xFFFFFF);
 					
 					moduleHBox.addEventListener(MouseEvent.MOUSE_OVER, eventMouseOver);
 					moduleHBox.addEventListener(MouseEvent.CLICK, eventMouseClick);
@@ -89,7 +91,7 @@
 			
 			//perform click to hightlight the module name and set the filter
 			private function eventMouseClick(e:MouseEvent):void
-			{			
+			{		
 				var currentHBox:HBox = new HBox();
 				currentHBox = e.currentTarget as HBox;
 				var currentLabel:Label = new Label();
