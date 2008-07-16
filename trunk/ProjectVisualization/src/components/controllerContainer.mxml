@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="13%" width="1280" horizontalCenter="0" creationComplete="getSrvStats.send()">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="55" width="1280" horizontalCenter="0" creationComplete="getSrvStats.send()">
 
     <mx:ArrayCollection id="resultsDjango"/>
     <mx:ArrayCollection id="parsedResultsDjango"/>
@@ -49,12 +49,12 @@
     <mx:Stroke id = "s1" color="red" weight="2"/>
     <mx:SolidColor id="sc2" color="#e20300" alpha=".3"/>
     <mx:Stroke id = "s2" color="#e20300" weight="1"/>
-    <mx:SolidColor id="sc3" color="#00DD00" alpha=".3"/>
-    <mx:Stroke id = "s3" color="#00DD00" weight="1"/>
+    <mx:SolidColor id="sc3" color="#EEEEEE" alpha=".3"/>
+    <mx:Stroke id = "s3" color="#EEEEEE" weight="1"/>
     <mx:Glow id="playGlow" duration="2000" strength="255" color="0xFFFFFF" inner="true"/>
     <mx:Array id="bge"/>
     
-	<mx:AreaChart id="Areachart" paddingLeft="10" left="0" height="90%" width="99%" top="0"
+	<mx:AreaChart id="Areachart" paddingLeft="10" left="0" height="90%" width="99%" bottom="15"
          showDataTips="true" dataProvider="{parsedResultsDjango}" backgroundElements="{bge}">
  		<mx:horizontalAxis>
            	 <mx:CategoryAxis id="ha" categoryField="dateEvent"/>
@@ -77,15 +77,15 @@
         	    <mx:AreaSeries yField="normalizedFilter" form="curve" displayName="Total Events for Filter" areaStroke="{s2}" areaFill="{sc2}"/>
       	  </mx:series>
    	 </mx:AreaChart> 
-	<mx:Canvas left="0" width="0%" height="90%" top="0" backgroundAlpha="0.5" backgroundColor="#5A5A5A" id="leftCanvas">
+	<mx:Canvas left="0" width="0%" height="90%" top="0" backgroundAlpha="0.5" backgroundColor="#5A5A5A" id="leftCanvas" bottom="15">
 	</mx:Canvas>
-	<mx:Canvas right="0" width="0.6%" height="90%" top="0" backgroundAlpha="0.5" backgroundColor="#5A5A5A" id="rightCanvas">
+	<mx:Canvas right="0" width="0.6%" height="90%" top="0" backgroundAlpha="0.5" backgroundColor="#5A5A5A" id="rightCanvas" bottom="15">
 	</mx:Canvas>
-	<mx:Canvas width="0.5%" height="90%" top="0" backgroundAlpha="0.8" backgroundColor="#A8FF00" id="leftControlCanvas" useHandCursor="true" buttonMode="true" showEffect="{playGlow}">
+	<mx:Canvas width="0.5%" height="90%" top="0" backgroundAlpha="0.8" backgroundColor="#CCCCCC" id="leftControlCanvas" useHandCursor="true" buttonMode="true" showEffect="{playGlow}" bottom="15">
 	</mx:Canvas>
-	<mx:Canvas width="0.5%" height="90%" top="0" backgroundAlpha="0.8" backgroundColor="#FF5A00" id="rightControlCanvas" useHandCursor="true" buttonMode="true" showEffect="{playGlow}">
+	<mx:Canvas width="0.5%" height="90%" top="0" backgroundAlpha="0.8" backgroundColor="#CCCCCC" id="rightControlCanvas" useHandCursor="true" buttonMode="true" showEffect="{playGlow}" bottom="15">
 	</mx:Canvas>
-	<mx:Canvas width="1" height="90%" top="0" backgroundAlpha="0.8" backgroundColor="#FFFFFF" id="dateCanvas">
+	<mx:Canvas width="1" height="90%" backgroundAlpha="0.8" backgroundColor="#FFFFFF" id="dateCanvas" bottom="10">
 	</mx:Canvas>
 	<mx:Image source="assets/images/button-icon-play.png" width="3%" height="30%" verticalCenter="0" id="playerButton" useHandCursor="true" buttonMode="true"/>
 	<mx:Label x="100" bottom="30" text="" id="debugLabel"/>
@@ -130,7 +130,6 @@
 						janLabel.x = ((Areachart.width/730)*i) + space;
 						janLabel.text = "Jan " + curDate.substring(2,4);
 						janLabel.setStyle("bottom", 0);
-						
 						Areachart.parent.addChild(janLabel);
 					} 
 					
