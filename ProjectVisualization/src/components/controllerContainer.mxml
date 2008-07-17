@@ -55,7 +55,7 @@
     <mx:Array id="bge"/>
     
 	<mx:AreaChart id="Areachart" paddingLeft="10" left="0" height="90%" width="99%" bottom="15"
-         showDataTips="true" dataProvider="{parsedResultsDjango}" backgroundElements="{bge}">
+         showDataTips="false" dataProvider="{parsedResultsDjango}" backgroundElements="{bge}">
  		<mx:horizontalAxis>
            	 <mx:CategoryAxis id="ha" categoryField="dateEvent"/>
        	 </mx:horizontalAxis>
