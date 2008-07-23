@@ -50,7 +50,7 @@
 				var numOfTopAuth:int = 18;
 
 				getSrvAuthors = new HTTPService();
-				getSrvAuthors.url = "http://localhost:8000/topauthors/" + startDate + "/" + endDate + "/" + numOfTopAuth + "/"; 
+				getSrvAuthors.url = "http://work.laudable.net:8080/topauthors/" + startDate + "/" + endDate + "/" + numOfTopAuth + "/"; 
 				getSrvAuthors.resultFormat = "text";
 				getSrvAuthors.addEventListener("result", processAuthorList);
 				
@@ -154,7 +154,7 @@
 					highlightedAuthor = int(currentHBox.name);
 					
 					getSrvAuthorStats = new HTTPService();
-					getSrvAuthorStats.url = "http://localhost:8000/selectedstats/" + highlightedAuthor + "/" + getParentProject.modulesList.highlightedModule + "/"; 
+					getSrvAuthorStats.url = "http://work.laudable.net:8080/selectedstats/" + highlightedAuthor + "/" + getParentProject.modulesList.highlightedModule + "/"; 
 					getSrvAuthorStats.resultFormat = "text";
 					getSrvAuthorStats.addEventListener("result", processAuthorStats);
 					getSrvAuthorStats.send();
@@ -167,7 +167,7 @@
 					highlightedAuthor = 0;
 					
 					getSrvAuthorStats = new HTTPService();
-					getSrvAuthorStats.url = "http://localhost:8000/selectedstats/" + highlightedAuthor + "/" + getParentProject.modulesList.highlightedModule + "/"; 
+					getSrvAuthorStats.url = "http://work.laudable.net:8080/selectedstats/" + highlightedAuthor + "/" + getParentProject.modulesList.highlightedModule + "/"; 
 					getSrvAuthorStats.resultFormat = "text";
 					getSrvAuthorStats.addEventListener("result", processAuthorStats);
 					getSrvAuthorStats.send();
