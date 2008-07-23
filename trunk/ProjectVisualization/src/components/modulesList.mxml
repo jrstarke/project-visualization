@@ -36,7 +36,7 @@
 				getParentProject =  this.parent.parent.parent.parent as ProjectVisualizaton;	
 				
 				getSrvModules = new HTTPService();
-				getSrvModules.url = "http://localhost:8000/modules/"; 
+				getSrvModules.url = "http://work.laudable.net:8080/modules/"; 
 				getSrvModules.resultFormat = "text";
 				getSrvModules.addEventListener("result", processModuleList);
 				
@@ -119,7 +119,7 @@
 					highlightedModule = int(currentHBox.name);
 					
 					getSrvModuleStats = new HTTPService();
-					getSrvModuleStats.url = "http://localhost:8000/selectedstats/" + getParentProject.authorInfoList.highlightedAuthor + "/" + highlightedModule + "/"; 
+					getSrvModuleStats.url = "http://work.laudable.net:8080/selectedstats/" + getParentProject.authorInfoList.highlightedAuthor + "/" + highlightedModule + "/"; 
 					getSrvModuleStats.resultFormat = "text";
 					getSrvModuleStats.addEventListener("result", processModuleStats);
 					getSrvModuleStats.send();
@@ -132,7 +132,7 @@
 					highlightedModule = 0;
 					
 					getSrvModuleStats = new HTTPService();
-					getSrvModuleStats.url = "http://localhost:8000/selectedstats/" + getParentProject.authorInfoList.highlightedAuthor + "/" + highlightedModule + "/"; 
+					getSrvModuleStats.url = "http://work.laudable.net:8080/selectedstats/" + getParentProject.authorInfoList.highlightedAuthor + "/" + highlightedModule + "/"; 
 					getSrvModuleStats.resultFormat = "text";
 					getSrvModuleStats.addEventListener("result", processModuleStats);
 					getSrvModuleStats.send();
