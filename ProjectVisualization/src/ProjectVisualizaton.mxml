@@ -326,7 +326,7 @@
 					currentDate = controllerCanvas.parsedResultsDjango.getItemAt(index).dateEvent;
 					
 					controllerCanvas.rightControlCanvas.x += numStep;					
-					controllerCanvas.rightControlCanvas.toolTip = "" + controllerCanvas.rightControlCanvas.x
+					//controllerCanvas.rightControlCanvas.toolTip = "" + controllerCanvas.rightControlCanvas.x
 					controllerCanvas.rightCanvas.width = (controllerCanvas.width - controllerCanvas.rightControlCanvas.x - controllerCanvas.rightControlCanvas.width);
 					controllerCanvas.playerButton.x = (((controllerCanvas.leftControlCanvas.width + controllerCanvas.leftControlCanvas.x) + controllerCanvas.rightControlCanvas.x)/2) - ((controllerCanvas.playerButton.width)/2);
 					processAtPixel(controllerCanvas.rightControlCanvas.x);
@@ -335,7 +335,7 @@
 				else{
 					//move controller to the end
 					controllerCanvas.rightControlCanvas.x = controllerCanvas.Areachart.width;
-					controllerCanvas.rightControlCanvas.toolTip = "" + controllerCanvas.rightControlCanvas.x
+					//controllerCanvas.rightControlCanvas.toolTip = "" + controllerCanvas.rightControlCanvas.x
 					controllerCanvas.rightCanvas.width = (controllerCanvas.width - controllerCanvas.rightControlCanvas.x - controllerCanvas.rightControlCanvas.width);
 					controllerCanvas.playerButton.x = (((controllerCanvas.leftControlCanvas.width + controllerCanvas.leftControlCanvas.x) + controllerCanvas.rightControlCanvas.x)/2) - ((controllerCanvas.playerButton.width)/2);
 					processAtPixel(controllerCanvas.rightControlCanvas.x);
