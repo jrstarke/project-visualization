@@ -4,7 +4,7 @@
     <mx:ArrayCollection id="resultsDjango"/>
     <mx:ArrayCollection id="parsedResultsDjango"/>
     <mx:ArrayCollection id="eventList"/>
-    <mx:HTTPService id="getSrvStats" url="http://localhost:8000/stats/" resultFormat="text" result="handleGetResult();initDates();initMonthLabels();"/>
+    <mx:HTTPService id="getSrvStats" url="http://work.laudable.net:8080/stats/" resultFormat="text" result="handleGetResult();initDates();initMonthLabels();"/>
     
     <mx:Script>
         <![CDATA[
@@ -299,7 +299,7 @@
 			public function updateEventList(startDate:String, endDate:String):void
 			{
 				getSrvEvents = new HTTPService();
-				getSrvEvents.url = "http://localhost:8000/selectedeventrange/" + startDate + "/" + endDate + "/" + getParentProject.authorInfoList.highlightedAuthor + "/" + getParentProject.modulesList.highlightedModule + "/";; 
+				getSrvEvents.url = "http://work.laudable.net:8080/selectedeventrange/" + startDate + "/" + endDate + "/" + getParentProject.authorInfoList.highlightedAuthor + "/" + getParentProject.modulesList.highlightedModule + "/";; 
 				getSrvEvents.resultFormat = "text";
 				getSrvEvents.addEventListener("result", updateEventListResult);
 				
