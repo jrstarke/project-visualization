@@ -265,8 +265,9 @@ def files_in_module(module_id):
     return files           
 
 def selectedstats(author_id, module_id):
-    start = d = date(2006,01,01) # hard coded dates for now
-    stop = date(2008, 01, 01)
+    # start = d = date(2006,01,01) # hard coded dates for now
+    stop = date(2008, 8, 1)
+    start = d = stop - timedelta(730)
 
     cursor = connection.cursor()
     cursor.execute("SELECT MAX(days.daycount) from ( select DATE(c.date), count(distinct c.id) as daycount from projecthistory_commitevent as c where c.date >= '" + str(start) + "' and c.date < '" + str(stop) + "' group by DATE(c.date)) as days")
