@@ -170,7 +170,7 @@
 				
 				if((pt.x > (this.leftControlCanvas.x + this.leftControlCanvas.width)) && (pt.x <= this.Areachart.width)){
 					this.rightControlCanvas.x = pt.x;
-					this.rightControlCanvas.toolTip = "" + this.rightControlCanvas.x;
+					//this.rightControlCanvas.toolTip = "" + this.rightControlCanvas.x;
 					this.rightCanvas.width = (this.width - this.rightControlCanvas.x - this.rightControlCanvas.width);
 					this.playerButton.x = (((this.leftControlCanvas.width + this.leftControlCanvas.x) + this.rightControlCanvas.x)/2) - ((this.playerButton.width)/2);
 					
@@ -202,7 +202,7 @@
 				//debug("" + pt.x);
 				if((pt.x < (this.rightControlCanvas.x - this.leftControlCanvas.width)) && (pt.x >= (this.Areachart.x))){
 					this.leftControlCanvas.x = pt.x;
-					this.leftControlCanvas.toolTip = "" + this.leftControlCanvas.x;
+					//this.leftControlCanvas.toolTip = "" + this.leftControlCanvas.x;
 					this.leftCanvas.width = pt.x;
 					this.playerButton.x = (((this.leftControlCanvas.width + this.leftControlCanvas.x) + this.rightControlCanvas.x)/2) - ((this.playerButton.width)/2);
 					
