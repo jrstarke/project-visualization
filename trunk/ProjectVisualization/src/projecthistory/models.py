@@ -225,8 +225,18 @@ def _events(start, stop, model):
     return list(model.objects.select_related().filter(date__range=(start, stop)).order_by('date'))
 
 def topauthors(start, stop, num_authors):
+    cursor = connection.cursor()
+    cursor.execute("SELECT DATE(MAX(date)) from projecthistory_commitevent")
+    stop = cursor.fetchone()[0]
+    #stop = date(2008, 8, 1)
+    start = d = stop - timedelta(730)
+    
     author_counts = {}
-    for a in [Author.objects.get(pk=i) for i in [7,1,8,11,18,5,16,15,6,14,13,4,3,17,10,12,9,2]]:
+    cursor = connection.cursor()
+    cursor.execute("select distinct(a.id) from projecthistory_author as a, projecthistory_commitevent as c where c.author_id = a.id")
+#    for a in [Author.objects.get(pk=i) for i in [7,5,3,4,21,10,14,19,12,11,1,6,9,18,16,17,2,20,13,15,8]]:
+    for a in [Author.objects.get(pk=i) for i in [x[0] for x in cursor.fetchall()]]:
+        print(a.id)
         author_counts[a.id] = (a.newticketevent_set.filter(date__range=(start,stop)).count(),a.commitevent_set.filter(date__range=(start,stop)).count(),a.ticketchangeevent_set.filter(date__range=(start,stop)).count())
     sorted_counts = author_counts.items()
     # sorted_counts.sort(lambda a,b: cmp((b[1][0]+b[1][1]+b[1][2]), (a[1][0]+a[1][1]+a[1][2])))
