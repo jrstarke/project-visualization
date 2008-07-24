@@ -236,7 +236,6 @@ def topauthors(start, stop, num_authors):
     cursor.execute("select distinct(a.id) from projecthistory_author as a, projecthistory_commitevent as c where c.author_id = a.id")
 #    for a in [Author.objects.get(pk=i) for i in [7,5,3,4,21,10,14,19,12,11,1,6,9,18,16,17,2,20,13,15,8]]:
     for a in [Author.objects.get(pk=i) for i in [x[0] for x in cursor.fetchall()]]:
-        print(a.id)
         author_counts[a.id] = (a.newticketevent_set.filter(date__range=(start,stop)).count(),a.commitevent_set.filter(date__range=(start,stop)).count(),a.ticketchangeevent_set.filter(date__range=(start,stop)).count())
     sorted_counts = author_counts.items()
     # sorted_counts.sort(lambda a,b: cmp((b[1][0]+b[1][1]+b[1][2]), (a[1][0]+a[1][1]+a[1][2])))
