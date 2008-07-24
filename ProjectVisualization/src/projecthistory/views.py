@@ -72,6 +72,9 @@ def filesinmodule(request, module_id_str):
     files = models.files_in_module(module_id)
     return HttpResponse(simplejson.dumps(files))
 
+def index(request):
+    return HttpResponseRedirect('/scrutinize/')
+
 def cross_domain(request):
     return HttpResponse('''
     <?xml version="1.0"?>

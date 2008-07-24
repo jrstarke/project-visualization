@@ -266,7 +266,10 @@ def files_in_module(module_id):
 
 def selectedstats(author_id, module_id):
     # start = d = date(2006,01,01) # hard coded dates for now
-    stop = date(2008, 8, 1)
+    cursor = connection.cursor()
+    cursor.execute("SELECT DATE(MAX(date)) from projecthistory_commitevent")
+    stop = cursor.fetchone()[0]
+    #stop = date(2008, 8, 1)
     start = d = stop - timedelta(730)
 
     cursor = connection.cursor()
