@@ -42,7 +42,7 @@ def svnstats(location):
         output += "\n\n"
     print output     
     
-    print module_commits   
+    #print module_commits   
             
     
         

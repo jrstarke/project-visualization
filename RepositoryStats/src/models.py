@@ -2,8 +2,10 @@ from datetime import date
 
 class Collection:
     __single = None
-    authors = []
-    modules = []
+    
+    def __init__(self):
+        authors = []
+        modules = []
     
     @classmethod
     def Handle (cls):
@@ -16,7 +18,9 @@ class Collection:
         self.modules = []
 
 class Author:
-    name = ''
+    
+    def __init__(self):
+        name = ''
     
     @classmethod
     def from_string(self,string):
@@ -43,7 +47,9 @@ class Author:
         return not result
 
 class Module:
-    directory = ''
+    
+    def __init__(self):
+        directory = ''
     
     @classmethod
     def from_path(cls,full_path):
@@ -53,7 +59,7 @@ class Module:
             full_path = '/' + '/'.join(paths[paths.index('trunk')+1:])
         elif ('branches' in paths):
             full_path = '/' + '/'.join(paths[paths.index('branches')+2:])    
-        module.directory = full_path[:full_path.rfind('/')]
+        module.directory = full_path[:full_path.rfind('/')+1]
         module_list = Collection.Handle().modules
         if module in module_list:
             module = module_list[module_list.index(module)]
@@ -69,7 +75,7 @@ class Module:
             full_path = '/' + '/'.join(paths[paths.index('trunk')+1:])
         elif ('branches' in paths):
             full_path = '/' + '/'.join(paths[paths.index('branches')+2:])    
-        module.directory = full_path[:full_path.rfind('/')]
+        module.directory = full_path[:full_path.rfind('/')+1]
         module_list = Collection.Handle().modules
         if module in module_list:
             module = module_list[module_list.index(module)]
@@ -91,12 +97,14 @@ class Module:
         return not result
     
 class Path:
-    action = ''
-    dest_file = ''
-    src_file = ''
-    src_revision = ''
-    module = ''
     
+    def __init__(self):
+        action = ''
+        dest_file = ''
+        src_file = ''
+        src_revision = ''
+        module = ''
+        
     def __repr__(self):
         return '(action=' + repr(self.action) + ', dest_file=' + repr(self.dest_file) + ', src_file=' + repr(self.src_file) + ', src_revision=' + repr(self.src_revision) + ', module=' + repr(self.module) + ')'
     
