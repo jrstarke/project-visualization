@@ -1,0 +1,908 @@
+<?xml version="1.0"?>
+<log>
+<logentry
+   revision="15">
+<author>starkej</author>
+<date>2008-08-07T18:38:01.866783Z</date>
+<paths>
+<path
+   action="M">/branches/0.3</path>
+</paths>
+<msg>reintegrated 0.3 branch to trunk</msg>
+</logentry>
+<logentry
+   revision="14">
+<author>starkej</author>
+<date>2008-08-07T18:26:43.835456Z</date>
+<paths>
+<path
+   action="M">/branches/0.3</path>
+</paths>
+<msg>merged 0.3</msg>
+</logentry>
+<logentry
+   revision="13">
+<author>starkej</author>
+<date>2008-08-07T18:14:37.461592Z</date>
+<paths>
+<path
+   action="D">/branches/0.1</path>
+</paths>
+<msg>removed 0.1 branch, it was useless</msg>
+</logentry>
+<logentry
+   revision="12">
+<author>starkej</author>
+<date>2008-08-07T18:11:20.031437Z</date>
+<paths>
+<path
+   action="M">/branches/0.3/Stuff_Goes_Here/mydoc.txt</path>
+</paths>
+<msg>should be correct as of version 0.3</msg>
+</logentry>
+<logentry
+   revision="11">
+<author>starkej</author>
+<date>2008-08-07T18:09:25.950935Z</date>
+<paths>
+<path
+   copyfrom-path="/trunk"
+   copyfrom-rev="10"
+   action="A">/branches/0.3</path>
+</paths>
+<msg>Ok, lets try this again with a proper branch of the trunk</msg>
+</logentry>
+<logentry
+   revision="10">
+<author>starkej</author>
+<date>2008-08-07T18:08:33.285465Z</date>
+<paths>
+<path
+   action="D">/branches/0.2</path>
+</paths>
+<msg>removed 0.2 to try again</msg>
+</logentry>
+<logentry
+   revision="9">
+<author>starkej</author>
+<date>2008-08-07T18:06:58.578233Z</date>
+<paths>
+<path
+   action="M">/branches/0.2/mydoc.txt</path>
+</paths>
+<msg>finished</msg>
+</logentry>
+<logentry
+   revision="8">
+<author>starkej</author>
+<date>2008-08-07T18:05:42.684363Z</date>
+<paths>
+<path
+   copyfrom-path="/trunk/Stuff_Goes_Here"
+   copyfrom-rev="7"
+   action="A">/branches/0.2</path>
+</paths>
+<msg></msg>
+</logentry>
+<logentry
+   revision="7">
+<author>starkej</author>
+<date>2008-08-07T18:02:31.983195Z</date>
+<paths>
+<path
+   action="A">/branches/0.1</path>
+</paths>
+<msg>new branch</msg>
+</logentry>
+<logentry
+   revision="6">
+<author>starkej</author>
+<date>2008-08-07T18:00:59.774734Z</date>
+<paths>
+<path
+   action="A">/trunk/Stuff_Goes_Here/mydoc.txt</path>
+<path
+   action="A">/trunk/Stuff_Goes_Here</path>
+</paths>
+<msg>Added stuff to the repository
+</msg>
+</logentry>
+<logentry
+   revision="5">
+<author>starkej</author>
+<date>2008-08-07T17:54:34.369603Z</date>
+<paths>
+<path
+   action="A">/branches</path>
+</paths>
+<msg>added branches</msg>
+</logentry>
+<logentry
+   revision="4">
+<author>starkej</author>
+<date>2008-08-07T17:53:16.149786Z</date>
+<paths>
+<path
+   action="D">/.project</path>
+<path
+   action="D">/.flexProperties</path>
+<path
+   action="D">/.pydevproject</path>
+<path
+   action="D">/.actionScriptProperties</path>
+</paths>
+<msg>removed things</msg>
+</logentry>
+<logentry
+   revision="3">
+<author>starkej</author>
+<date>2008-08-07T17:52:57.763869Z</date>
+<paths>
+<path
+   action="A">/trunk</path>
+</paths>
+<msg>added a trunk</msg>
+</logentry>
+<logentry
+   revision="2">
+<author>starkej</author>
+<date>2008-08-07T17:51:45.751059Z</date>
+<paths>
+<path
+   action="D">/src</path>
+<path
+   action="D">/data</path>
+<path
+   action="D">/libs</path>
+<path
+   action="D">/bin-debug</path>
+<path
+   action="D">/html-template</path>
+<path
+   action="D">/.metadata</path>
+<path
+   action="D">/.settings</path>
+</paths>
+<msg>removed stuff</msg>
+</logentry>
+<logentry
+   revision="1">
+<author>starkej</author>
+<date>2008-08-07T17:06:57.918411Z</date>
+<paths>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.jdt.launching/libraryInfos.xml</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/utils/ArrayUtil.as</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/net/proxies</path>
+<path
+   action="A">/libs/corelib/license.txt</path>
+<path
+   action="A">/bin-debug/projecthistory/views.py</path>
+<path
+   action="A">/bin-debug/history/history.js</path>
+<path
+   action="A">/libs/corelib/docs/index.html</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/crypto/SHA224.as</path>
+<path
+   action="A">/libs/corelib/docs/all-index-R.html</path>
+<path
+   action="A">/libs/corelib/tests/com/adobe/utils/NumberFormatterTest.as</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/utils/package-detail.html</path>
+<path
+   action="A">/src</path>
+<path
+   action="A">/libs/corelib/tests/com/adobe/images/JPGEncoderTest.as</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/utils/DictionaryUtil.as</path>
+<path
+   action="A">/libs/corelib/docs</path>
+<path
+   action="A">/libs/corelib/tests/.flexProperties</path>
+<path
+   action="A">/.metadata/.plugins/com.adobe.flexbuilder.codemodel/searchCache/SWCReferenceIndex.index/write.lock</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/properties.version</path>
+<path
+   action="A">/.metadata/.plugins/com.adobe.flexbuilder.codemodel/searchCache/CSSIndex.index/segments_1</path>
+<path
+   action="A">/libs/corelib/tests/.actionScriptProperties</path>
+<path
+   action="A">/libs/corelib</path>
+<path
+   action="A">/.metadata/.plugins/com.adobe.flexbuilder.codemodel/searchCache</path>
+<path
+   action="A">/libs/corelib/docs/all-index-O.html</path>
+<path
+   action="A">/.metadata/.plugins/com.adobe.flexbuilder.codemodel/searchCache/ASReferenceIndex.index/write.lock</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/net/proxies/RFC2817Socket.html</path>
+<path
+   action="A">/libs/corelib/docs/images/logo.jpg</path>
+<path
+   action="A">/.metadata/.plugins/com.adobe.flexbuilder.codemodel/searchCache/SWCReferenceIndex.index</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources</path>
+<path
+   action="A">/libs/corelib/docs/package-frame.html</path>
+<path
+   action="A">/libs/corelib/docs/cookie.txt</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/net/proxies/class-list.html</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/serialization/json/JSON.as</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/webapis/events/ServiceEvent.as</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.mylyn.context.ui.prefs</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.core.runtime/.settings</path>
+<path
+   action="A">/.metadata/.plugins/com.adobe.flexbuilder.codemodel/searchCache/CSSIndex.index/segments.gen</path>
+<path
+   action="A">/libs/corelib/src</path>
+<path
+   action="A">/libs/corelib/tests/com/adobe/utils</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/utils/DateUtil.as</path>
+<path
+   action="A">/bin-debug/projecthistory/crossdomain.xml</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/net/proxies/package-detail.html</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/utils/DateUtil.html</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.jdt.core/variablesAndContainers.dat</path>
+<path
+   action="A">/libs/corelib/docs/all-index-L.html</path>
+<path
+   action="A">/.metadata/.mylyn/repositories.xml.zip</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.mylyn.bugzilla.core</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.launching.prefs</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/crypto/SHA256.as</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/utils/IntUtil.as</path>
+<path
+   action="A">/src/components/darronschall/effects/effectClasses/AnimateColorInstance.as</path>
+<path
+   action="A">/libs/corelib/docs/images/detailHeaderRule.jpg</path>
+<path
+   action="A">/libs</path>
+<path
+   action="A">/bin-debug/assets/images/button-icon-play.png</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/serialization/json/JSON.html</path>
+<path
+   action="A">/.metadata/.mylyn/backup/mylyndata-2008-05-26.zip</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/serialization/json/JSONToken.html</path>
+<path
+   action="A">/libs/corelib/tests/com/adobe/images/PNGEncoderTest.as</path>
+<path
+   action="A">/bin-debug/projecthistory/models.py</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.ide.prefs</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/crypto/package-detail.html</path>
+<path
+   action="A">/libs/corelib/docs/all-index-I.html</path>
+<path
+   action="A">/.metadata/.mylyn/offline</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/utils/ArrayUtil.html</path>
+<path
+   action="A">/libs/corelib/build</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.core.resources</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/net/IURIResolver.as</path>
+<path
+   action="A">/src/components/stateContainer.mxml</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.core.resources/.root/6.tree</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.core.resources/.safetable</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/images/JPGEncoder.as</path>
+<path
+   action="A">/libs/corelib/tests/com/adobe/utils/ArrayUtilTest.as</path>
+<path
+   action="A">/src/components/graphEventObject.mxml</path>
+<path
+   action="A">/libs/corelib/docs/print.css</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/webapis/events/package-detail.html</path>
+<path
+   action="A">/libs/corelib/docs/all-index-Y.html</path>
+<path
+   action="A">/.metadata/.plugins/com.adobe.flexbuilder.codemodel/searchCache/MXMLReferenceIndex.index/write.lock</path>
+<path
+   action="A">/libs/corelib/docs/style.css</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/serialization/json/JSONEncoder.html</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/errors/package-detail.html</path>
+<path
+   action="A">/.metadata/.plugins/com.adobe.flexbuilder.codemodel/searchCache/MXMLReferenceIndex.index/segments.gen</path>
+<path
+   action="A">/bin-debug/assets/images</path>
+<path
+   action="A">/libs/corelib/docs/all-index-F.html</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/serialization</path>
+<path
+   action="A">/libs/corelib/docs/all-classes.html</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/utils/NumberFormatter.html</path>
+<path
+   action="A">/.metadata/.plugins/com.adobe.flexbuilder.codemodel/extraClassPath</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.core.resources/.root</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/net/proxies/RFC2817Socket.as</path>
+<path
+   action="A">/bin-debug/projecthistory/tests.py</path>
+<path
+   action="A">/src/projecthistory</path>
+<path
+   action="A">/src/assets/images/greenState.png</path>
+<path
+   action="A">/libs/corelib/docs/all-index-V.html</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/images/PNGEncoder.html</path>
+<path
+   action="A">/src/assets/images/button-icon-play.png</path>
+<path
+   action="A">/src/components/darronschall/effects/AnimateColor.as</path>
+<path
+   action="A">/.metadata/.plugins/org.tigris.subversion.subclipse.ui</path>
+<path
+   action="A">/bin-debug/assets/images/greenState.png</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.debug.ui.prefs</path>
+<path
+   action="A">/libs/corelib/tests/com/adobe/serialization/json</path>
+<path
+   action="A">/.metadata/.plugins/com.adobe.flexbuilder.codemodel/searchCache/ASReferenceIndex.index</path>
+<path
+   action="A">/bin-debug/AC_OETags.js</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/crypto/MD5.as</path>
+<path
+   action="A">/html-template/playerProductInstall.swf</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/crypto/MD5.html</path>
+<path
+   action="A">/libs/corelib/docs/all-index-C.html</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.ui.ide/dialog_settings.xml</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.ui.workbench</path>
+<path
+   action="A">/src/components/darronschall/effects</path>
+<path
+   action="A">/libs/corelib/tests/com/adobe/crypto/MD5Test.as</path>
+<path
+   action="A">/libs/corelib/tests/com/adobe/serialization/json/SimpleClass.as</path>
+<path
+   action="A">/html-template</path>
+<path
+   action="A">/html-template/history</path>
+<path
+   action="A">/libs/corelib/docs/all-index-S.html</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/webapis/package-detail.html</path>
+<path
+   action="A">/libs/corelib/tests/com/adobe/crypto/SHA1Test.as</path>
+<path
+   action="A">/src/ProjectVisualizaton.mxml</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/images/PNGEncoder.as</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.ui.prefs</path>
+<path
+   action="A">/src/components/darronschall/util/ColorUtil.as</path>
+<path
+   action="A">/.project</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/webapis/events</path>
+<path
+   action="A">/libs/corelib/src/com/adobe</path>
+<path
+   action="A">/libs/corelib/docs/package-summary.html</path>
+<path
+   action="A">/src/assets/images/redState.png</path>
+<path
+   action="A">/.metadata/.plugins/org.tigris.subversion.subclipse.ui/keyFileHistory.xml</path>
+<path
+   action="A">/libs/corelib/docs/images/expanded.gif</path>
+<path
+   action="A">/src/projecthistory/stats.py</path>
+<path
+   action="A">/libs/corelib/tests/com/adobe/utils/StringUtilTest.as</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/net/package-detail.html</path>
+<path
+   action="A">/libs/corelib/docs/all-index-P.html</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/net/DynamicURLLoader.as</path>
+<path
+   action="A">/bin-debug/playerProductInstall.swf</path>
+<path
+   action="A">/libs/corelib/tests/com/adobe/utils/DateUtilTest.as</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/webapis/ServiceBase.html</path>
+<path
+   action="A">/libs/corelib/bin</path>
+<path
+   action="A">/src/components/eventInfoList.mxml</path>
+<path
+   action="A">/src/components/darronschall/effects/effectClasses</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/webapis</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/serialization/json/JSONTokenizer.as</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.ui.ide</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.debug.core</path>
+<path
+   action="A">/src/assets/images/Thumbs.db</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/serialization/json/JSONTokenizer.html</path>
+<path
+   action="A">/libs/corelib/examples</path>
+<path
+   action="A">/libs/corelib/tests/.settings</path>
+<path
+   action="A">/src/components/darronschall</path>
+<path
+   action="A">/src/projecthistory/models.py</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/images/package-detail.html</path>
+<path
+   action="A">/src/components/graphContainer.mxml</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/crypto/WSSEUsernameToken.html</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/utils/DictionaryUtil.html</path>
+<path
+   action="A">/.metadata</path>
+<path
+   action="A">/libs/corelib/docs/asdo.txt</path>
+<path
+   action="A">/libs/corelib/docs/images</path>
+<path
+   action="A">/src/projecthistory/__init__.py</path>
+<path
+   action="A">/src/projecthistory/settings.py</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/webapis/events/class-list.html</path>
+<path
+   action="A">/libs/corelib/tests/com/adobe/utils/DictionaryUtilTest.as</path>
+<path
+   action="A">/libs/corelib/docs/all-index-M.html</path>
+<path
+   action="A">/libs/corelib/examples/JSONExample/JSONExample.mxml</path>
+<path
+   action="A">/src/components</path>
+<path
+   action="A">/html-template/AC_OETags.js</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/net/URI.html</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.core.runtime</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.jdt.ui/dialog_settings.xml</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/webapis</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/net/URIEncodingBitmap.as</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.ui.workbench/dialog_settings.xml</path>
+<path
+   action="A">/libs/corelib/docs/images/detailSectionHeader.jpg</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/utils/XMLUtil.as</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/properties.index</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.mylyn.java.ui.prefs</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/serialization/json/JSONTokenType.as</path>
+<path
+   action="A">/.pydevproject</path>
+<path
+   action="A">/bin-debug/history</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/serialization/json/JSONTokenType.html</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/utils/StringUtil.as</path>
+<path
+   action="A">/libs/corelib/tests/.project</path>
+<path
+   action="A">/src/projecthistory/crossdomain.xml</path>
+<path
+   action="A">/libs/corelib/docs/images/titleTableBottom.jpg</path>
+<path
+   action="A">/libs/corelib/docs/images/inheritedSummary.gif</path>
+<path
+   action="A">/src/components/authorInfoList.mxml</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.prefs</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.update.ui</path>
+<path
+   action="A">/html-template/history/history.css</path>
+<path
+   action="A">/.settings/org.eclipse.core.resources.prefs</path>
+<path
+   action="A">/libs/corelib/docs/all-index-J.html</path>
+<path
+   action="A">/libs/corelib/docs/package-list.html</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.debug.ui</path>
+<path
+   action="A">/libs/corelib/tests</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/net</path>
+<path
+   action="A">/.metadata/.plugins/com.adobe.flexbuilder.codemodel</path>
+<path
+   action="A">/libs/corelib/readme.txt</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.ui.workbench/workbench.xml</path>
+<path
+   action="A">/libs/corelib/docs/all-index-Z.html</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.jdt.ui/OpenTypeHistory.xml</path>
+<path
+   action="A">/.flexProperties</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/errors/IllegalStateError.as</path>
+<path
+   action="A">/.metadata/.plugins/com.adobe.flexbuilder.codemodel/searchCache/SWCReferenceIndex.index/segments_1</path>
+<path
+   action="A">/html-template/history/history.js</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.jdt.ui/QualifiedTypeNameHistory.xml</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/webapis/events/ServiceEvent.html</path>
+<path
+   action="A">/.actionScriptProperties</path>
+<path
+   action="A">/.metadata/.plugins/com.adobe.flexbuilder.codemodel/searchCache/ASReferenceIndex.index/segments_1</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/webapis/class-list.html</path>
+<path
+   action="A">/src/projecthistory/views.py</path>
+<path
+   action="A">/libs/corelib/tests/com/adobe/serialization/json/JSONTest.as</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.jdt.ui</path>
+<path
+   action="A">/libs/corelib/docs/all-index-G.html</path>
+<path
+   action="A">/.metadata/.plugins/com.adobe.flexbuilder.codemodel/searchCache/MXMLReferenceIndex.index</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/webapis/URLLoaderBase.html</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/serialization/json/package-detail.html</path>
+<path
+   action="A">/.metadata/.plugins/com.adobe.flexbuilder.codemodel/searchCache/CSSIndex.index/write.lock</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.ui.workbench/workingsets.xml</path>
+<path
+   action="A">/libs/corelib/docs/all-index-W.html</path>
+<path
+   action="A">/libs/corelib/tests/com/adobe/crypto/SHA224Test.as</path>
+<path
+   action="A">/.metadata/.mylyn/contexts/activity.xml.zip</path>
+<path
+   action="A">/src/assets</path>
+<path
+   action="A">/libs/corelib/tests/com/adobe/net/URITest.as</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/net/class-list.html</path>
+<path
+   action="A">/libs/corelib/docs/images/titleTableTop.jpg</path>
+<path
+   action="A">/libs/corelib/docs/all-index-D.html</path>
+<path
+   action="A">/.metadata/version.ini</path>
+<path
+   action="A">/libs/corelib/tests/com/adobe</path>
+<path
+   action="A">/bin-debug/projecthistory/manage.py</path>
+<path
+   action="A">/data/directoryCount.txt</path>
+<path
+   action="A">/libs/corelib/build/build.xml</path>
+<path
+   action="A">/src/components/darronschall/util</path>
+<path
+   action="A">/libs/corelib/docs/mxml-tags.html</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/net/URI.as</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/serialization/json/JSONDecoder.as</path>
+<path
+   action="A">/bin-debug/ProjectVisualizaton.html</path>
+<path
+   action="A">/.settings</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/images/JPGEncoder.html</path>
+<path
+   action="A">/data/data.sql</path>
+<path
+   action="A">/libs/corelib/docs/all-index-T.html</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.update.ui/dialog_settings.xml</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/net/URIEncodingBitmap.html</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.team.ui.prefs</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/utils</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/serialization/json/JSONToken.as</path>
+<path
+   action="A">/.metadata/.mylyn/backup</path>
+<path
+   action="A">/src/projecthistory/urls.py</path>
+<path
+   action="A">/libs/corelib/docs/images/titleTableMiddle.jpg</path>
+<path
+   action="A">/src/assets/images/button-icon-pause.png</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/serialization/json/JSONParseError.as</path>
+<path
+   action="A">/html-template/history/historyFrame.html</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.mylyn.tasks.ui.prefs</path>
+<path
+   action="A">/libs/corelib/docs/all-index-A.html</path>
+<path
+   action="A">/html-template/index.template.html</path>
+<path
+   action="A">/.metadata/.plugins/com.adobe.flexbuilder.codemodel/searchCache/CSSIndex.index</path>
+<path
+   action="A">/.metadata/.plugins/org.tigris.subversion.subclipse.core/.svnProviderState</path>
+<path
+   action="A">/libs/corelib/docs/appendixes.html</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/utils/NumberFormatter.as</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/net/proxies</path>
+<path
+   action="A">/.metadata/.plugins/com.adobe.flexbuilder.codemodel/searchCache/MXMLReferenceIndex.index/segments_1</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/history.version</path>
+<path
+   action="A">/libs/corelib/examples/JSONExample</path>
+<path
+   action="A">/bin-debug/history/historyFrame.html</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.core.runtime/.settings/com.adobe.flexbuilder.project.prefs</path>
+<path
+   action="A">/libs/corelib/src/com</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/net</path>
+<path
+   action="A">/libs/corelib/docs/all-index-Q.html</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/serialization/json</path>
+<path
+   action="A">/src/components/controllerContainer.mxml</path>
+<path
+   action="A">/libs/corelib/docs/images/collapsed.gif</path>
+<path
+   action="A">/libs/corelib/tests/com/adobe/serialization</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/utils/IntUtil.html</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/crypto/SHA256.html</path>
+<path
+   action="A">/libs/corelib/docs/title-bar.html</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/utils</path>
+<path
+   action="A">/libs/corelib/tests/com/adobe/net</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/serialization/json/JSONEncoder.as</path>
+<path
+   action="A">/libs/corelib/bin/corelib.swc</path>
+<path
+   action="A">/bin-debug/assets</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/utils/StringUtil.html</path>
+<path
+   action="A">/.metadata/.plugins/com.adobe.flash.profiler/ProfilerAgent.swf</path>
+<path
+   action="A">/bin-debug/assets/images/redState.png</path>
+<path
+   action="A">/libs/corelib/docs/images/inherit-arrow.gif</path>
+<path
+   action="A">/.metadata/.plugins/org.tigris.subversion.subclipse.ui/commentTemplates.xml</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/webapis/URLLoaderBase.as</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/utils/class-list.html</path>
+<path
+   action="A">/data</path>
+<path
+   action="A">/.metadata/.plugins/com.adobe.flexbuilder.codemodel/extraClassPath/Global.as</path>
+<path
+   action="A">/libs/corelib/docs/all-index-N.html</path>
+<path
+   action="A">/libs/corelib/bin/generated</path>
+<path
+   action="A">/libs/corelib/docs/index-list.html</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.core.resources/.history</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/utils/XMLUtil.html</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/errors/IllegalStateError.html</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/images</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/images</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.jdt.launching</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/serialization/json/class-list.html</path>
+<path
+   action="A">/bin-debug/projecthistory/urls.py</path>
+<path
+   action="A">/libs/corelib/tests/com/adobe/utils/XMLUtilTest.as</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/serialization</path>
+<path
+   action="A">/libs/corelib/tests/com/adobe/crypto/WSSEUsernameTokenTest.as</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/crypto/SHA1.html</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/crypto</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/crypto</path>
+<path
+   action="A">/libs/corelib/docs/all-index-K.html</path>
+<path
+   action="A">/src/projecthistory/tests.py</path>
+<path
+   action="A">/bin-debug/projecthistory/stats.py</path>
+<path
+   action="A">/bin-debug/projecthistory/__init__.py</path>
+<path
+   action="A">/bin-debug/projecthistory/settings.py</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/webapis/ServiceBase.as</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.jdt.core</path>
+<path
+   action="A">/.metadata/.mylyn</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/webapis/events</path>
+<path
+   action="A">/libs/corelib/tests/com</path>
+<path
+   action="A">/.metadata/.plugins/com.adobe.flexbuilder.codemodel/searchCache/ASReferenceIndex.index/segments.gen</path>
+<path
+   action="A">/bin-debug/assets/images/Thumbs.db</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.core.prefs</path>
+<path
+   action="A">/src/projecthistory/manage.py</path>
+<path
+   action="A">/libs/corelib/build/build.properties</path>
+<path
+   action="A">/src/components/stateEventObject.mxml</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.ui/dialog_settings.xml</path>
+<path
+   action="A">/.metadata/.plugins/com.adobe.flash.profiler</path>
+<path
+   action="A">/bin-debug/assets/images/button-icon-pause.png</path>
+<path
+   action="A">/src/assets/images/whiteState.png</path>
+<path
+   action="A">/libs/corelib/docs/class-summary.html</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/images/BitString.as</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/errors</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/errors</path>
+<path
+   action="A">/libs/corelib/docs/all-index-H.html</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/images/BitString.html</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/crypto/SHA1.as</path>
+<path
+   action="A">/bin-debug/assets/images/whiteState.png</path>
+<path
+   action="A">/libs/corelib/tests/com/adobe/images</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.mylyn.context.core.prefs</path>
+<path
+   action="A">/bin-debug/ProjectVisualizaton.swf</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/images/class-list.html</path>
+<path
+   action="A">/libs/corelib/docs/com</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/net/DynamicURLLoader.html</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/serialization/json/JSONDecoder.html</path>
+<path
+   action="A">/libs/corelib/tests/.settings/org.eclipse.core.resources.prefs</path>
+<path
+   action="A">/libs/corelib/tests/com/adobe/crypto</path>
+<path
+   action="A">/.metadata/.plugins/org.tigris.subversion.subclipse.ui/commitCommentHistory.xml</path>
+<path
+   action="A">/.metadata/.mylyn/tasklist.xml.zip</path>
+<path
+   action="A">/bin-debug/projecthistory</path>
+<path
+   action="A">/bin-debug/history/history.css</path>
+<path
+   action="A">/libs/corelib/docs/all-index-X.html</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/crypto/class-list.html</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/crypto/WSSEUsernameToken.as</path>
+<path
+   action="A">/.metadata/.mylyn/contexts</path>
+<path
+   action="A">/.metadata/.plugins</path>
+<path
+   action="A">/src/assets/images</path>
+<path
+   action="A">/.metadata/.plugins/org.tigris.subversion.subclipse.core</path>
+<path
+   action="A">/libs/corelib/docs/all-index-E.html</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/net/IURIResolver.html</path>
+<path
+   action="A">/libs/corelib/src/com/adobe/serialization/json</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/crypto/SHA224.html</path>
+<path
+   action="A">/.metadata/.plugins/com.adobe.flexbuilder.codemodel/searchCache/SWCReferenceIndex.index/segments.gen</path>
+<path
+   action="A">/libs/corelib/docs/all-index-U.html</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.ui</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/errors/class-list.html</path>
+<path
+   action="A">/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.core.resources.prefs</path>
+<path
+   action="A">/bin-debug</path>
+<path
+   action="A">/libs/corelib/tests/com/adobe/crypto/SHA256Test.as</path>
+<path
+   action="A">/src/components/modulesList.mxml</path>
+<path
+   action="A">/libs/corelib/tests/com/adobe/utils/IntUtilTest.as</path>
+<path
+   action="A">/libs/corelib/docs/all-index-B.html</path>
+<path
+   action="A">/libs/corelib/docs/com/adobe/serialization/json/JSONParseError.html</path>
+</paths>
+<msg>stuff</msg>
+</logentry>
+</log>
