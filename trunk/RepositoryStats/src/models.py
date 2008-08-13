@@ -48,6 +48,27 @@ class Module:
     @classmethod
     def from_path(cls,full_path):
         module = Module()
+        paths = full_path.split('/')
+        if ('trunk' in paths):
+            full_path = '/' + '/'.join(paths[paths.index('trunk')+1:])
+        elif ('branches' in paths):
+            full_path = '/' + '/'.join(paths[paths.index('branches')+2:])    
+        module.directory = full_path[:full_path.rfind('/')]
+        module_list = Collection.Handle().modules
+        if module in module_list:
+            module = module_list[module_list.index(module)]
+        else:
+            module_list.append(module)
+        return module
+
+    @classmethod
+    def from_svn_path(cls,full_path):
+        module = Module()
+        paths = full_path.split('/')
+        if ('trunk' in paths):
+            full_path = '/' + '/'.join(paths[paths.index('trunk')+1:])
+        elif ('branches' in paths):
+            full_path = '/' + '/'.join(paths[paths.index('branches')+2:])    
         module.directory = full_path[:full_path.rfind('/')]
         module_list = Collection.Handle().modules
         if module in module_list:

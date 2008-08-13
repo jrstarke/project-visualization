@@ -1,5 +1,5 @@
 import re,os
-from datetime import datetime
+from datetime import datetime,timedelta
 from time import strptime
 import models
     
@@ -56,7 +56,7 @@ def parse_entry(lines):
                 groups[1],
                 groups[2],
                 groups[3],
-                models.Module.from_path(groups[1]))
+                models.Module.from_svn_path(groups[1]))
     
     # message lines
     entry.message = "\n".join(lines)
@@ -89,5 +89,8 @@ def get_entries_from_log(location):
     return entries, authors, modules
 
 def get_svn_log(location):
-    output = os.popen("svn log " + location + " -v")
+    #output = os.popen("svn log " + location + " -v")
+    currentdate = datetime.today().date()
+    back_180 = currentdate - timedelta(30)
+    output = os.popen("svn log " + location + " -v -r {" + str(currentdate)+ "}:{" + str(back_180) + "}")
     return output.read()   
