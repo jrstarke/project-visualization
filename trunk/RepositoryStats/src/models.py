@@ -113,10 +113,10 @@ class Commit:
     def __init__(self):
         self.paths = []
         self.id = 0
-	    self.author = Author
-	    self.message = ''
-	    self.paths = []
-	    self.lines = 0    
+        self.author = Author
+        self.message = ''
+        self.paths = []
+        self.lines = 0    
     
     def add_path(self,action,dest_file,src_file,src_revision,module):
         path = Path()
