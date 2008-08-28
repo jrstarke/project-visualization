@@ -1,7 +1,14 @@
-import loadsvn,models
+import loadsvn,loadgit,models
 
 def svnstats(location):
     commits, authors, modules = loadsvn.get_entries_from_log(location)
+    stats(commits, authors, modules)
+
+def gitstats(location):
+    commits, authors, modules = loadgit.get_entries_from_log(location)
+    stats(commits, authors, modules)
+
+def stats(commits, authors, modules):    
     print "number of commits: " + str(len(commits))
     print "number of authors: " + str(len(authors))
     print "number of modules: " + str(len(modules)) 
