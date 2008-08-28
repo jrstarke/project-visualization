@@ -29,6 +29,8 @@ def parse_entry(lines):
     
     # details
     line, lines = pop(lines)
+    entry.id = line
+    line, lines = pop(lines)
     entry.author = models.Author.from_string(line)
     line, lines = pop(lines)
     entry.date = parse_date(line)
@@ -99,6 +101,6 @@ def get_git_log(location):
     name = (location[location.rfind("/")+1:])
     name = name[:name.rfind(".")]
     debug = os.chdir(name)
-    child,output = os.popen4("git-log --pretty=format:------------------------------------------------------------------------%n%an%n%ci%n%s%nPaths --shortstat --raw --after=\"" + date + "\"")
+    child,output = os.popen4("git-log --pretty=format:------------------------------------------------------------------------%n%h%n%an%n%ci%n%s%nPaths --shortstat --raw --after=\"" + date + "\"")
     debug = os.chdir("..")
     return output.read()   
