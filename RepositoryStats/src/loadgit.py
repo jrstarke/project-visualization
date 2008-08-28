@@ -51,7 +51,7 @@ def parse_entry(lines):
                 line[40:],
                 None,
                 None,
-                models.Module.from_svn_path(line[40:]))
+                models.Module.from_svn_path(line[39:]))
             
     if line == None or line == '':
         None
