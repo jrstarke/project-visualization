@@ -1,0 +1,7 @@
+type,# events,average res,average exp,average rel res,average rel exp,max res,max exp,max rel res,max rel exp
+java,16,91.9375,0.6875,0.4375,0.125,764,2,2,1
+reference,13,2.92307692308,0.538461538462,0.0,0.0,17,1,0,0
+find in file,16,1.6875,1.1875,0.0,0.0,5,5,0,0
+file,46,570.456521739,0.717391304348,0.934782608696,0.0652173913043,4770,4,5,1
+declaration,1,12.0,0.0,0.0,0.0,12,0,0,0
+open type,4,4.25,0.0,0.25,0.0,17,0,1,0
