@@ -1,0 +1,102 @@
+Session,ID,Time Started,Time Finished,Total Time,Search Started,Search Stopped,Total Search Time,Search Type,Query,File Name Patterns,Search For,Limit To,Scope,# Res,# Rel Res,# Exp,# Rel Exp,Results Explored,Comments
+1,1,00:04,00:11,00:07,-,-,-,Open Type,commit,,,,,cancelled,0,0,0,,Too Long
+1,2,00:14,01:06,00:52,00:36,01:06,00:30,File,*commit*,,,,workspace,cancelled,0,0,0,,Too Long
+1,3,01:33,06:20,04:47,02:23,06:20,03:57,File,*commit*,,,,ui package,cancelled,0,0,0,,Too Long
+1,4,06:37,07:00,00:23,07:02,09:03,02:01,File,*commit*,,,,workspace,4152,4,0,0,,
+1,5,14:25,14:49,00:24,14:37,14:49,00:12,File,commit,,,,workspace,4770,4,0,0,,
+1,6,14:49,15:15,00:26,15:14,15:14,00:00,File,commit,commit,,,workspace,0,0,0,0,,
+1,7,15:17,16:13,00:56,16:01,16:12,00:11,Java,*commit*,,type,references,workspace,527,2,0,0,,
+1,8,16:13,17:10,00:57,16:39,16:42,00:03,Java,*commit*,,type,references,ui package,77,2,1,1,CommitAction.java,
+1,9,17:11,19:08,01:57,17:57,17:57,00:00,Find in File,resourcesToCommit,,,,,4,,3,,"CommitAction.run(), CommitAction.confirmCommit(IResource), CommitAction.getProposedCommit(IResource[])",
+1,10,20:34,20:51,00:17,20:50,20:51,00:01,Reference,setSelectedResources,,,,workspace,0,0,0,0,,
+1,11,21:41,22:02,00:21,21:50,21:50,00:00,Find in File,select,,,,,4,,4, ,,
+1,12,22:32,23:40,01:08,23:40,23:40,00:00,Java,select,,field,references,CommitAction,0,0,0,0, ,
+1,13,22:43,24:19,01:36,24:19,24:19,00:00,Java,select,,field,all occurances,CommitAction,0,0,0,0,,
+1,14,24:26,24:49,00:23,-,-,-,Java,select*,,field,all occurances,CommitAction,,,0,,,Invalid: Unable to search on Selected Resources
+1,15,24:50,24:58,00:08,24:54,24:54,00:00,Find in File,select,,,,,2,,1,,,
+1,16,27:58,27:59,00:01,27:57,27:57,00:00,Reference,setSelectedResources,,,,workspace,0,0,0,0,,,,
+0,1,04:03,05:29,01:26,04:18,04:21,00:03,File,modified,,,,ui package,193,2,1,0,ImageDescriptors.java,Limited to ui project
+0,2,06:29,06:50,00:21,06:48,06:50,00:02,File,update.gif,,,,ui package,2,0,0,0,,Limited to ui project
+0,3,07:58,08:02,00:04,08:02,08:02,00:00,File,,update.gif,,,ui package,0,0,0,0,,Limited to file name pattern
+0,4,16:45,17:26,00:41,17:05,17:08,00:03,Java,IMG_MENU_ADD,,field,all occurances,enclosing projects,4,1,1,0,ImageDescriptors.java,Limited to all occurances in enclosed project
+0,5,18:55,19:20,00:25,19:03,19:04,00:01,Reference,AddAction.getImageId,,,,ui package,2,0,1,0,ReplaceableIconAction.java,Limited to project
+0,6,29:50,29:53,00:03,29:52,29:53,00:01,Reference,AddAction.java,,,,ui package,0,0,0,0,,From package explorer
+0,7,30:09,30:14,00:05,30:12,30:14,00:02,Reference,AddAction,,,,ui package,0,0,0,0,,From AddAction.java
+2,1,04:05,06:10,02:05,04:29,04:40,00:11,File,decorator,,,,workspace,1232,2,1,0,SVNUIPlugin.java,
+2,2,10:51,11:20,00:29,11:12,11:12,00:00,Find in File,icon,,,,,1,,1,,SVNUIPlugin.setJavaHLHackMode(),"wanted to search Icon and Decorator, performed in CommitOperation.java"
+2,3,21:15,22:58,01:43,21:30,21:35,00:05,File,icon,,,,workspace,2926,2,1,0,ImageDescriptors.java,
+2,4,25:42,27:58,02:16,26:38,26:41,00:03,Java,IMG_QUESTIONABLE,,field,references,workspace,4,1,1,0,ImageDescriptors.java,
+2,5,28:01,29:23,01:22,28:16,28:21,00:05,File,IMG_QUESTIONABLE,,,,workspace,13,2,1,0,SVNDecoratorPreferencesPage.java,User constantly had researcher expand all of the java file results to see all results at once
+2,6,29:29,29:55,00:26,29:41,29:41,00:00,Find in File,IMG_QUESTIONABLE,,,,,1,,1,,newResource (field),Should not the search results have a link to this element directly?  Not Obvious. Performed on SVNDecoratorPreferencesPage.java
+2,7,33:00,33:32,00:32,33:05,33:07,00:02,Reference,newResource,,,,workspace,2,0,1,0,Preview,
+2,8,32:33,33:37,01:04,33:37,33:37,00:00,Find in File,newResource,,,,,1,,1,,getOverlay,Performed on SVNDecoratorPreferencesPage.java
+3,1,01:31,02:27,00:56,01:51,01:54,00:03,File,commit,,,,core package,353,0,0,0,,Search was done using the selected resource org.tigris.subversion.sublcipse.core,,
+3,2,02:35,02:54,00:19,02:39,02:39,00:00,File,add,,,,core package,0,0,0,0,,Search was done using the selected resource org.tigris.subversion.sublcipse.core,,
+3,3,07:00,12:40,05:40,10:11,10:11,00:00,Find in File,icon,,,whole word,,5,,5,,"Each line that contained the work ""icon"" in plugin.xml","Participant went through each result in this search, search was done on Whole Word. Performed on plugin.xml",,
+3,4,14:45,15:10,00:25,14:54,14:54,00:00,Reference,CommitAction.execute,,,,project: ui,2,0,1,0,SVNAction.java,Search was only performed on the project ui,,
+3,5,17:08,17:20,00:12,17:09,17:09,00:00,Find in File,icon,,,whole word,,0,,0,,,"Search done in the file ""ProjectProperties.java""",,
+3,6,17:20,17:28,00:08,17:23,17:23,00:00,Find in File,image,,,,,0,,0,,,"Search done in the file ""ProjectProperties.java""",,
+3,7,20:40,22:24,01:44,22:10,22:13,00:03,File,[image]+[type]+,,,,ui package,0,0,0,0,,Search was only performed on the project ui,,
+3,8,22:24,24:24,02:00,22:54,22:58,00:04,Java,getImage,,method,all occurances,workspace,764,0,1,0,SetSvnPropertyAction.java,Search perfomed on methods limited to all occurances,,
+4,1,01:26,06:55,05:29,01:51,02:06,00:15,File,commit,,,,workspace,4770,4,1,0,SetCommitPropertiesDialog.java,
+4,2,07:39,07:59,00:20,07:50,07:52,00:02,Java,spacebar,,type,references,workspace,0,0,0,0,,
+4,3,08:01,08:13,00:12,08:04,08:10,00:06,File,space bar,,,,workspace,0,0,0,0,,
+4,4,08:14,10:16,02:02,08:17,08:23,00:06,File,space,,,,workspace,2584,5,0,0,,
+4,5,10:17,11:22,01:05,10:32,10:38,00:06,File,Keep locks,,,,workspace,9,0,0,0,,
+4,6,11:24,12:10,00:46,12:04,12:06,00:02,Java,CommitDialog,,type,references,workspace,0,0,0,0,,
+4,7,12:25,12:30,00:05,12:29,12:29,00:00,Open Type,CommitDialog,,,,,0,0,0,0,,
+4,8,12:33,13:11,00:38,12:34,12:34,00:00,Open Type,commit,,,,,17,1,0,0,,
+4,9,16:45,19:19,02:34,16:58,17:05,00:07,File,pressed ,,,,workspace,430,1,1,0,ChoseUrlDialog.java.svn-base,
+4,10,19:21,24:23,05:02,19:46,19:52,00:06,File,keypressed ,,,,ui package,13,0,1,0,ResourceSelectionTree.java.svn-base,On UI package
+4,11,24:39,29:38,04:59,25:38,25:40,00:02,Java,ResourceSelectionTree,,type,declarations,workspace,2,1,2,1,"ResourceSelectionTree.java, ResourceSelectionTreeDecorator.java",
+4,12,29:40,30:26,00:46,29:49,29:56,00:07,File,ResourceSelectionTree,,,,workspace,228,2,0,0,,
+5,1,01:40,03:01,01:21,02:08,02:10,00:02,File,commit,,,,ui package,1266,4,1,1,CommitAction.java,
+5,2,03:17,03:50,00:33,03:25,03:30,00:05,Reference,execute(IAction),,,,workspace,2,0,1,0,ConfigurableMergeAction.java,
+5,3,03:57,04:18,00:21,04:07,04:09,00:02,Reference,execute(IAction),,,,workspace,2,0,1,0,SVNAction.java,
+5,4,04:33,05:40,01:07,04:39,04:44,00:05,Reference,run(IAction),,,,workspace,17,0,1,0,ChooseUrlDialog.java,
+5,5,06:43,07:17,00:34,07:03,07:08,00:05,File,Commit to:,,,,workspace,1,0,1,0,message.properties,
+5,6,07:55,08:46,00:51,08:06,08:09,00:03,File,commitTo,,,,workspace,13,1,1,1,SvnWizardCommitPage,
+5,7,13:23,13:41,00:18,13:35,13:35,00:00,Find in File,check,,,,,3,,2,,"createControl(Composite), addResourcesArea(Composite)",Searched within SvnWizardCommitPage
+6,1,04:25,08:43,04:18,04:33,04:40,00:07,File,plus,,,,workspace,4,0,2,0,"add.html, RevisionKind.java",,,
+6,2,08:43,13:48,05:05,09:05,09:09,00:04,File,adding,,,,workspace,45,0,1,0,messages.properties,,,
+6,3,13:48,16:13,02:25,14:03,14:05,00:02,File,Add to,,,,workspace,38,0,3,0,"SVNClientInterface.java, workcycle.html, add.html",,,
+6,4,21:21,21:47,00:26,21:28,21:31,00:03,File,newfile,,,,workspace,70,0,0,0,,,,
+6,5,21:49,22:17,00:28,21:54,21:57,00:03,File,added to version control,,,,workspace,2,0,1,0,CommitAction.java,,,
+6,6,23:20,23:43,00:23,23:38,23:43,00:05,File,adding to version control,,,,workspace,0,0,0,0,,,,
+6,7,24:53,25:50,00:57,24:56,25:05,00:09,File,add to version control,,,,workspace,14,0,1,0,AddAction.java,,, 
+6,8,27:03,27:49,00:46,27:05,27:08,00:03,Declaration,isEnabledForSVNResource,,,,workspace,12,0,0,0,,,,
+6,9,27:49,29:39,01:50,27:52,27:55,00:03,File,plus,,,,workspace,4,0,1,0,SVNRevision.java,,,
+6,10,29:49,-,#VALUE!,29:54,29:56,00:02,File,add to version control,,,,workspace,14,0,0,0,,Incomplete,,
+7,1,01:46,03:04,01:18,02:06,02:12,00:06,File,image,,,,workspace,1252,2,1,0,about.ini,
+7,2,03:24,04:03,00:39,03:34,03:36,00:02,File,icon,,,,workspace,1265,2,0,0,,
+7,3,04:05,04:45,00:40,04:22,04:22,00:00,Open Type,image,,,,,unknown,0,0,0,,
+7,4,04:45,05:41,00:56,05:32,05:32,00:00,File,,*icon*,,,workspace,1,0,1,0,preferences-svn-dec-icons.png,
+7,5,06:02,06:08,00:06,06:08,06:08,00:00,File,,*image*,,,workspace,0,0,0,0,,
+7,6,06:54,08:29,01:35,07:04,07:04,00:00,File,,*.png,,,workspace,105,0,4,0,"pending.png, properties.png, svn_wizban.png, new-remote-folder-1.png",
+7,7,12:51,13:40,00:49,13:26,13:28,00:02,File,filemodified_pending.gif,,,,workspace,1,1,0,0,,
+7,8,13:40,14:13,00:33,14:13,14:13,00:00,Open Type,IMG_FILEMODIFIED_PENDING,,,,,0,0,0,0,,
+7,9,14:30,15:41,01:11,14:40,14:44,00:04,File,IMG_FILEMODIFIED_PENDING,,,,workspace,8,1,1,0,ChangePathsTreeViewer.java,
+7,10,19:44,20:15,00:31,19:58,20:03,00:05,Reference,ChangePathsTreeViewer.getImage(Object),,,,ui project,1,0,1,0,MyLabelProvider.getImage(Object),Search within Project
+7,11,23:49,24:32,00:43,23:52,23:56,00:04,Reference,MyLabelProvider.getImage(Object),,,,ui project,1,0,0,0,,Within Project
+7,12,24:32,25:39,01:07,24:52,24:56,00:04,File,getImage,,,,workspace,265,1,1,0,AddAction,
+7,13,26:32,28:10,01:38,26:49,26:52,00:03,File,getImage(,,,,workspace,46,0,1,0,ResourceEditionNode,
+7,14,28:20,28:29,00:09,28:29,28:29,00:00,Find in File,getImage(,,,,,3,,1,,ResourceEditionNode.getImage(),
+8,1,01:20,01:47,00:27,01:45,01:47,00:02,File,commit to multiple targets selected,,,,workspace,0,0,0,0,,
+8,2,02:30,03:12,00:42,02:35,02:37,00:02,File,Configure comment templates,,,,workspace,2,0,1,0,CommitCommentArea.java,
+8,3,03:40,04:57,01:17,03:50,03:51,00:01,File,Keep locks,,,,workspace,4,0,0,0,,Explored through the search result line to help their next search
+8,4,05:18,05:27,00:09,05:26,05:27,00:01,Java,CommitDialog,,type,declarations,workspace,0,0,0,0,,Uncertainty why there were no results
+8,5,06:10,06:15,00:05,06:14,06:15,00:01,Java,CommitDialog,,type,implementors,workspace,0,0,0,0,,
+8,6,06:28,06:33,00:05,06:30,06:33,00:03,Java,CommitDialog,,type,all occurances,workspace,0,0,0,0,,All occurances specified
+8,7,07:09,11:06,03:57,07:12,07:14,00:02,File,CommitDialog,,,,workspace,149,3,3,1,"messages_ja.properties, SVNPlugin.java, SVNWizardCommitPage.java",
+8,8,16:16,16:17,00:01,16:17,16:17,00:00,Find in File,key,,,,,0,0,0,0,,Performed on SVNWizardCommitPage.java
+8,9,16:19,16:23,00:04,16:23,16:23,00:00,Find in File,space,,,,,0,0,0,0,,Performed on SVNWizardCommitPage.java
+8,10,16:25,16:28,00:03,16:28,16:28,00:00,Find in File,changes,,,,,0,0,0,0,,Performed on SVNWizardCommitPage.java
+9,1,01:40,03:00,01:20,02:01,02:06,00:05,Java,commit,,method,declarations,workspace,65,0,1,0,BufferedResourceNode.class,Search for method limited to declarations
+9,2,03:30,06:23,02:53,03:54,03:56,00:02,Java,commit,,method,declarations,workspace,17,0,2,0,"SVNClient.java, RepositoryManager.java",Search in only Sources
+9,3,07:51,07:52,00:01,07:52,07:52,00:00,Reference,listeners,,,,workspace,9,0,0,0,,
+9,4,15:10,15:27,00:17,15:24,15:27,00:03,File,keystroke,*.java,,,workspace,0,0,0,0,,
+9,5,15:33,15:56,00:23,15:40,15:41,00:01,File,keylistener,*.java,,,workspace,11,0,1,0,ChooseUrlDialog.java,
+9,6,16:45,18:39,01:54,17:03,17:05,00:02,Java,KeyEvent,,type,all occurances,workspace,11,0,2,0,"SourceViewerInformationControl.java, RepositoriesView.java","Search for Type limited to all occurances, search in only Sources"
+9,7,19:45,20:09,00:24,20:08,20:09,00:01,File,.Space,*.java,,,workspace,0,0,0,0,,
+9,8,28:45,28:50,00:05,28:50,28:50,00:00,Find in File,KeyEvent,,,,,0,,0,,,Performed in SVNWizardCommitPage.java
+9,9,28:54,28:57,00:03,28:57,28:57,00:00,Find in File,event,,,,,3,,0,,,Performed in SVNWizardCommitPage.java

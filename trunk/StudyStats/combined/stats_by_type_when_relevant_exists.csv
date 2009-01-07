@@ -1,0 +1,4 @@
+type,# events,average res,average exp,average rel res,average rel exp,max res,max exp,max rel res,max rel exp
+open type,1,17.0,0.0,1.0,0.0,17,0,1,0
+java,5,122.8,1.0,1.4,0.4,527,2,2,1
+file,18,1417.61111111,0.777777777778,2.38888888889,0.166666666667,4770,3,5,1
