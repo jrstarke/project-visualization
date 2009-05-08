@@ -15,7 +15,10 @@ def stats(request):
 def selectedstats(request, author_id_str, module_id_str):
     author_id = int(author_id_str)
     module_id = int(module_id_str)
-    return HttpResponse(simplejson.dumps(models.selectedstats(author_id,module_id)))
+    #return HttpResponse(simplejson.dumps(models.selectedstats(author_id,module_id)))
+    json_serializer = serializers.get_serializer("json")()
+    return json_serializer.serialize(models.selectedstats(author_id,module_id), ensure_ascii=False, stream=response)
+
 
 # returns a list of events for the given day
 def events(request, date_str):
@@ -47,7 +50,10 @@ def selectedeventrange(request, date_str_start, date_str_stop, author_id_str, mo
                    'pk':event.id, 'comment':event.comment, 'author':event.author.id, 'author_name':event.author.name,
                    'modules':modules.get(event.id,[]),'files':files.get(event.id,[]), 'status':status.get(event.id,[])}) 
                    
-    return HttpResponse(simplejson.dumps(all_events))
+    #return HttpResponse(simplejson.dumps(all_events))
+    json_serializer = serializers.get_serializer("json")()
+    return json_serializer.serialize(all_events, ensure_ascii=False, stream=response)
+
 
 def topauthors(request, start_date, end_date, num_authors):
    #start = parse_date(start_date)
@@ -56,8 +62,10 @@ def topauthors(request, start_date, end_date, num_authors):
    end = date(2007,12,31) + timedelta(1)
    number = int(num_authors)
    all_events = models.topauthors(start, end, number)
-   return HttpResponse(simplejson.dumps(all_events))
-   #return HttpResponse(start_date + " " + end_date + " " + num_authors)
+   #return HttpResponse(simplejson.dumps(all_events))
+   json_serializer = serializers.get_serializer("json")()
+   json_serializer.serialize(all_events, ensure_ascii=False, stream=response)
+
 
 def topauthorsfordays(request):
     models.topauthorsfordays()
@@ -65,12 +73,18 @@ def topauthorsfordays(request):
 
 def modules(request):
     modules = models.modules()
-    return HttpResponse(simplejson.dumps(modules))
+    #return HttpResponse(simplejson.dumps(modules))
+    json_serializer = serializers.get_serializer("json")()
+    json_serializer.serialize(modules, ensure_ascii=False, stream=response)
+
 
 def filesinmodule(request, module_id_str):
     module_id = int(module_id_str)
     files = models.files_in_module(module_id)
-    return HttpResponse(simplejson.dumps(files))
+    #return HttpResponse(simplejson.dumps(files))
+    json_serializer = serializers.get_serializer("json")()
+    json_serializer.serialize(files, ensure_ascii=False, stream=response)
+
 
 def index(request):
     return HttpResponseRedirect('/scrutinize/')
